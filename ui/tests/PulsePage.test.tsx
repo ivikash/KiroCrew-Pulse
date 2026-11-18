@@ -66,7 +66,8 @@ describe('PulsePage', () => {
     renderPage()
     await waitFor(() => expect(tileValue('home-stat-active')).toBe('3'))
     expect(within(tile('home-stat-active')).getByTestId('stat-card-detail')).toHaveTextContent('1 session, 1 subagent, and 1 workflow')
-    expect(tileValue('home-stat-attention')).toBe('3')
+    // Everything waiting on a person counts: 3 blockers plus 1 follow-up offer.
+    expect(tileValue('home-stat-attention')).toBe('4')
     expect(within(tile('home-stat-attention')).getByTestId('stat-card-detail')).toHaveTextContent('1 question and 2 approvals · 1 suggestion')
     expect(tileValue('home-stat-schedule')).toBe('3')
     expect(within(tile('home-stat-schedule')).getByTestId('stat-card-detail')).toHaveTextContent('Next: Sync rollover')
@@ -141,20 +142,41 @@ describe('PulsePage', () => {
     expect(stubPosts[1]).toMatchObject({ path: '/api/chat/slots/s-native/approve', body: { action: 'rejected_once', origin: 'native', request_id: 'n1', request_mid: 'm9' } })
   })
 
-  it('folds follow-up offers, withholds command-shaped labels and sends a pick as a message', async () => {
+  it('shows a follow-up offer as a card, withholds command-shaped labels and sends a pick as a message', async () => {
     const user = userEvent.setup()
     renderPage()
-    const fold = await screen.findByTestId('home-suggestions')
-    expect(fold).toHaveTextContent('1 session offered next steps')
-    const row = within(fold).getByTestId('home-suggestion-row')
-    expect(row).toHaveTextContent('Offered 2 next steps')
-    await user.click(within(row).getByTestId('home-suggestion-toggle'))
-    const picks = within(row).getByTestId('home-suggestion-picks')
-    expect(within(picks).getByRole('button', { name: 'Publish' })).toBeInTheDocument()
-    expect(within(picks).queryByRole('button', { name: '/deploy' })).toBeNull()
-    await user.click(within(picks).getByRole('button', { name: 'Publish' }))
-    await user.click(within(row).getByTestId('home-suggestion-send'))
+    const grid = await screen.findByTestId('home-needs-you-grid')
+    const card = within(grid).getAllByTestId('home-attention-card').find(c => c.textContent?.includes('Weekly report'))!
+    const offer = within(card).getByTestId('home-follow-up')
+    expect(within(offer).getByRole('button', { name: 'Publish' })).toBeInTheDocument()
+    expect(within(offer).queryByRole('button', { name: '/deploy' })).toBeNull()
+    expect(within(offer).getByRole('link', { name: /Answer in the session/ })).toBeInTheDocument()
+    const send = within(card).getByTestId('home-follow-up-send')
+    expect(send).toBeDisabled()
+    await user.click(within(offer).getByRole('button', { name: 'Publish' }))
+    expect(stubPosts).toHaveLength(0)
+    await user.click(send)
     await waitFor(() => expect(stubPosts).toEqual([{ path: '/api/chat', body: { message: 'Publish', slot: 's-docs' } }]))
+  })
+
+  it('shows six cards at first and three more per click, blockers before offers', async () => {
+    const user = userEvent.setup()
+    stubRoutes.set('/api/chat/slots', [
+      { key: 'q1', title: 'Ask one', needs_input: true },
+      ...Array.from({ length: 8 }, (_, i) => ({ key: `o${i}`, title: `Offer ${i}`, has_options: true, options: ['Go'], options_ts: `t${i}` })),
+    ])
+    stubRoutes.set('/api/ask-question/pending', [])
+    stubRoutes.set('/api/approvals', [])
+    renderPage()
+    const grid = await screen.findByTestId('home-needs-you-grid')
+    expect(within(grid).getAllByTestId('home-attention-card')).toHaveLength(6)
+    expect(within(grid).getAllByTestId('home-attention-card')[0]).toHaveTextContent('Ask one')
+    await waitFor(() => expect(tileValue('home-stat-attention')).toBe('9'))
+    const more = screen.getByTestId('home-needs-you-more')
+    expect(more).toHaveTextContent('Show 3 more')
+    await user.click(more)
+    expect(within(grid).getAllByTestId('home-attention-card')).toHaveLength(9)
+    expect(screen.queryByTestId('home-needs-you-more')).toBeNull()
   })
 
   it('lists spend by model, the next jobs, the bots and the gateway health', async () => {

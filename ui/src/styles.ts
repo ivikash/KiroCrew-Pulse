@@ -16,6 +16,9 @@ const CSS = `
 @media (min-width: 768px) { .ch-tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .ch-page-cols { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 1280px) { .ch-page-cols { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
+.ch-cards { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 768px) { .ch-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .ch-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .ch-board-cols { grid-template-columns: auto minmax(0, 1fr) auto; }
 @media (min-width: 768px) { .ch-board-cols { grid-template-columns: auto minmax(0, 5fr) minmax(0, 4fr) auto; } }
 .ch-accent-50 { background-color: color-mix(in srgb, var(--accent) 50%, transparent); }

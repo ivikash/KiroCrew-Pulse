@@ -69,13 +69,16 @@ export default function PulsePage() {
     t('pages.homePage.subagents', { count: active.subagents, amount: fmtNumber(active.subagents) }),
     t('pages.homePage.workflows', { count: active.workflows, amount: fmtNumber(active.workflows) }),
   ])
-  const attentionDetail = [
+  // The tile counts everything waiting on a person; its detail line says how
+  // much of that is a blocker (a question or approval) and how much an offer.
+  const waiting = attention.blockers.length + attention.followUps.length
+  const attentionDetail = !waiting ? t('commandCenter.no_input') : [
     attention.blockers.length
       ? fmtList([
         t('pages.homePage.questions_count', { count: attention.questions, amount: fmtNumber(attention.questions) }),
         t('pages.homePage.approvals_count', { count: attention.approvals, amount: fmtNumber(attention.approvals) }),
       ])
-      : t('commandCenter.no_input'),
+      : '',
     attention.followUps.length ? t('pages.homePage.suggestions_count', { count: attention.followUps.length, amount: fmtNumber(attention.followUps.length) }) : '',
   ].filter(Boolean).join(' · ')
 
@@ -110,7 +113,7 @@ export default function PulsePage() {
         <ErrorNotice message={crons.isError ? t('pages.homePage.schedule_unavailable') : undefined} />
         <div className="grid ch-tiles gap-3" data-testid="home-stat-strip">
           <Tile testId="home-stat-active" label={t('pages.homePage.active_now')} value={ready ? fmtNumber(active.total) : undefined} detail={activeDetail} accent={active.total > 0} />
-          <Tile testId="home-stat-attention" label={t('commandCenter.attention_filter')} value={ready ? fmtNumber(attention.blockers.length) : undefined} detail={attentionDetail} colorClass={attention.blockers.length ? 'text-warn-text' : undefined} />
+          <Tile testId="home-stat-attention" label={t('commandCenter.attention_filter')} value={ready ? fmtNumber(waiting) : undefined} detail={attentionDetail} colorClass={waiting ? 'text-warn-text' : undefined} />
           <Tile testId="home-stat-schedule" label={t('pages.homePage.scheduled')} value={schedule ? fmtNumber(schedule.enabled) : crons.isError ? '—' : undefined} detail={scheduleDetail} colorClass={schedule?.failing ? 'text-danger-text' : undefined} />
           <Tile testId="home-stat-today" label={t('pages.homePage.today')} value={todayValue} detail={todayDetail} />
         </div>

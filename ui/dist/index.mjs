@@ -194,12 +194,8 @@ var CATALOGS = {
 				"subagents_one": "{{amount}}টি সাব-এজেন্ট",
 				"subagents_other": "{{amount}}টি সাব-এজেন্ট",
 				"subtitle": "তোমার ক্রু কী করছে, কী তোমার জন্য অপেক্ষা করছে, আর সামনে কী আসছে।",
-				"suggestion_choices_one": "{{amount}}টি পরবর্তী ধাপ প্রস্তাব করেছে",
-				"suggestion_choices_other": "{{amount}}টি পরবর্তী ধাপ প্রস্তাব করেছে",
 				"suggestions_count_one": "{{amount}}টি পরামর্শ",
 				"suggestions_count_other": "{{amount}}টি পরামর্শ",
-				"suggestions_fold_one": "{{amount}}টি সেশন পরবর্তী ধাপ প্রস্তাব করেছে",
-				"suggestions_fold_other": "{{amount}}টি সেশন পরবর্তী ধাপ প্রস্তাব করেছে",
 				"today": "আজ",
 				"track_label": "এই সময়ে {{name}}-এর কার্যকলাপ",
 				"upcoming": "আসন্ন",
@@ -318,12 +314,8 @@ var CATALOGS = {
 				"subagents_one": "{{amount}} Subagent",
 				"subagents_other": "{{amount}} Subagenten",
 				"subtitle": "Was deine Crew gerade tut, was auf dich wartet und was als Nächstes ansteht.",
-				"suggestion_choices_one": "{{amount}} nächsten Schritt vorgeschlagen",
-				"suggestion_choices_other": "{{amount}} nächste Schritte vorgeschlagen",
 				"suggestions_count_one": "{{amount}} Vorschlag",
 				"suggestions_count_other": "{{amount}} Vorschläge",
-				"suggestions_fold_one": "{{amount}} Sitzung hat nächste Schritte vorgeschlagen",
-				"suggestions_fold_other": "{{amount}} Sitzungen haben nächste Schritte vorgeschlagen",
 				"today": "Heute",
 				"track_label": "Aktivität von {{name}} in diesem Zeitraum",
 				"upcoming": "Demnächst",
@@ -442,12 +434,8 @@ var CATALOGS = {
 				"subagents_one": "{{amount}} subagent",
 				"subagents_other": "{{amount}} subagents",
 				"subtitle": "What your crew is doing, what is waiting on you, and what is coming up.",
-				"suggestion_choices_one": "Offered {{amount}} next step",
-				"suggestion_choices_other": "Offered {{amount}} next steps",
 				"suggestions_count_one": "{{amount}} suggestion",
 				"suggestions_count_other": "{{amount}} suggestions",
-				"suggestions_fold_one": "{{amount}} session offered next steps",
-				"suggestions_fold_other": "{{amount}} sessions offered next steps",
 				"today": "Today",
 				"track_label": "Activity of {{name}} in this window",
 				"upcoming": "Upcoming",
@@ -573,15 +561,9 @@ var CATALOGS = {
 				"subagents_one": "{{amount}} subagente",
 				"subagents_other": "{{amount}} subagentes",
 				"subtitle": "Qué hace tu equipo, qué espera tu respuesta y qué viene a continuación.",
-				"suggestion_choices_many": "Propuso {{amount}} pasos siguientes",
-				"suggestion_choices_one": "Propuso {{amount}} paso siguiente",
-				"suggestion_choices_other": "Propuso {{amount}} pasos siguientes",
 				"suggestions_count_many": "{{amount}} sugerencias",
 				"suggestions_count_one": "{{amount}} sugerencia",
 				"suggestions_count_other": "{{amount}} sugerencias",
-				"suggestions_fold_many": "{{amount}} sesiones propusieron pasos siguientes",
-				"suggestions_fold_one": "{{amount}} sesión propuso pasos siguientes",
-				"suggestions_fold_other": "{{amount}} sesiones propusieron pasos siguientes",
 				"today": "Hoy",
 				"track_label": "Actividad de {{name}} en este periodo",
 				"upcoming": "Próximos",
@@ -712,15 +694,9 @@ var CATALOGS = {
 				"subagents_one": "{{amount}} sous-agent",
 				"subagents_other": "{{amount}} sous-agents",
 				"subtitle": "Ce que fait ton équipe, ce qui attend ta réponse et ce qui arrive ensuite.",
-				"suggestion_choices_many": "A proposé {{amount}} étapes suivantes",
-				"suggestion_choices_one": "A proposé {{amount}} étape suivante",
-				"suggestion_choices_other": "A proposé {{amount}} étapes suivantes",
 				"suggestions_count_many": "{{amount}} suggestions",
 				"suggestions_count_one": "{{amount}} suggestion",
 				"suggestions_count_other": "{{amount}} suggestions",
-				"suggestions_fold_many": "{{amount}} sessions ont proposé des étapes suivantes",
-				"suggestions_fold_one": "{{amount}} session a proposé des étapes suivantes",
-				"suggestions_fold_other": "{{amount}} sessions ont proposé des étapes suivantes",
 				"today": "Aujourd’hui",
 				"track_label": "Activité de {{name}} sur cette période",
 				"upcoming": "À venir",
@@ -844,12 +820,8 @@ var CATALOGS = {
 				"subagents_one": "{{amount}} सब-एजेंट",
 				"subagents_other": "{{amount}} सब-एजेंट",
 				"subtitle": "तुम्हारा क्रू क्या कर रहा है, क्या तुम्हारा इंतज़ार कर रहा है, और आगे क्या होने वाला है।",
-				"suggestion_choices_one": "{{amount}} अगला कदम सुझाया",
-				"suggestion_choices_other": "{{amount}} अगले कदम सुझाए",
 				"suggestions_count_one": "{{amount}} सुझाव",
 				"suggestions_count_other": "{{amount}} सुझाव",
-				"suggestions_fold_one": "{{amount}} सत्र ने अगले कदम सुझाए",
-				"suggestions_fold_other": "{{amount}} सत्रों ने अगले कदम सुझाए",
 				"today": "आज",
 				"track_label": "इस अवधि में {{name}} की गतिविधि",
 				"upcoming": "आगामी",
@@ -975,15 +947,9 @@ var CATALOGS = {
 				"subagents_one": "{{amount}} sottoagente",
 				"subagents_other": "{{amount}} sottoagenti",
 				"subtitle": "Cosa sta facendo il tuo team, cosa aspetta una tua risposta e cosa arriva dopo.",
-				"suggestion_choices_many": "Ha proposto {{amount}} passi successivi",
-				"suggestion_choices_one": "Ha proposto {{amount}} passo successivo",
-				"suggestion_choices_other": "Ha proposto {{amount}} passi successivi",
 				"suggestions_count_many": "{{amount}} suggerimenti",
 				"suggestions_count_one": "{{amount}} suggerimento",
 				"suggestions_count_other": "{{amount}} suggerimenti",
-				"suggestions_fold_many": "{{amount}} sessioni hanno proposto passi successivi",
-				"suggestions_fold_one": "{{amount}} sessione ha proposto passi successivi",
-				"suggestions_fold_other": "{{amount}} sessioni hanno proposto passi successivi",
 				"today": "Oggi",
 				"track_label": "Attività di {{name}} in questo periodo",
 				"upcoming": "In arrivo",
@@ -1100,9 +1066,7 @@ var CATALOGS = {
 				"state_waiting": "待機中",
 				"subagents_other": "{{amount}} サブエージェント",
 				"subtitle": "クルーが今していること、あなたの対応を待っていること、そして次の予定。",
-				"suggestion_choices_other": "次のステップを {{amount}} 件提案",
 				"suggestions_count_other": "提案 {{amount}} 件",
-				"suggestions_fold_other": "{{amount}} 件のセッションが次のステップを提案",
 				"today": "今日",
 				"track_label": "この期間の {{name}} のアクティビティ",
 				"upcoming": "今後の予定",
@@ -1209,9 +1173,7 @@ var CATALOGS = {
 				"state_waiting": "대기 중",
 				"subagents_other": "하위 에이전트 {{amount}}개",
 				"subtitle": "크루가 지금 하고 있는 일, 내 응답을 기다리는 일, 그리고 다음 예정.",
-				"suggestion_choices_other": "다음 단계 {{amount}}개 제안",
 				"suggestions_count_other": "제안 {{amount}}개",
-				"suggestions_fold_other": "세션 {{amount}}개가 다음 단계를 제안함",
 				"today": "오늘",
 				"track_label": "이 기간의 {{name}} 활동",
 				"upcoming": "예정",
@@ -1332,15 +1294,9 @@ var CATALOGS = {
 				"subagents_one": "{{amount}} subagente",
 				"subagents_other": "{{amount}} subagentes",
 				"subtitle": "O que a sua equipa está a fazer, o que espera por si e o que vem a seguir.",
-				"suggestion_choices_many": "Propôs {{amount}} passos seguintes",
-				"suggestion_choices_one": "Propôs {{amount}} passo seguinte",
-				"suggestion_choices_other": "Propôs {{amount}} passos seguintes",
 				"suggestions_count_many": "{{amount}} sugestões",
 				"suggestions_count_one": "{{amount}} sugestão",
 				"suggestions_count_other": "{{amount}} sugestões",
-				"suggestions_fold_many": "{{amount}} sessões propuseram passos seguintes",
-				"suggestions_fold_one": "{{amount}} sessão propôs passos seguintes",
-				"suggestions_fold_other": "{{amount}} sessões propuseram passos seguintes",
 				"today": "Hoje",
 				"track_label": "Atividade de {{name}} neste período",
 				"upcoming": "Próximos",
@@ -1478,18 +1434,10 @@ var CATALOGS = {
 				"subagents_one": "{{amount}} субагент",
 				"subagents_other": "{{amount}} субагента",
 				"subtitle": "Чем занята твоя команда, что ждёт твоего участия и что запланировано дальше.",
-				"suggestion_choices_few": "Предложил {{amount}} следующих шага",
-				"suggestion_choices_many": "Предложил {{amount}} следующих шагов",
-				"suggestion_choices_one": "Предложил {{amount}} следующий шаг",
-				"suggestion_choices_other": "Предложил {{amount}} следующего шага",
 				"suggestions_count_few": "{{amount}} предложения",
 				"suggestions_count_many": "{{amount}} предложений",
 				"suggestions_count_one": "{{amount}} предложение",
 				"suggestions_count_other": "{{amount}} предложения",
-				"suggestions_fold_few": "{{amount}} сессии предложили следующие шаги",
-				"suggestions_fold_many": "{{amount}} сессий предложили следующие шаги",
-				"suggestions_fold_one": "{{amount}} сессия предложила следующие шаги",
-				"suggestions_fold_other": "{{amount}} сессии предложили следующие шаги",
 				"today": "Сегодня",
 				"track_label": "Активность {{name}} за этот период",
 				"upcoming": "Ближайшие",
@@ -1611,9 +1559,7 @@ var CATALOGS = {
 				"state_waiting": "等待中",
 				"subagents_other": "{{amount}} 个子代理",
 				"subtitle": "你的团队在做什么、哪些事项在等你处理，以及接下来有什么安排。",
-				"suggestion_choices_other": "提供了 {{amount}} 个后续步骤",
 				"suggestions_count_other": "{{amount}} 条建议",
-				"suggestions_fold_other": "{{amount}} 个会话提供了后续步骤",
 				"today": "今天",
 				"track_label": "{{name}} 在此时间段内的活动",
 				"upcoming": "即将执行",
@@ -2595,21 +2541,22 @@ function FleetBoard({ nodes, attentionSlots, extras, subagents, ready, nowMs }) 
 }
 // src/NeedsYou.tsx
 /**
-* The "Needs you" inbox. A BLOCKER (a question card, a tool approval, a session
-* marked needs-input) gets a card that answers or decides it from here, routed to
-* the same gateway endpoints the dashboard's own cards use. A follow-up offer
-* (an idle session whose newest reply ended in `[OPTIONS:]`) is one compact row
-* behind a fold: nothing is stuck, and a full card per offer buried the blockers
-* under a screen of buttons.
+* The "Needs you" inbox: a card per session that waits on a person, each
+* answerable from here and routed to the same gateway endpoints the dashboard's
+* own cards use. Blockers come first (a question card, a tool approval, a
+* session marked needs-input), then sessions whose newest reply offered next
+* steps in an `[OPTIONS:]` line. Six cards show at first, and each "Show more"
+* adds a row.
 *
 * Nothing here sends on a click alone: a pick stays a draft until "Send answer",
 * and an approval needs its own button. A label the dashboard would refuse to
-* send bare (one that reads as a command) is withheld with a note to answer in
+* send bare (one that reads as a command) is withheld with a link to answer in
 * the session.
 */
-/** Blocker cards per step: one row of the widest grid at first, and each
-*  "Show more" adds another row. */
-var BLOCKERS_PER_ROW = 3;
+/** Cards shown at first, and how many each "Show more" adds: one row of the
+*  widest grid. */
+var INITIAL_CARDS = 6;
+var CARDS_PER_ROW = 3;
 function useLiveInvalidate() {
 	const client = useQueryClient();
 	return () => {
@@ -2808,9 +2755,10 @@ function OpenSessionCard({ item, title, detail }) {
 		})]
 	});
 }
-/** A follow-up offer: pick a label and send it as the session's next message. */
-function FollowUpRow({ item, title }) {
-	const [open, setOpen] = useState(false);
+/** A session whose newest reply offered next steps: pick one and send it as
+*  the session's next message. A command-shaped label is withheld: sent bare it
+*  would run rather than say, so it is answered in the session itself. */
+function FollowUpCard({ item, title }) {
 	const [pick, setPick] = useState("");
 	const refresh = useLiveInvalidate();
 	const mutation = useMutation({
@@ -2818,39 +2766,19 @@ function FollowUpRow({ item, title }) {
 		onSuccess: refresh
 	});
 	const sendable = item.followUp.labels.filter((l) => !isCommandShaped(l));
-	const choices = item.followUp.labels.length;
-	return /* @__PURE__ */ jsxs(ListRow, {
-		className: "py-1.5 flex-wrap",
-		"data-testid": "home-suggestion-row",
+	const withheld = item.followUp.labels.length - sendable.length;
+	return /* @__PURE__ */ jsxs(CardShell, {
+		title,
+		slot: item.slot,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "flex-1 min-w-0",
-				children: [/* @__PURE__ */ jsx("div", {
-					className: "text-sm truncate",
-					children: title
-				}), /* @__PURE__ */ jsx("div", {
-					className: "text-[12px] text-muted truncate",
-					children: t("pages.homePage.suggestion_choices", {
-						count: choices,
-						amount: fmtNumber(choices)
-					})
-				})]
-			}),
-			sendable.length > 0 && /* @__PURE__ */ jsx(Btn, {
-				className: "text-[12px]",
-				"aria-expanded": open,
-				onClick: () => setOpen((o) => !o),
-				"data-testid": "home-suggestion-toggle",
-				children: t("commandCenter.options_question")
-			}),
-			/* @__PURE__ */ jsx(RowLink, {
-				to: sessionRoute(item.slot),
-				children: t("pages.homePage.open")
-			}),
-			open && /* @__PURE__ */ jsxs("div", {
-				className: "basis-full rounded-lg bg-accent-subtle p-3 space-y-2",
-				"data-testid": "home-suggestion-picks",
+				className: "rounded-lg bg-accent-subtle p-3 space-y-2",
+				"data-testid": "home-follow-up",
 				children: [
+					/* @__PURE__ */ jsx("div", {
+						className: "text-sm font-medium",
+						children: t("commandCenter.options_question")
+					}),
 					/* @__PURE__ */ jsx("div", {
 						className: "grid gap-2",
 						children: sendable.map((label) => /* @__PURE__ */ jsx("button", {
@@ -2861,40 +2789,50 @@ function FollowUpRow({ item, title }) {
 							children: label
 						}, label))
 					}),
-					/* @__PURE__ */ jsx(ErrorNotice, { message: mutation.isError ? errorLine(mutation.error, "pulse.answer_failed") : void 0 }),
-					/* @__PURE__ */ jsx("div", {
-						className: "flex justify-end",
-						children: /* @__PURE__ */ jsx(Btn, {
-							primary: true,
-							disabled: !pick || mutation.isPending,
-							onClick: () => mutation.mutate(pick),
-							"data-testid": "home-suggestion-send",
-							children: t("commandCenter.send_answer")
-						})
+					withheld > 0 && /* @__PURE__ */ jsx(RowLink, {
+						to: sessionRoute(item.slot),
+						children: t("pulse.answer_in_session")
 					})
 				]
+			}),
+			/* @__PURE__ */ jsx(ErrorNotice, { message: mutation.isError ? errorLine(mutation.error, "pulse.answer_failed") : void 0 }),
+			/* @__PURE__ */ jsx("div", {
+				className: "flex justify-end",
+				children: /* @__PURE__ */ jsxs(Btn, {
+					primary: true,
+					disabled: !pick || mutation.isPending,
+					onClick: () => mutation.mutate(pick),
+					"data-testid": "home-follow-up-send",
+					children: [
+						/* @__PURE__ */ jsx(MessageSquare, {
+							size: 14,
+							className: "lucide-inline"
+						}),
+						" ",
+						t("commandCenter.send_answer")
+					]
+				})
 			})
 		]
 	});
 }
 function NeedsYou({ attention, sessions, slots, ready }) {
-	const [visible, setVisible] = useState(BLOCKERS_PER_ROW);
+	const [visible, setVisible] = useState(INITIAL_CARDS);
 	const title = (slot) => {
 		const n = sessions.get(slot);
 		return n ? n.title || slot : slot;
 	};
-	const { blockers, followUps } = attention;
-	const shown = blockers.slice(0, visible);
-	const hidden = blockers.length - shown.length;
-	const nextStep = Math.min(hidden, BLOCKERS_PER_ROW);
-	const empty = ready && !blockers.length && !followUps.length;
+	const items = [...attention.blockers, ...attention.followUps];
+	const shown = items.slice(0, visible);
+	const hidden = items.length - shown.length;
+	const nextStep = Math.min(hidden, CARDS_PER_ROW);
 	return /* @__PURE__ */ jsxs(Section, {
 		label: t("commandCenter.attention_filter"),
-		count: fmtNumber(blockers.length),
+		count: fmtNumber(items.length),
 		testId: "home-needs-you",
 		children: [
 			shown.length > 0 && /* @__PURE__ */ jsx("div", {
-				className: "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 items-start",
+				className: "grid ch-cards gap-3 items-start",
 				"data-testid": "home-needs-you-grid",
 				children: shown.map((item) => {
 					if (item.kind === "question") return /* @__PURE__ */ jsx(QuestionCard, {
@@ -2906,6 +2844,10 @@ function NeedsYou({ attention, sessions, slots, ready }) {
 						title: title(item.slot),
 						slot: slots.get(item.slot)
 					}, item.id);
+					if (item.kind === "follow_up") return /* @__PURE__ */ jsx(FollowUpCard, {
+						item,
+						title: title(item.slot)
+					}, item.id);
 					return /* @__PURE__ */ jsx(OpenSessionCard, {
 						item,
 						title: title(item.slot),
@@ -2914,37 +2856,18 @@ function NeedsYou({ attention, sessions, slots, ready }) {
 				})
 			}),
 			hidden > 0 && /* @__PURE__ */ jsx(Btn, {
-				onClick: () => setVisible((v) => v + BLOCKERS_PER_ROW),
+				onClick: () => setVisible((v) => v + CARDS_PER_ROW),
 				"data-testid": "home-needs-you-more",
 				children: t("pages.homePage.show_more_blockers", {
 					count: nextStep,
 					amount: fmtNumber(nextStep)
 				})
 			}),
-			empty && /* @__PURE__ */ jsx(Card, { children: /* @__PURE__ */ jsx(EmptyState, {
+			ready && !items.length && /* @__PURE__ */ jsx(Card, { children: /* @__PURE__ */ jsx(EmptyState, {
 				icon: /* @__PURE__ */ jsx(Inbox, { size: 24 }),
 				title: t("commandCenter.no_input"),
 				testId: "home-needs-you-empty"
-			}) }),
-			followUps.length > 0 && /* @__PURE__ */ jsx(Card, {
-				className: "py-1",
-				children: /* @__PURE__ */ jsxs("details", {
-					"data-testid": "home-suggestions",
-					children: [/* @__PURE__ */ jsx("summary", {
-						className: "cursor-pointer text-sm text-muted py-1",
-						children: t("pages.homePage.suggestions_fold", {
-							count: followUps.length,
-							amount: fmtNumber(followUps.length)
-						})
-					}), /* @__PURE__ */ jsx("ul", {
-						className: "list-none m-0 p-0",
-						children: followUps.map((item) => /* @__PURE__ */ jsx(FollowUpRow, {
-							item,
-							title: title(item.slot)
-						}, item.id))
-					})]
-				})
-			})
+			}) })
 		]
 	});
 }
@@ -3248,13 +3171,14 @@ function PulsePage() {
 			amount: fmtNumber(active.workflows)
 		})
 	]);
-	const attentionDetail = [attention.blockers.length ? fmtList([t("pages.homePage.questions_count", {
+	const waiting = attention.blockers.length + attention.followUps.length;
+	const attentionDetail = !waiting ? t("commandCenter.no_input") : [attention.blockers.length ? fmtList([t("pages.homePage.questions_count", {
 		count: attention.questions,
 		amount: fmtNumber(attention.questions)
 	}), t("pages.homePage.approvals_count", {
 		count: attention.approvals,
 		amount: fmtNumber(attention.approvals)
-	})]) : t("commandCenter.no_input"), attention.followUps.length ? t("pages.homePage.suggestions_count", {
+	})]) : "", attention.followUps.length ? t("pages.homePage.suggestions_count", {
 		count: attention.followUps.length,
 		amount: fmtNumber(attention.followUps.length)
 	}) : ""].filter(Boolean).join(" · ");
@@ -3309,9 +3233,9 @@ function PulsePage() {
 					/* @__PURE__ */ jsx(Tile, {
 						testId: "home-stat-attention",
 						label: t("commandCenter.attention_filter"),
-						value: ready ? fmtNumber(attention.blockers.length) : void 0,
+						value: ready ? fmtNumber(waiting) : void 0,
 						detail: attentionDetail,
-						colorClass: attention.blockers.length ? "text-warn-text" : void 0
+						colorClass: waiting ? "text-warn-text" : void 0
 					}),
 					/* @__PURE__ */ jsx(Tile, {
 						testId: "home-stat-schedule",
@@ -3402,6 +3326,9 @@ var CSS = `
 @media (min-width: 768px) { .ch-tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .ch-page-cols { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 1280px) { .ch-page-cols { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
+.ch-cards { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 768px) { .ch-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .ch-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .ch-board-cols { grid-template-columns: auto minmax(0, 1fr) auto; }
 @media (min-width: 768px) { .ch-board-cols { grid-template-columns: auto minmax(0, 5fr) minmax(0, 4fr) auto; } }
 .ch-accent-50 { background-color: color-mix(in srgb, var(--accent) 50%, transparent); }

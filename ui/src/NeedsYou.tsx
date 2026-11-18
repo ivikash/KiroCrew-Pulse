@@ -1,14 +1,14 @@
 /**
- * The "Needs you" inbox. A BLOCKER (a question card, a tool approval, a session
- * marked needs-input) gets a card that answers or decides it from here, routed to
- * the same gateway endpoints the dashboard's own cards use. A follow-up offer
- * (an idle session whose newest reply ended in `[OPTIONS:]`) is one compact row
- * behind a fold: nothing is stuck, and a full card per offer buried the blockers
- * under a screen of buttons.
+ * The "Needs you" inbox: a card per session that waits on a person, each
+ * answerable from here and routed to the same gateway endpoints the dashboard's
+ * own cards use. Blockers come first (a question card, a tool approval, a
+ * session marked needs-input), then sessions whose newest reply offered next
+ * steps in an `[OPTIONS:]` line. Six cards show at first, and each "Show more"
+ * adds a row.
  *
  * Nothing here sends on a click alone: a pick stays a draft until "Send answer",
  * and an approval needs its own button. A label the dashboard would refuse to
- * send bare (one that reads as a command) is withheld with a note to answer in
+ * send bare (one that reads as a command) is withheld with a link to answer in
  * the session.
  */
 import { useState } from 'react'
@@ -20,12 +20,13 @@ import { approvalTarget, writes, type ApprovalAction } from './api'
 import { t } from './i18n'
 import { isCommandShaped, type AttentionItem, type AttentionSplit, type RunNode } from './model'
 import { LIVE_KEYS } from './queries'
-import { ListRow, RowLink, Section, sessionRoute } from './rows'
+import { RowLink, Section, sessionRoute } from './rows'
 import type { ChatSlot, PendingQuestion, QuestionPrompt } from './types'
 
-/** Blocker cards per step: one row of the widest grid at first, and each
- *  "Show more" adds another row. */
-const BLOCKERS_PER_ROW = 3
+/** Cards shown at first, and how many each "Show more" adds: one row of the
+ *  widest grid. */
+const INITIAL_CARDS = 6
+const CARDS_PER_ROW = 3
 
 function useLiveInvalidate() {
   const client = useQueryClient()
@@ -157,37 +158,34 @@ function OpenSessionCard({ item, title, detail }: { item: AttentionItem; title: 
   )
 }
 
-/** A follow-up offer: pick a label and send it as the session's next message. */
-function FollowUpRow({ item, title }: { item: Extract<AttentionItem, { kind: 'follow_up' }>; title: string }) {
-  const [open, setOpen] = useState(false)
+/** A session whose newest reply offered next steps: pick one and send it as
+ *  the session's next message. A command-shaped label is withheld: sent bare it
+ *  would run rather than say, so it is answered in the session itself. */
+function FollowUpCard({ item, title }: { item: Extract<AttentionItem, { kind: 'follow_up' }>; title: string }) {
   const [pick, setPick] = useState('')
   const refresh = useLiveInvalidate()
   const mutation = useMutation({ mutationFn: (label: string) => writes.send(item.slot, label), onSuccess: refresh })
   const sendable = item.followUp.labels.filter(l => !isCommandShaped(l))
-  const choices = item.followUp.labels.length
+  const withheld = item.followUp.labels.length - sendable.length
   return (
-    <ListRow className="py-1.5 flex-wrap" data-testid="home-suggestion-row">
-      <div className="flex-1 min-w-0">
-        <div className="text-sm truncate">{title}</div>
-        <div className="text-[12px] text-muted truncate">{t('pages.homePage.suggestion_choices', { count: choices, amount: fmtNumber(choices) })}</div>
-      </div>
-      {sendable.length > 0 && <Btn className="text-[12px]" aria-expanded={open} onClick={() => setOpen(o => !o)} data-testid="home-suggestion-toggle">{t('commandCenter.options_question')}</Btn>}
-      <RowLink to={sessionRoute(item.slot)}>{t('pages.homePage.open')}</RowLink>
-      {open && (
-        <div className="basis-full rounded-lg bg-accent-subtle p-3 space-y-2" data-testid="home-suggestion-picks">
-          <div className="grid gap-2">
-            {sendable.map(label => (
-              <button key={label} type="button" aria-pressed={pick === label} onClick={() => setPick(p => p === label ? '' : label)}
-                className={`text-left text-sm rounded-md border px-3 py-2 ${pick === label ? 'border-accent bg-accent/15' : 'border-border bg-card'}`}>{label}</button>
-            ))}
-          </div>
-          <ErrorNotice message={mutation.isError ? errorLine(mutation.error, 'pulse.answer_failed') : undefined} />
-          <div className="flex justify-end">
-            <Btn primary disabled={!pick || mutation.isPending} onClick={() => mutation.mutate(pick)} data-testid="home-suggestion-send">{t('commandCenter.send_answer')}</Btn>
-          </div>
+    <CardShell title={title} slot={item.slot}>
+      <div className="rounded-lg bg-accent-subtle p-3 space-y-2" data-testid="home-follow-up">
+        <div className="text-sm font-medium">{t('commandCenter.options_question')}</div>
+        <div className="grid gap-2">
+          {sendable.map(label => (
+            <button key={label} type="button" aria-pressed={pick === label} onClick={() => setPick(p => p === label ? '' : label)}
+              className={`text-left text-sm rounded-md border px-3 py-2 ${pick === label ? 'border-accent bg-accent/15' : 'border-border bg-card'}`}>{label}</button>
+          ))}
         </div>
-      )}
-    </ListRow>
+        {withheld > 0 && <RowLink to={sessionRoute(item.slot)}>{t('pulse.answer_in_session')}</RowLink>}
+      </div>
+      <ErrorNotice message={mutation.isError ? errorLine(mutation.error, 'pulse.answer_failed') : undefined} />
+      <div className="flex justify-end">
+        <Btn primary disabled={!pick || mutation.isPending} onClick={() => mutation.mutate(pick)} data-testid="home-follow-up-send">
+          <MessageSquare size={14} className="lucide-inline" /> {t('commandCenter.send_answer')}
+        </Btn>
+      </div>
+    </CardShell>
   )
 }
 
@@ -197,34 +195,26 @@ export default function NeedsYou({ attention, sessions, slots, ready }: {
   slots: ReadonlyMap<string, ChatSlot>
   ready: boolean
 }) {
-  const [visible, setVisible] = useState(BLOCKERS_PER_ROW)
+  const [visible, setVisible] = useState(INITIAL_CARDS)
   const title = (slot: string) => { const n = sessions.get(slot); return n ? (n.title || slot) : slot }
-  const { blockers, followUps } = attention
-  const shown = blockers.slice(0, visible)
-  const hidden = blockers.length - shown.length
-  const nextStep = Math.min(hidden, BLOCKERS_PER_ROW)
-  const empty = ready && !blockers.length && !followUps.length
+  const items: AttentionItem[] = [...attention.blockers, ...attention.followUps]
+  const shown = items.slice(0, visible)
+  const hidden = items.length - shown.length
+  const nextStep = Math.min(hidden, CARDS_PER_ROW)
   return (
-    <Section label={t('commandCenter.attention_filter')} count={fmtNumber(blockers.length)} testId="home-needs-you">
+    <Section label={t('commandCenter.attention_filter')} count={fmtNumber(items.length)} testId="home-needs-you">
       {shown.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 items-start" data-testid="home-needs-you-grid">
+        <div className="grid ch-cards gap-3 items-start" data-testid="home-needs-you-grid">
           {shown.map(item => {
             if (item.kind === 'question') return <QuestionCard key={item.id} item={item} title={title(item.slot)} />
             if (item.kind === 'approval') return <ApprovalCard key={item.id} item={item} title={title(item.slot)} slot={slots.get(item.slot)} />
+            if (item.kind === 'follow_up') return <FollowUpCard key={item.id} item={item} title={title(item.slot)} />
             return <OpenSessionCard key={item.id} item={item} title={title(item.slot)} detail={sessions.get(item.slot)?.detail} />
           })}
         </div>
       )}
-      {hidden > 0 && <Btn onClick={() => setVisible(v => v + BLOCKERS_PER_ROW)} data-testid="home-needs-you-more">{t('pages.homePage.show_more_blockers', { count: nextStep, amount: fmtNumber(nextStep) })}</Btn>}
-      {empty && <Card><EmptyState icon={<Inbox size={24} />} title={t('commandCenter.no_input')} testId="home-needs-you-empty" /></Card>}
-      {followUps.length > 0 && (
-        <Card className="py-1">
-          <details data-testid="home-suggestions">
-            <summary className="cursor-pointer text-sm text-muted py-1">{t('pages.homePage.suggestions_fold', { count: followUps.length, amount: fmtNumber(followUps.length) })}</summary>
-            <ul className="list-none m-0 p-0">{followUps.map(item => <FollowUpRow key={item.id} item={item} title={title(item.slot)} />)}</ul>
-          </details>
-        </Card>
-      )}
+      {hidden > 0 && <Btn onClick={() => setVisible(v => v + CARDS_PER_ROW)} data-testid="home-needs-you-more">{t('pages.homePage.show_more_blockers', { count: nextStep, amount: fmtNumber(nextStep) })}</Btn>}
+      {ready && !items.length && <Card><EmptyState icon={<Inbox size={24} />} title={t('commandCenter.no_input')} testId="home-needs-you-empty" /></Card>}
     </Section>
   )
 }
