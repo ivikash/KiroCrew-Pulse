@@ -4,6 +4,12 @@ Mission control for your Kiro Crew on one page: which agents are running, what i
 waiting on you, what is scheduled next, and what today has cost. Answer question
 cards and approve or reject tool calls without opening each session.
 
+
+
+https://github.com/user-attachments/assets/17caa40e-5552-43ce-b2a1-d3726f52f036
+
+
+
 ![Pulse in the light theme](assets/hero-light.png)
 
 ## What it shows
