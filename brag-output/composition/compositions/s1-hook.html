@@ -1,0 +1,94 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      background: var(--color-ground-dark, #19161d);
+      font-family: var(--font-display, Inter), Inter, sans-serif;
+      overflow: hidden;
+    }
+    #s1-glow {
+      position: absolute;
+      left: 460px;
+      top: 520px;
+      width: 1000px;
+      height: 900px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(142, 72, 255, 0.55), rgba(142, 72, 255, 0));
+      opacity: 0.3;
+    }
+    #s1-copy {
+      position: absolute;
+      left: 192px;
+      right: 192px;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 34px;
+    }
+    #s1-line1 {
+      color: var(--color-ink-dark, #ffffff);
+      font-size: 66px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 22px;
+    }
+    #s1-line1 .w {
+      display: inline-block;
+      will-change: opacity, filter;
+    }
+    #s1-line2 {
+      color: var(--color-accent-light, #d6bbff);
+      font-size: 60px;
+      font-weight: 300;
+      letter-spacing: 0.005em;
+      line-height: 1.15;
+    }
+    #s1-line2 .in {
+      display: inline-block;
+    }
+  </style>
+  <div id="root" data-composition-id="s1-hook" data-width="1920" data-height="1080">
+    <div id="s1-glow" data-layout-ignore></div>
+    <div id="s1-copy">
+      <div id="s1-line1" class="clip" data-start="0.4" data-duration="3.42" data-track-index="1">
+        <span class="w">Sessions.</span><span class="w">Subagents.</span><span class="w">Bots.</span><span class="w">Crons.</span>
+      </div>
+      <div id="s1-line2" class="clip" data-start="1.64" data-duration="2.18" data-track-index="2">
+        <span class="in">Which one is waiting on you?</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // Line 1, word by word: blur 6px -> 0 and opacity 0 -> 1 in 0.13 s, 0.067 s apart, no translate.
+      const words = document.querySelectorAll("#s1-line1 .w");
+      words.forEach(function (w, i) {
+        tl.fromTo(w, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 0.4 + i * 0.067);
+      });
+
+      // Line 2, the whole line blurring in, 8px -> 0 in 0.2 s.
+      tl.fromTo("#s1-line2 .in", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 1.64);
+
+      // Audio-reactive glow: per-half-second peak bass of the bed over 0.0-4.0 s (pre-extracted,
+      // media-use extract-audio-data.py, bands 0-1). Baked at build time so every frame is a function of t.
+      const bass = [0.17, 0.075, 0.047, 0.018, 0.025, 0.011, 0.109, 0.015, 0.111];
+      bass.forEach(function (v, i) {
+        tl.to("#s1-glow", { opacity: 0.26 + v * 0.5, duration: 0.5, ease: "sine.inOut" }, i * 0.5);
+      });
+
+      // Blur swap out: both lines leave together in 0.2 s, then the reveal dissolves in over the dark ground.
+      tl.to(["#s1-line1 .w", "#s1-line2 .in"], { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power2.in" }, 3.62);
+
+      window.__timelines["s1-hook"] = tl;
+      tl.seek(0);
+    })();
+  </script>
+</template>

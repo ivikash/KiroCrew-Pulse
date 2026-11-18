@@ -1,0 +1,127 @@
+{
+  "name": "crew-pulse",
+  "version": "0.1.0",
+  "displayName": "Pulse",
+  "description": "Pulse is mission control for your crew on one page: which agents are running, what is waiting on you, what is scheduled next, and what today has cost. Answer questions and approve tool calls without opening each session.",
+  "author": "ivikash",
+  "license": "Apache-2.0",
+  "tags": [
+    "agents",
+    "monitoring",
+    "productivity",
+    "visualization"
+  ],
+  "highlights": [
+    "Four tiles: Active now, Needs you, Scheduled and Today's spend",
+    "An agent board with one row per session and a 6, 12 or 24 hour activity track",
+    "Answer question cards and approve or reject tool calls from the page",
+    "Spend by model, the next jobs due, and which Bots are working",
+    "Reads the same gateway lists the dashboard pages read, so it never disagrees with them"
+  ],
+  "platform": {
+    "os": [
+      "macos",
+      "linux",
+      "windows"
+    ]
+  },
+  "iconPath": "assets/icon.png",
+  "iconPathDark": "assets/icon-dark.png",
+  "heroImage": "assets/hero-light.png",
+  "heroImageDark": "assets/hero-dark.png",
+  "screenshots": [
+    "assets/screenshot-light.png"
+  ],
+  "screenshotsDark": [
+    "assets/screenshot-dark.png"
+  ],
+  "ui": {
+    "entry": "dist/index.mjs",
+    "pages": [
+      {
+        "route": "/apps/crew-pulse",
+        "label": "Pulse",
+        "icon": "Activity"
+      }
+    ]
+  },
+  "permissions": {
+    "api": [
+      "=/api/chat",
+      "/api/chat/slots",
+      "/api/ask-question",
+      "/api/approvals",
+      "/api/spawn",
+      "/api/workflows/runs",
+      "/api/crons",
+      "/api/members",
+      "/api/usage/kiro",
+      "/api/usage/turns",
+      "/api/status",
+      "/api/config/kirocrew"
+    ],
+    "events": [
+      "slots"
+    ],
+    "storage": false,
+    "cron": false,
+    "network": false
+  },
+  "l10n": {
+    "de": {
+      "displayName": "Pulse",
+      "description": "Die Einsatzzentrale für deine Crew auf einer Seite: welche Agenten laufen, was auf dich wartet, was als Nächstes geplant ist und was der Tag gekostet hat. Beantworte Fragen und genehmige Tool-Aufrufe, ohne jede Sitzung zu öffnen.",
+      "pageLabel": "Pulse"
+    },
+    "es": {
+      "displayName": "Pulse",
+      "description": "El centro de control de tu equipo en una página: qué agentes están activos, qué espera por ti, qué está programado y cuánto ha costado hoy. Responde preguntas y aprueba llamadas a herramientas sin abrir cada sesión.",
+      "pageLabel": "Pulse"
+    },
+    "fr": {
+      "displayName": "Pulse",
+      "description": "Le poste de pilotage de ton équipe sur une page : quels agents tournent, ce qui t’attend, ce qui est planifié et ce que la journée a coûté. Réponds aux questions et approuve les appels d’outils sans ouvrir chaque session.",
+      "pageLabel": "Pulse"
+    },
+    "it": {
+      "displayName": "Pulse",
+      "description": "La sala di controllo della tua crew in una pagina: quali agenti sono attivi, cosa aspetta te, cosa è in programma e quanto è costata la giornata. Rispondi alle domande e approva le chiamate agli strumenti senza aprire ogni sessione.",
+      "pageLabel": "Pulse"
+    },
+    "pt": {
+      "displayName": "Pulse",
+      "description": "O centro de controle da sua equipe em uma página: quais agentes estão rodando, o que espera por você, o que está agendado e quanto o dia custou. Responda perguntas e aprove chamadas de ferramentas sem abrir cada sessão.",
+      "pageLabel": "Pulse"
+    },
+    "ru": {
+      "displayName": "Pulse",
+      "description": "Центр управления командой на одной странице: какие агенты работают, что ждёт тебя, что запланировано и сколько стоил день. Отвечай на вопросы и одобряй вызовы инструментов, не открывая каждую сессию.",
+      "pageLabel": "Pulse"
+    },
+    "ja": {
+      "displayName": "Pulse",
+      "description": "クルーの司令室を1ページに。どのエージェントが動いているか、何があなたを待っているか、次の予定、今日の費用が一目で分かります。各セッションを開かずに質問に答え、ツール呼び出しを承認できます。",
+      "pageLabel": "Pulse"
+    },
+    "ko": {
+      "displayName": "Pulse",
+      "description": "크루 관제실을 한 페이지에: 어떤 에이전트가 실행 중인지, 무엇이 나를 기다리는지, 다음 일정은 무엇인지, 오늘 비용은 얼마인지. 세션을 열지 않고 질문에 답하고 도구 호출을 승인합니다.",
+      "pageLabel": "Pulse"
+    },
+    "zh-CN": {
+      "displayName": "Pulse",
+      "description": "一页看全你的团队：哪些代理在运行、什么在等你、接下来的计划以及今天的花费。无需打开每个会话即可回答问题和批准工具调用。",
+      "pageLabel": "Pulse"
+    },
+    "hi": {
+      "displayName": "Pulse",
+      "description": "आपकी क्रू का मिशन कंट्रोल एक पेज पर: कौन से एजेंट चल रहे हैं, क्या आपकी प्रतीक्षा में है, आगे क्या शेड्यूल है और आज कितना खर्च हुआ। हर सत्र खोले बिना प्रश्नों के उत्तर दें और टूल कॉल स्वीकृत करें।",
+      "pageLabel": "Pulse"
+    },
+    "bn": {
+      "displayName": "Pulse",
+      "description": "এক পাতায় আপনার ক্রুর মিশন কন্ট্রোল: কোন এজেন্ট চলছে, কী আপনার অপেক্ষায়, পরের সময়সূচি কী, আর আজ কত খরচ হলো। প্রতিটি সেশন না খুলেই প্রশ্নের উত্তর দিন ও টুল কল অনুমোদন করুন।",
+      "pageLabel": "Pulse"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "commandCenter": {
+    "approve": "इस बार अनुमति दो",
+    "attention_filter": "तुम्हारी ज़रूरत है",
+    "blocked": "अवरुद्ध",
+    "explicit_input": "केवल तुम्हारे स्पष्ट रूप से सबमिट करने पर उत्तर या अनुमोदन भेजा जाता है।",
+    "idle": "निष्क्रिय",
+    "no_input": "इस श्रेणी में तुम्हारी प्रतीक्षा में कुछ नहीं है।",
+    "open_session": "सत्र खोलो",
+    "options_question": "सत्र तुम्हारे चुनाव की प्रतीक्षा कर रहा है।",
+    "reject": "इस बार अस्वीकार करो",
+    "reject_help": "इस बार अस्वीकार करने से यह अनुरोध अस्वीकार होता है। अनुमति मोड नहीं बदलता।",
+    "running": "चल रहा है",
+    "send_answer": "उत्तर भेजो",
+    "session_label": "सत्र {{number}}",
+    "stale": "कुछ स्रोत उपलब्ध नहीं हैं। अंतिम ज्ञात स्थिति पुरानी हो सकती है।",
+    "worker_label": "कार्यकर्ता का कार्य {{number}}",
+    "workflow_label": "कार्यप्रवाह {{number}}"
+  },
+  "components": {
+    "approvalCard": {
+      "approval_no_longer_pending": "यह स्वीकृति समाप्त हो गई है, पहले ही तय हो चुकी है, या किसी नए अनुरोध ने इसकी जगह ले ली है — एजेंट अब इसकी प्रतीक्षा नहीं कर रहा है।",
+      "decision_failed": "यह निर्णय शायद दर्ज नहीं हुआ — अनुरोध विफल रहा।",
+      "decision_not_recorded_error": "यह निर्णय दर्ज नहीं हुआ: {{error}}",
+      "tool_approval_requested": "टूल स्वीकृति का अनुरोध:"
+    },
+    "questionCard": {
+      "or_type_a_custom_answer": "या कस्टम उत्तर लिखें..."
+    }
+  },
+  "pulse": {
+    "answer_failed": "जवाब नहीं भेजा जा सका।",
+    "answer_in_session": "सत्र में जवाब दें",
+    "approval_pending": "एक टूल अनुमति की प्रतीक्षा में है",
+    "gateway_unreachable": "गेटवे से संपर्क नहीं हो सका।",
+    "sessions_unavailable": "सत्र लोड नहीं हो सके।",
+    "title": "Pulse",
+    "wants_to_run": "{{tool}} चलाने की अनुमति चाहता है"
+  },
+  "nav": {
+    "crew_members": "Bot",
+    "schedule": "शेड्यूल"
+  },
+  "pages": {
+    "homePage": {
+      "active_now": "अभी सक्रिय",
+      "approvals_count_one": "{{amount}} अनुमोदन",
+      "approvals_count_other": "{{amount}} अनुमोदन",
+      "bots_count": "{{total}} में से {{running}} काम कर रहे हैं",
+      "bots_unavailable": "Bot लोड नहीं हो सके।",
+      "due": "{{when}} देय",
+      "failing_count_one": "{{amount}} विफल",
+      "failing_count_other": "{{amount}} विफल",
+      "fleet_all_resting": "सब कुछ निष्क्रिय है।",
+      "fleet_resting_one": "{{amount}} निष्क्रिय",
+      "fleet_resting_other": "{{amount}} निष्क्रिय",
+      "fleet_title": "हर एजेंट क्या कर रहा है",
+      "kind_session": "सत्र",
+      "kind_subagent": "सब-एजेंट",
+      "kind_workflow": "वर्कफ़्लो",
+      "last_active": "आख़िरी गतिविधि {{when}}",
+      "next_run": "अगला: {{name}} {{when}}",
+      "no_next_run": "कोई जॉब बाकी नहीं है",
+      "now": "अभी",
+      "open": "खोलें",
+      "open_overview": "सेटिंग्स › ओवरव्यू",
+      "open_page": "पेज खोलें",
+      "paused_count_one": "{{amount}} रोका गया",
+      "paused_count_other": "{{amount}} रोके गए",
+      "questions_count_one": "{{amount}} प्रश्न",
+      "questions_count_other": "{{amount}} प्रश्न",
+      "running_for": "{{duration}} से चल रहा",
+      "schedule_unavailable": "शेड्यूल लोड नहीं हो सका।",
+      "scheduled": "शेड्यूल किए गए",
+      "show_more_blockers_one": "{{amount}} और दिखाएँ",
+      "show_more_blockers_other": "{{amount}} और दिखाएँ",
+      "spend_bar_label": "आज मॉडल के अनुसार उपयोग",
+      "spend_none": "आज कोई उपयोग दर्ज नहीं हुआ।",
+      "spend_other": "अन्य मॉडल",
+      "spend_plan": "{{plan}} प्लान: {{percent}} उपयोग हुआ",
+      "spend_title": "खर्च हुए टोकन",
+      "state_done": "पूर्ण",
+      "state_stopped": "रोका गया",
+      "state_waiting": "प्रतीक्षा में",
+      "subagents_one": "{{amount}} सब-एजेंट",
+      "subagents_other": "{{amount}} सब-एजेंट",
+      "subtitle": "तुम्हारा क्रू क्या कर रहा है, क्या तुम्हारा इंतज़ार कर रहा है, और आगे क्या होने वाला है।",
+      "suggestion_choices_one": "{{amount}} अगला कदम सुझाया",
+      "suggestion_choices_other": "{{amount}} अगले कदम सुझाए",
+      "suggestions_count_one": "{{amount}} सुझाव",
+      "suggestions_count_other": "{{amount}} सुझाव",
+      "suggestions_fold_one": "{{amount}} सत्र ने अगले कदम सुझाए",
+      "suggestions_fold_other": "{{amount}} सत्रों ने अगले कदम सुझाए",
+      "today": "आज",
+      "track_label": "इस अवधि में {{name}} की गतिविधि",
+      "upcoming": "आगामी",
+      "window_hours_one": "{{amount}} घं",
+      "window_hours_other": "{{amount}} घं",
+      "window_label": "समय अवधि",
+      "with_subagents": "सब-एजेंट चल रहे हैं",
+      "workflows_one": "{{amount}} वर्कफ़्लो",
+      "workflows_other": "{{amount}} वर्कफ़्लो"
+    },
+    "membersPage": {
+      "empty_title": "अभी कोई Bot नहीं"
+    },
+    "overview": {
+      "usageTab": {
+        "usage_tracking_is_not_available_for": "{{provider}} के लिए उपयोग ट्रैकिंग उपलब्ध नहीं है।"
+      }
+    },
+    "overviewPage": {
+      "all_systems_running": "सभी सिस्टम चल रहे हैं",
+      "connecting": "कनेक्ट हो रहा है…",
+      "reconnecting": "फिर कनेक्ट हो रहा है…",
+      "today_line": "आज: {{summary}}",
+      "today_messages_one": "{{amount}} संदेश",
+      "today_messages_other": "{{amount}} संदेश",
+      "today_sessions_one": "{{amount}} सत्र",
+      "today_sessions_other": "{{amount}} सत्र",
+      "today_tokens_one": "{{amount}} टोकन",
+      "today_tokens_other": "{{amount}} टोकन",
+      "uptime_line": "चालू: {{uptime}}",
+      "uptime_line_version": "चालू: {{uptime}} · v{{version}}"
+    },
+    "schedulePage": {
+      "error": "त्रुटि",
+      "running": "चल रहा है"
+    },
+    "sessionsPage": {
+      "empty_title": "कोई सत्र नहीं"
+    }
+  }
+}

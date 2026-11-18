@@ -1,0 +1,119 @@
+{
+  "commandCenter": {
+    "approve": "批准本次",
+    "attention_filter": "需要你处理",
+    "blocked": "受阻",
+    "explicit_input": "只有你明确提交后，才会发送回答或审批决定。",
+    "idle": "空闲",
+    "no_input": "此类别暂无需要你处理的事项。",
+    "open_session": "打开会话",
+    "options_question": "该会话正在等你做出选择。",
+    "reject": "拒绝本次",
+    "reject_help": "拒绝本次会拒绝此请求，权限模式保持不变。",
+    "running": "运行中",
+    "send_answer": "发送回答",
+    "session_label": "会话 {{number}}",
+    "stale": "部分数据源不可用，当前显示的最近状态可能已过期。",
+    "worker_label": "工作任务 {{number}}",
+    "workflow_label": "工作流 {{number}}"
+  },
+  "components": {
+    "approvalCard": {
+      "approval_no_longer_pending": "这条审批已过期、已被处理，或已被更新的请求取代 — 代理不再等待它。",
+      "decision_failed": "这次决定可能未被记录 — 请求失败。",
+      "decision_not_recorded_error": "这次决定未被记录：{{error}}",
+      "tool_approval_requested": "已请求工具审批："
+    },
+    "questionCard": {
+      "or_type_a_custom_answer": "或输入自定义回答…"
+    }
+  },
+  "pulse": {
+    "answer_failed": "无法发送回答。",
+    "answer_in_session": "在会话中回答",
+    "approval_pending": "有工具正在等待批准",
+    "gateway_unreachable": "无法连接网关。",
+    "sessions_unavailable": "无法加载会话。",
+    "title": "Pulse",
+    "wants_to_run": "{{tool}} 请求运行"
+  },
+  "nav": {
+    "crew_members": "Bot",
+    "schedule": "日程"
+  },
+  "pages": {
+    "homePage": {
+      "active_now": "进行中",
+      "approvals_count_other": "{{amount}} 个审批",
+      "bots_count": "{{total}} 个中有 {{running}} 个在工作",
+      "bots_unavailable": "无法加载 Bot。",
+      "due": "{{when}}到期",
+      "failing_count_other": "{{amount}} 个失败",
+      "fleet_all_resting": "一切都处于空闲状态。",
+      "fleet_resting_other": "{{amount}} 个空闲",
+      "fleet_title": "每个代理正在做什么",
+      "kind_session": "会话",
+      "kind_subagent": "子代理",
+      "kind_workflow": "工作流",
+      "last_active": "上次活动 {{when}}",
+      "next_run": "下一次：{{name}} {{when}}",
+      "no_next_run": "没有待执行的任务",
+      "now": "现在",
+      "open": "打开",
+      "open_overview": "设置 › 概览",
+      "open_page": "打开页面",
+      "paused_count_other": "{{amount}} 个已暂停",
+      "questions_count_other": "{{amount}} 个问题",
+      "running_for": "已运行 {{duration}}",
+      "schedule_unavailable": "无法加载日程。",
+      "scheduled": "已排期",
+      "show_more_blockers_other": "再显示 {{amount}} 个",
+      "spend_bar_label": "今天各模型的用量",
+      "spend_none": "今天没有记录到用量。",
+      "spend_other": "其他模型",
+      "spend_plan": "{{plan}} 套餐：已使用 {{percent}}",
+      "spend_title": "消耗的令牌",
+      "state_done": "已完成",
+      "state_stopped": "已停止",
+      "state_waiting": "等待中",
+      "subagents_other": "{{amount}} 个子代理",
+      "subtitle": "你的团队在做什么、哪些事项在等你处理，以及接下来有什么安排。",
+      "suggestion_choices_other": "提供了 {{amount}} 个后续步骤",
+      "suggestions_count_other": "{{amount}} 条建议",
+      "suggestions_fold_other": "{{amount}} 个会话提供了后续步骤",
+      "today": "今天",
+      "track_label": "{{name}} 在此时间段内的活动",
+      "upcoming": "即将执行",
+      "window_hours_other": "{{amount}} 小时",
+      "window_label": "时间范围",
+      "with_subagents": "子代理运行中",
+      "workflows_other": "{{amount}} 个工作流"
+    },
+    "membersPage": {
+      "empty_title": "还没有 Bot"
+    },
+    "overview": {
+      "usageTab": {
+        "usage_tracking_is_not_available_for": "{{provider}} 不支持用量跟踪。"
+      }
+    },
+    "overviewPage": {
+      "all_systems_running": "所有系统运行中",
+      "connecting": "正在连接…",
+      "reconnecting": "正在重连…",
+      "today_line": "今天：{{summary}}",
+      "today_messages_other": "{{amount}} 条消息",
+      "today_sessions_other": "{{amount}} 个会话",
+      "today_tokens_other": "{{amount}} 个令牌",
+      "uptime_line": "已运行 {{uptime}}",
+      "uptime_line_version": "已运行 {{uptime}} · v{{version}}"
+    },
+    "schedulePage": {
+      "error": "错误",
+      "running": "运行中"
+    },
+    "sessionsPage": {
+      "empty_title": "暂无会话"
+    }
+  }
+}

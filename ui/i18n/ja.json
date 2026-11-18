@@ -1,0 +1,119 @@
+{
+  "commandCenter": {
+    "approve": "今回のみ承認",
+    "attention_filter": "対応が必要",
+    "blocked": "ブロック中",
+    "explicit_input": "明示的に送信した場合にのみ、回答や承認が送られます。",
+    "idle": "待機中",
+    "no_input": "このカテゴリに対応待ちの項目はありません。",
+    "open_session": "セッションを開く",
+    "options_question": "このセッションはあなたの選択を待っています。",
+    "reject": "今回のみ拒否",
+    "reject_help": "今回のみ拒否すると、このリクエストを拒否します。権限モードは変わりません。",
+    "running": "実行中",
+    "send_answer": "回答を送信",
+    "session_label": "セッション {{number}}",
+    "stale": "一部の情報源を利用できません。最後に確認した状態は古い可能性があります。",
+    "worker_label": "ワーカータスク {{number}}",
+    "workflow_label": "ワークフロー {{number}}"
+  },
+  "components": {
+    "approvalCard": {
+      "approval_no_longer_pending": "この承認は期限切れか、すでに決定済みか、新しいリクエストに置き換えられました — エージェントはもう待機していません。",
+      "decision_failed": "この決定は記録されていない可能性があります — リクエストが失敗しました。",
+      "decision_not_recorded_error": "この決定は記録されませんでした: {{error}}",
+      "tool_approval_requested": "ツール承認がリクエストされました:"
+    },
+    "questionCard": {
+      "or_type_a_custom_answer": "またはカスタム回答を入力…"
+    }
+  },
+  "pulse": {
+    "answer_failed": "回答を送信できませんでした。",
+    "answer_in_session": "セッションで回答する",
+    "approval_pending": "ツールが承認を待っています",
+    "gateway_unreachable": "ゲートウェイに接続できませんでした。",
+    "sessions_unavailable": "セッションを読み込めませんでした。",
+    "title": "Pulse",
+    "wants_to_run": "{{tool}} の実行が求められています"
+  },
+  "nav": {
+    "crew_members": "Bot",
+    "schedule": "スケジュール"
+  },
+  "pages": {
+    "homePage": {
+      "active_now": "実行中",
+      "approvals_count_other": "承認 {{amount}} 件",
+      "bots_count": "{{total}} 件中 {{running}} 件が稼働中",
+      "bots_unavailable": "Bot を読み込めませんでした。",
+      "due": "{{when}}に実行",
+      "failing_count_other": "失敗 {{amount}} 件",
+      "fleet_all_resting": "すべて待機中です。",
+      "fleet_resting_other": "{{amount}} 件が待機中",
+      "fleet_title": "各エージェントの状況",
+      "kind_session": "セッション",
+      "kind_subagent": "サブエージェント",
+      "kind_workflow": "ワークフロー",
+      "last_active": "最終アクティビティ: {{when}}",
+      "next_run": "次回: {{name}} {{when}}",
+      "no_next_run": "予定されているジョブはありません",
+      "now": "現在",
+      "open": "開く",
+      "open_overview": "設定 › 概要",
+      "open_page": "ページを開く",
+      "paused_count_other": "一時停止 {{amount}} 件",
+      "questions_count_other": "質問 {{amount}} 件",
+      "running_for": "実行中 {{duration}}",
+      "schedule_unavailable": "スケジュールを読み込めませんでした。",
+      "scheduled": "スケジュール済み",
+      "show_more_blockers_other": "さらに {{amount}} 件を表示",
+      "spend_bar_label": "今日のモデル別使用量",
+      "spend_none": "今日の使用量は記録されていません。",
+      "spend_other": "その他のモデル",
+      "spend_plan": "{{plan}} プラン: {{percent}} 使用",
+      "spend_title": "消費トークン",
+      "state_done": "完了",
+      "state_stopped": "停止",
+      "state_waiting": "待機中",
+      "subagents_other": "{{amount}} サブエージェント",
+      "subtitle": "クルーが今していること、あなたの対応を待っていること、そして次の予定。",
+      "suggestion_choices_other": "次のステップを {{amount}} 件提案",
+      "suggestions_count_other": "提案 {{amount}} 件",
+      "suggestions_fold_other": "{{amount}} 件のセッションが次のステップを提案",
+      "today": "今日",
+      "track_label": "この期間の {{name}} のアクティビティ",
+      "upcoming": "今後の予定",
+      "window_hours_other": "{{amount}} 時間",
+      "window_label": "期間",
+      "with_subagents": "サブエージェント実行中",
+      "workflows_other": "{{amount}} ワークフロー"
+    },
+    "membersPage": {
+      "empty_title": "Bot はまだありません"
+    },
+    "overview": {
+      "usageTab": {
+        "usage_tracking_is_not_available_for": "{{provider}} では使用量のトラッキングを利用できません。"
+      }
+    },
+    "overviewPage": {
+      "all_systems_running": "すべてのシステムが実行中",
+      "connecting": "接続中…",
+      "reconnecting": "再接続中…",
+      "today_line": "本日: {{summary}}",
+      "today_messages_other": "{{amount}} 件のメッセージ",
+      "today_sessions_other": "{{amount}} セッション",
+      "today_tokens_other": "{{amount}} トークン",
+      "uptime_line": "稼働時間 {{uptime}}",
+      "uptime_line_version": "稼働時間 {{uptime}} · v{{version}}"
+    },
+    "schedulePage": {
+      "error": "エラー",
+      "running": "実行中"
+    },
+    "sessionsPage": {
+      "empty_title": "セッションはありません"
+    }
+  }
+}

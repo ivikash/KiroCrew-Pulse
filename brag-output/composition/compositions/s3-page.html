@@ -1,0 +1,96 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: var(--font-display, Inter), Inter, sans-serif;
+      overflow: hidden;
+    }
+    #s3-stage {
+      position: absolute;
+      inset: 0;
+      background: var(--color-ground, #ffffff);
+      opacity: 0;
+    }
+    #s3-pan {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1804px;
+    }
+    #s3-shot {
+      display: block;
+      width: 1920px;
+      height: 1804px;
+    }
+    #s3-fade {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 260px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.92));
+    }
+    .s3-cap {
+      position: absolute;
+      left: 96px;
+      bottom: 112px;
+    }
+    .s3-cap .in {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 26px;
+      border-radius: 999px;
+      background: rgba(25, 22, 29, 0.94);
+      color: var(--color-ink-dark, #ffffff);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 0.005em;
+      box-shadow: 0 10px 30px rgba(25, 22, 29, 0.18);
+    }
+    .s3-cap .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-accent, #8e48ff);
+    }
+  </style>
+  <div id="root" data-composition-id="s3-page" data-width="1920" data-height="1080">
+    <div id="s3-stage">
+      <div id="s3-pan" data-layout-allow-overflow>
+        <img id="s3-shot" src="assets/img/crew-pulse-desktop-light.png" alt="Pulse page with fictional mock data" />
+      </div>
+      <div id="s3-fade" data-layout-ignore></div>
+      <!-- captions name the sections as the pan reaches them: 9.84s and 12.02s global -->
+      <div id="s3-cap-board" class="s3-cap clip" data-start="0.55" data-duration="2.18" data-track-index="1">
+        <span class="in"><span class="dot"></span>What each agent is doing</span>
+      </div>
+      <div id="s3-cap-needs" class="s3-cap clip" data-start="2.73" data-duration="2.71" data-track-index="1">
+        <span class="in"><span class="dot"></span>Needs you</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // Soft crossfade in over the tiles (0 -> 0.6 s).
+      tl.fromTo("#s3-stage", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 0);
+
+      // One slow vertical pan from the stat strip down into the Needs you cards. Eases both ways.
+      tl.fromTo("#s3-pan", { y: 0 }, { y: -560, duration: 5.44, ease: "power1.inOut" }, 0);
+
+      // Captions: blur in, hold still, blur out.
+      tl.fromTo("#s3-cap-board .in", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, 0.55);
+      tl.to("#s3-cap-board .in", { opacity: 0, filter: "blur(6px)", duration: 0.16, ease: "power2.in" }, 2.57);
+      tl.fromTo("#s3-cap-needs .in", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, 2.73);
+      // The caption leaves just before the card scene dissolves in (5.24 -> 5.44).
+      tl.to("#s3-cap-needs .in", { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power2.in" }, 5.24);
+
+      window.__timelines["s3-page"] = tl;
+      tl.seek(0);
+    })();
+  </script>
+</template>

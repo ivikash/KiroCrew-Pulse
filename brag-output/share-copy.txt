@@ -1,0 +1,1 @@
+Introducing Pulse: mission control for your Kiro Crew on one page. See which agents are running, what is waiting on you, what runs next and what today cost, then answer questions and approve tool calls from the page.

@@ -1,0 +1,248 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: var(--font-display, Inter), Inter, sans-serif;
+      overflow: hidden;
+    }
+    #s4-stage {
+      position: absolute;
+      inset: 0;
+      background: var(--color-ground, #ffffff);
+      opacity: 0;
+    }
+    #s4-caption {
+      position: absolute;
+      left: 120px;
+      top: 0;
+      bottom: 0;
+      width: 640px;
+      display: flex;
+      align-items: center;
+    }
+    #s4-caption .line {
+      color: var(--color-ink, #000000);
+      font-size: 48px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 14px;
+    }
+    #s4-caption .w {
+      display: inline-block;
+    }
+    /* The Needs-you card, recreated from the page with explicit geometry so the cursor path is exact. */
+    #s4-card {
+      position: absolute;
+      left: 900px;
+      top: 167px;
+      width: 800px;
+      height: 746px;
+    }
+    #s4-card .in {
+      width: 800px;
+      height: 746px;
+      padding: 36px;
+      border: 1.5px solid var(--color-border, #e6e3ea);
+      border-radius: 20px;
+      background: var(--color-ground, #ffffff);
+      box-shadow: 0 18px 50px rgba(25, 22, 29, 0.08);
+    }
+    .s4-head {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .s4-title {
+      color: var(--color-ink, #000000);
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .s4-link {
+      color: var(--color-accent, #8e48ff);
+      font-size: 28px;
+      font-weight: 500;
+    }
+    .s4-note {
+      margin-top: 12px;
+      height: 72px;
+      color: var(--color-muted, #5e5966);
+      font-size: 28px;
+      line-height: 36px;
+    }
+    .s4-panel {
+      margin-top: 22px;
+      height: 442px;
+      padding: 28px;
+      border-radius: 16px;
+      background: #f4edff;
+    }
+    .s4-question {
+      height: 40px;
+      color: var(--color-ink, #000000);
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 40px;
+    }
+    .s4-opt {
+      margin-top: 14px;
+      height: 72px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      border: 1.5px solid var(--color-border, #e6e3ea);
+      border-radius: 12px;
+      background: #ffffff;
+      color: var(--color-ink, #000000);
+      font-size: 28px;
+      font-weight: 400;
+    }
+    #s4-opt-1 {
+      margin-top: 16px;
+    }
+    .s4-opt.custom {
+      color: var(--color-muted, #5e5966);
+    }
+    .s4-foot {
+      margin-top: 22px;
+      height: 60px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    #s4-send {
+      height: 60px;
+      padding: 0 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      border: 1.5px solid var(--color-border, #e6e3ea);
+      border-radius: 12px;
+      background: #ffffff;
+      color: var(--color-muted, #5e5966);
+      font-size: 28px;
+      font-weight: 500;
+    }
+    #s4-send svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    #s4-cursor {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 36px;
+      height: 36px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #s4-cursor svg {
+      width: 36px;
+      height: 36px;
+      transform-origin: 20.833% 12.5%;
+      filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.32));
+    }
+    #s4-cursor path {
+      fill: #ffffff;
+      stroke: #141414;
+      stroke-width: 1.4;
+      stroke-linejoin: round;
+    }
+  </style>
+  <div id="root" data-composition-id="s4-card" data-width="1920" data-height="1080">
+    <div id="s4-stage">
+      <div id="s4-caption" class="clip" data-start="0.3" data-duration="4.63" data-track-index="1">
+        <p class="line">
+          <span class="w">Answer</span><span class="w">questions</span><span class="w">and</span><span class="w">approve</span><span class="w">tool</span><span class="w">calls</span><span class="w">without</span><span class="w">opening</span><span class="w">each</span><span class="w">session.</span>
+        </p>
+      </div>
+      <div id="s4-card" class="clip" data-start="0.35" data-duration="4.58" data-track-index="2">
+        <div class="in">
+          <div class="s4-head">
+            <div class="s4-title">Team offsite planning</div>
+            <div class="s4-link">Open session ↗</div>
+          </div>
+          <div class="s4-note">Only your explicit submission sends an answer or approval.</div>
+          <div class="s4-panel" id="s4-panel">
+            <div class="s4-question">Which venue for the offsite?</div>
+            <div class="s4-opt" id="s4-opt-1">Rooftop at the Marina</div>
+            <div class="s4-opt" id="s4-opt-2">Lakeside Lodge</div>
+            <div class="s4-opt" id="s4-opt-3">Let the team vote</div>
+            <div class="s4-opt custom" id="s4-opt-4">Or type a custom answer...</div>
+          </div>
+          <div class="s4-foot">
+            <div id="s4-send">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+              <span>Send answer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="s4-cursor" data-layout-ignore aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 3 L5 19 L9 15 L12 22 L15 20.5 L11.5 14 L18 14 Z" /></svg>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // Soft crossfade in over the page pan (0 -> 0.6 s).
+      tl.fromTo("#s4-stage", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 0);
+
+      // Caption, word by word.
+      document.querySelectorAll("#s4-caption .w").forEach(function (w, i) {
+        tl.fromTo(w, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, 0.3 + i * 0.067);
+      });
+
+      // The card rises in with a long tail.
+      tl.fromTo("#s4-card .in", { opacity: 0, y: 28, filter: "blur(4px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, 0.35);
+
+      // Cursor path. Tip of the arrow is at (7.5, 4.5) inside the 36 px box.
+      // Lakeside Lodge sits at x 964-1636, y 523-595; Send answer at x ~1422-1664, y 817-877.
+      const TIP_X = 7.5, TIP_Y = 4.5;
+      const start = { x: 1760 - TIP_X, y: 1010 - TIP_Y };
+      const opt = { x: 1130 - TIP_X, y: 566 - TIP_Y };
+      const send = { x: 1536 - TIP_X, y: 852 - TIP_Y };
+      tl.set("#s4-cursor", { x: start.x, y: start.y }, 0);
+      tl.to("#s4-cursor", { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.55);
+      tl.to("#s4-cursor", { x: opt.x, duration: 0.5, ease: "power2.inOut" }, 0.55);
+      tl.to("#s4-cursor", { y: opt.y, duration: 0.5, ease: "power3.out" }, 0.55);
+
+      // Click 1 at 1.11 (15.84 s global): press, and the option takes the accent.
+      function press(at) {
+        tl.to("#s4-cursor svg", { scale: 0.88, duration: 0.06, ease: "power2.in" }, at);
+        tl.to("#s4-cursor svg", { scale: 1, duration: 0.14, ease: "power2.out" }, at + 0.06);
+      }
+      press(1.11);
+      tl.to("#s4-opt-2", { borderColor: "#8e48ff", backgroundColor: "#f0e8fc", duration: 0.18, ease: "power2.out" }, 1.11);
+
+      // Move to Send answer.
+      tl.to("#s4-cursor", { x: send.x, duration: 0.6, ease: "power2.inOut" }, 1.75);
+      tl.to("#s4-cursor", { y: send.y, duration: 0.6, ease: "power2.inOut" }, 1.75);
+
+      // Click 2 at 2.74 local = 17.47 s global. beat-locked: 17.47s
+      press(2.74);
+      tl.to("#s4-send", { backgroundColor: "#8e48ff", borderColor: "#8e48ff", color: "#ffffff", duration: 0.22, ease: "power2.out" }, 2.74);
+      // The answered question settles back.
+      tl.to("#s4-panel", { opacity: 0.62, duration: 0.35, ease: "power2.inOut" }, 2.9);
+      // The cursor rests a little away from the button.
+      tl.to("#s4-cursor", { x: send.x + 70, y: send.y + 80, duration: 0.6, ease: "power2.inOut" }, 3.2);
+
+      // Blur swap out at 4.73 -> 4.93 (19.46 -> 19.66 global); the white ground stays while the outro dissolves in.
+      tl.to(["#s4-caption .w", "#s4-card .in", "#s4-cursor"], { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power2.in" }, 4.73);
+
+      window.__timelines["s4-card"] = tl;
+      tl.seek(0);
+    })();
+  </script>
+</template>

@@ -1,0 +1,134 @@
+{
+  "commandCenter": {
+    "approve": "Approve once",
+    "attention_filter": "Needs you",
+    "blocked": "Blocked",
+    "explicit_input": "Only your explicit submission sends an answer or approval.",
+    "idle": "Idle",
+    "no_input": "Nothing in this category is waiting for you.",
+    "open_session": "Open session",
+    "options_question": "The session is waiting for your choice.",
+    "reject": "Reject once",
+    "reject_help": "Reject once refuses this request. Permission mode stays the same.",
+    "running": "Running",
+    "send_answer": "Send answer",
+    "session_label": "Session {{number}}",
+    "stale": "Some sources are unavailable. The last known state may be out of date.",
+    "worker_label": "Worker task {{number}}",
+    "workflow_label": "Workflow {{number}}"
+  },
+  "components": {
+    "approvalCard": {
+      "approval_no_longer_pending": "This approval expired, was already decided, or was replaced by a newer request — the agent is no longer waiting on it.",
+      "decision_failed": "This decision may not have been recorded — the request failed.",
+      "decision_not_recorded_error": "This decision wasn't recorded: {{error}}",
+      "tool_approval_requested": "Tool approval requested:"
+    },
+    "questionCard": {
+      "or_type_a_custom_answer": "Or type a custom answer..."
+    }
+  },
+  "pulse": {
+    "answer_failed": "The answer could not be sent.",
+    "answer_in_session": "Answer in the session",
+    "approval_pending": "A tool is waiting for approval",
+    "gateway_unreachable": "The gateway could not be reached.",
+    "sessions_unavailable": "The sessions could not be loaded.",
+    "title": "Pulse",
+    "wants_to_run": "{{tool}} wants to run"
+  },
+  "nav": {
+    "crew_members": "Bots",
+    "schedule": "Schedule"
+  },
+  "pages": {
+    "homePage": {
+      "active_now": "Active now",
+      "approvals_count_one": "{{amount}} approval",
+      "approvals_count_other": "{{amount}} approvals",
+      "bots_count": "{{running}} of {{total}} working",
+      "bots_unavailable": "The bots could not be loaded.",
+      "due": "Due {{when}}",
+      "failing_count_one": "{{amount}} failing",
+      "failing_count_other": "{{amount}} failing",
+      "fleet_all_resting": "Everything is at rest.",
+      "fleet_resting_one": "{{amount}} at rest",
+      "fleet_resting_other": "{{amount}} at rest",
+      "fleet_title": "What each agent is doing",
+      "kind_session": "Session",
+      "kind_subagent": "Subagent",
+      "kind_workflow": "Workflow",
+      "last_active": "Last active {{when}}",
+      "next_run": "Next: {{name}} {{when}}",
+      "no_next_run": "No job is due",
+      "now": "Now",
+      "open": "Open",
+      "open_overview": "Settings › Overview",
+      "open_page": "Open page",
+      "paused_count_one": "{{amount}} paused",
+      "paused_count_other": "{{amount}} paused",
+      "questions_count_one": "{{amount}} question",
+      "questions_count_other": "{{amount}} questions",
+      "running_for": "running {{duration}}",
+      "schedule_unavailable": "The schedule could not be loaded.",
+      "scheduled": "Scheduled",
+      "show_more_blockers_one": "Show {{amount}} more",
+      "show_more_blockers_other": "Show {{amount}} more",
+      "spend_bar_label": "Today's usage by model",
+      "spend_none": "No usage recorded today.",
+      "spend_other": "Other models",
+      "spend_plan": "{{plan}} plan: {{percent}} used",
+      "spend_title": "Tokens spent",
+      "state_done": "Done",
+      "state_stopped": "Stopped",
+      "state_waiting": "Waiting",
+      "subagents_one": "{{amount}} subagent",
+      "subagents_other": "{{amount}} subagents",
+      "subtitle": "What your crew is doing, what is waiting on you, and what is coming up.",
+      "suggestion_choices_one": "Offered {{amount}} next step",
+      "suggestion_choices_other": "Offered {{amount}} next steps",
+      "suggestions_count_one": "{{amount}} suggestion",
+      "suggestions_count_other": "{{amount}} suggestions",
+      "suggestions_fold_one": "{{amount}} session offered next steps",
+      "suggestions_fold_other": "{{amount}} sessions offered next steps",
+      "today": "Today",
+      "track_label": "Activity of {{name}} in this window",
+      "upcoming": "Upcoming",
+      "window_hours_one": "{{amount}}h",
+      "window_hours_other": "{{amount}}h",
+      "window_label": "Time window",
+      "with_subagents": "Subagents running",
+      "workflows_one": "{{amount}} workflow",
+      "workflows_other": "{{amount}} workflows"
+    },
+    "membersPage": {
+      "empty_title": "No bots yet"
+    },
+    "overview": {
+      "usageTab": {
+        "usage_tracking_is_not_available_for": "Usage tracking is not available for {{provider}}."
+      }
+    },
+    "overviewPage": {
+      "all_systems_running": "All systems running",
+      "connecting": "Connecting…",
+      "reconnecting": "Reconnecting…",
+      "today_line": "Today: {{summary}}",
+      "today_messages_one": "{{amount}} message",
+      "today_messages_other": "{{amount}} messages",
+      "today_sessions_one": "{{amount}} session",
+      "today_sessions_other": "{{amount}} sessions",
+      "today_tokens_one": "{{amount}} token",
+      "today_tokens_other": "{{amount}} tokens",
+      "uptime_line": "Up {{uptime}}",
+      "uptime_line_version": "Up {{uptime}} · v{{version}}"
+    },
+    "schedulePage": {
+      "error": "Error",
+      "running": "Running"
+    },
+    "sessionsPage": {
+      "empty_title": "No sessions"
+    }
+  }
+}

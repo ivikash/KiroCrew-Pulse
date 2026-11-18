@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "historyId": "7c5825c5-83e2-4cf5-839c-5f037ba78537",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "729e31835a21c7b42ee006e2aacc63016abc05d26883f871ad3bf206943f2cfb",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/72/729e31835a21c7b42ee006e2aacc63016abc05d26883f871ad3bf206943f2cfb"
+    },
+    "CLAUDE.md": {
+      "hash": "729e31835a21c7b42ee006e2aacc63016abc05d26883f871ad3bf206943f2cfb",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/72/729e31835a21c7b42ee006e2aacc63016abc05d26883f871ad3bf206943f2cfb"
+    },
+    "assets/img/crew-pulse-desktop-light.png": {
+      "hash": "418d5e0499651154cf3acd8e9ac5ddcc95dd89c6270a9075948f34f634daf9d7",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/41/418d5e0499651154cf3acd8e9ac5ddcc95dd89c6270a9075948f34f634daf9d7"
+    },
+    "assets/img/hero-light.png": {
+      "hash": "400ffc4e3dd58bfdd1e26b2fe894a609aa9affa5b2995aa65934e20e6bccce21",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/40/400ffc4e3dd58bfdd1e26b2fe894a609aa9affa5b2995aa65934e20e6bccce21"
+    },
+    "assets/img/icon.svg": {
+      "hash": "bf12d0705068fb7c30461c49343148aa43c523b171aa322fda47cb3416d03b43",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/bf/bf12d0705068fb7c30461c49343148aa43c523b171aa322fda47cb3416d03b43"
+    },
+    "assets/music/audio-data.json": {
+      "hash": "f0652309222a044de0bba68086d6f452cdf69b1a9ece46aff28bfd53122be1af",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/f0/f0652309222a044de0bba68086d6f452cdf69b1a9ece46aff28bfd53122be1af"
+    },
+    "assets/sfx/impact/impactSoft_medium_001.ogg": {
+      "hash": "7642a4fd43e547afe4f7adfadb3dabb681c0ff512f52c1674bae30a726841faf",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/76/7642a4fd43e547afe4f7adfadb3dabb681c0ff512f52c1674bae30a726841faf"
+    },
+    "assets/sfx/interface/bong_001.ogg": {
+      "hash": "d21d0f0b782445db579d11e2506b24cd1ac9d664ee33aeaf807761aa7b6fd710",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/d2/d21d0f0b782445db579d11e2506b24cd1ac9d664ee33aeaf807761aa7b6fd710"
+    },
+    "assets/sfx/interface/click_003.ogg": {
+      "hash": "2fa929138bc3a0f432696588f66eac94b8f6d463905ec8808c6461ce4b054292",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/2f/2fa929138bc3a0f432696588f66eac94b8f6d463905ec8808c6461ce4b054292"
+    },
+    "assets/sfx/interface/drop_001.ogg": {
+      "hash": "692ee3a6f1821402ca649ff735bee9591dc4846c8098fc7d6a90fd15fa57c1af",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/69/692ee3a6f1821402ca649ff735bee9591dc4846c8098fc7d6a90fd15fa57c1af"
+    },
+    "compositions/s1-hook.html": {
+      "hash": "1463cb6b0a1f6862354d644b09683423eafe1c49149847f9690976f8ef43ebfa",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/14/1463cb6b0a1f6862354d644b09683423eafe1c49149847f9690976f8ef43ebfa"
+    },
+    "compositions/s2-reveal.html": {
+      "hash": "99d7754c36f5fa63aaa6a560222b087dcb86388816e6e143e5a8c50dd104e5e9",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/99/99d7754c36f5fa63aaa6a560222b087dcb86388816e6e143e5a8c50dd104e5e9"
+    },
+    "compositions/s3-page.html": {
+      "hash": "86cc9021abdeb45211fcc6c2e0db6e904e55b8372397599a30a90388cb605c18",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/86/86cc9021abdeb45211fcc6c2e0db6e904e55b8372397599a30a90388cb605c18"
+    },
+    "compositions/s4-card.html": {
+      "hash": "e0f7764aab8ff38eb028f083618af7f9c3261c3bd6f8f84b983a778dfdba164d",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/e0/e0f7764aab8ff38eb028f083618af7f9c3261c3bd6f8f84b983a778dfdba164d"
+    },
+    "compositions/s5-outro.html": {
+      "hash": "fe401831edd6ff55be852db3b9fe7f71d394904c8ba0984ef7720d87be8e1108",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/fe/fe401831edd6ff55be852db3b9fe7f71d394904c8ba0984ef7720d87be8e1108"
+    },
+    "hyperframes.json": {
+      "hash": "0e49135f416831e413fb46c28d91d72012a2e17b6f2d76f88fed557a54e99cdb",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/0e/0e49135f416831e413fb46c28d91d72012a2e17b6f2d76f88fed557a54e99cdb"
+    },
+    "hyperframes.lock.json": {
+      "hash": "f4bba8e1c86f17f7081444346e0671bbe78d8991b420ea4a1edef755138c20cd",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/f4/f4bba8e1c86f17f7081444346e0671bbe78d8991b420ea4a1edef755138c20cd"
+    },
+    "index.html": {
+      "hash": "bb13bddbe8ac288d6a3b450f25f1f514ed72fa443a63f8a699f3f40fb85e6225",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/bb/bb13bddbe8ac288d6a3b450f25f1f514ed72fa443a63f8a699f3f40fb85e6225"
+    },
+    "meta.json": {
+      "hash": "f2dcf4beb4b3afddaa546456a33c05d86773b8e48801d1547d85b7012dd29cdd",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/f2/f2dcf4beb4b3afddaa546456a33c05d86773b8e48801d1547d85b7012dd29cdd"
+    },
+    "package.json": {
+      "hash": "e4bc765cd4abb848fe97efadb3ca7040110cbd1c085eab1e063391153fed80d1",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/e4/e4bc765cd4abb848fe97efadb3ca7040110cbd1c085eab1e063391153fed80d1"
+    },
+    "assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3": {
+      "hash": "5888d4bd2ba0119b87a94e502ae2cc401c08192945cc5e5c2f8e8a33aa47a0a1",
+      "content": "/local/home/vikasagr/.cache/hyperframes/history/7c5825c5-83e2-4cf5-839c-5f037ba78537/blobs/58/5888d4bd2ba0119b87a94e502ae2cc401c08192945cc5e5c2f8e8a33aa47a0a1"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "2af4c398-8762-474d-adb4-2f75af22584f"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "2af4c398-8762-474d-adb4-2f75af22584f",
+        "scope": "project",
+        "report": "/local/home/vikasagr/github/kirocrew-app-crew-pulse/brag-output/composition/.hyperframes/artifacts/checks/2af4c398-8762-474d-adb4-2f75af22584f.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "cache": true,
+            "contrast": true,
+            "craft": true,
+            "strict": false,
+            "snapshots": false,
+            "safeZones": [
+              "tiktok",
+              "reels",
+              "shorts"
+            ],
+            "browserGpuMode": "auto",
+            "includeUnmounted": false
+          }
+        },
+        "createdAt": 1795030330919,
+        "contentHash": "3e5b909cc26fc2a85c427fe489cd3da009b6a6faf00b8a118e83daeeb065b4ef",
+        "revision": null,
+        "inputFingerprint": "f0cc6c62f25ed2c36658ccadefe74515d6b9d9350a59ae67fcf5347fba683ebb",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": null,
+      "id": "d9175f59-34aa-408a-aaa2-6e646804815f-3"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "scope": "full",
+        "id": "d9175f59-34aa-408a-aaa2-6e646804815f-0",
+        "image": "/local/home/vikasagr/github/kirocrew-app-crew-pulse/brag-output/composition/.hyperframes/artifacts/snapshots/1a51641f-e6ac-4303-88cd-58c6bae59ad7/frame-00-at-7.6s.png",
+        "time": 7.6,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1795030367254,
+        "contentHash": "24a3a363cb4bab5b25a7858dd3f34518f3d5d5e9416616ee11ed36bea6ab8e62",
+        "revision": null,
+        "inputFingerprint": "f0cc6c62f25ed2c36658ccadefe74515d6b9d9350a59ae67fcf5347fba683ebb",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "d9175f59-34aa-408a-aaa2-6e646804815f-1",
+        "image": "/local/home/vikasagr/github/kirocrew-app-crew-pulse/brag-output/composition/.hyperframes/artifacts/snapshots/1a51641f-e6ac-4303-88cd-58c6bae59ad7/frame-01-at-10.5s.png",
+        "time": 10.5,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1795030367254,
+        "contentHash": "0db8c33a24941531b56b310fd73a5d3ad6e6a659e7ab523e97fbfd068a391e82",
+        "revision": null,
+        "inputFingerprint": "f0cc6c62f25ed2c36658ccadefe74515d6b9d9350a59ae67fcf5347fba683ebb",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "d9175f59-34aa-408a-aaa2-6e646804815f-2",
+        "image": "/local/home/vikasagr/github/kirocrew-app-crew-pulse/brag-output/composition/.hyperframes/artifacts/snapshots/1a51641f-e6ac-4303-88cd-58c6bae59ad7/frame-02-at-22.1s.png",
+        "time": 22.1,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1795030367254,
+        "contentHash": "5ee6ed3d4510ad53d98bd8333a8d0b2abd4ccf8713f21733497ece78dfdb08f2",
+        "revision": null,
+        "inputFingerprint": "f0cc6c62f25ed2c36658ccadefe74515d6b9d9350a59ae67fcf5347fba683ebb",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "d9175f59-34aa-408a-aaa2-6e646804815f-3",
+        "image": "/local/home/vikasagr/github/kirocrew-app-crew-pulse/brag-output/composition/.hyperframes/artifacts/snapshots/1a51641f-e6ac-4303-88cd-58c6bae59ad7/frame-03-at-23.25s.png",
+        "time": 23.25,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1795030367254,
+        "contentHash": "a88cff62094f98253e97e6e79c1344395734fb275b05d865afe8b8fd2f1a984c",
+        "revision": null,
+        "inputFingerprint": "f0cc6c62f25ed2c36658ccadefe74515d6b9d9350a59ae67fcf5347fba683ebb",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "renders": {
+    "latest": {
+      "id": "8b87ad2a-cfe4-4a41-80c2-905b6c4c9f6f",
+      "completedAt": 1795030421812,
+      "output": "/local/home/vikasagr/github/kirocrew-app-crew-pulse/brag-output/brag.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}

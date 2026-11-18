@@ -1,0 +1,141 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: var(--font-display, Inter), Inter, sans-serif;
+      overflow: hidden;
+    }
+    #s5-stage {
+      position: absolute;
+      inset: 0;
+      background: var(--color-ground-dark, #19161d);
+      opacity: 0;
+    }
+    #s5-glow {
+      position: absolute;
+      left: 410px;
+      top: 140px;
+      width: 1100px;
+      height: 900px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(142, 72, 255, 0.5), rgba(142, 72, 255, 0));
+      opacity: 0.3;
+    }
+    #s5-copy {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+    }
+    #s5-mark {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    #s5-mark .in {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    #s5-mark .icon {
+      width: 104px;
+      height: 104px;
+      border-radius: 28px;
+      background: rgba(245, 242, 236, 0.08);
+      border: 1.5px solid rgba(245, 242, 236, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #s5-mark .icon svg {
+      width: 104px;
+      height: 104px;
+      display: block;
+    }
+    #s5-mark .icon polyline {
+      fill: none;
+      stroke: #f5f2ec;
+      stroke-width: 3.2;
+      stroke-linejoin: miter;
+      stroke-linecap: butt;
+    }
+    #s5-mark .name {
+      color: var(--color-ink-dark, #ffffff);
+      font-size: 92px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    #s5-tagline .in {
+      display: inline-block;
+      color: var(--color-accent-light, #d6bbff);
+      font-size: 36px;
+      font-weight: 300;
+      letter-spacing: 0.005em;
+    }
+    #s5-footer {
+      margin-top: 28px;
+    }
+    #s5-footer .in {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 28px;
+      font-weight: 500;
+    }
+    #s5-footer .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #2ec27e;
+      box-shadow: 0 0 14px rgba(46, 194, 126, 0.6);
+    }
+  </style>
+  <div id="root" data-composition-id="s5-outro" data-width="1920" data-height="1080">
+    <div id="s5-stage">
+      <div id="s5-glow" data-layout-ignore></div>
+      <div id="s5-copy">
+        <!-- beat-locked: 19.66s -->
+        <div id="s5-mark" class="clip" data-start="0" data-duration="3.84" data-track-index="1">
+          <div class="in">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 100 100"><polyline points="14,52 38,52 46,34 54,70 62,52 86,52" /></svg></div>
+            <div class="name">Pulse</div>
+          </div>
+        </div>
+        <div id="s5-tagline" class="clip" data-start="0.53" data-duration="3.31" data-track-index="2">
+          <span class="in" data-var-text="tagline">Pulse. Mission control for your crew on one page.</span>
+        </div>
+        <div id="s5-footer" class="clip" data-start="1.09" data-duration="2.75" data-track-index="3">
+          <span class="in"><span class="dot"></span><span data-var-text="footer-line">All systems running</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // Soft crossfade in over the card (0 -> 0.6 s).
+      tl.fromTo("#s5-stage", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 0);
+
+      // Wordmark lands: slight scale settle and blur-in, then dead still.
+      tl.fromTo("#s5-mark .in", { opacity: 0, scale: 0.96, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.05);
+      tl.fromTo("#s5-tagline .in", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 0.53);
+      tl.fromTo("#s5-footer .in", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 1.09);
+
+      // Audio-reactive glow: per-half-second peak bass of the bed over 19.5-23.5 s (pre-extracted, bands 0-1).
+      const bass = [0.446, 0.234, 0.53, 0.527, 0.569, 0.326, 0.194, 0.347];
+      bass.forEach(function (v, i) {
+        tl.to("#s5-glow", { opacity: 0.18 + v * 0.3, duration: 0.5, ease: "sine.inOut" }, i * 0.5);
+      });
+
+      window.__timelines["s5-outro"] = tl;
+      tl.seek(0);
+    })();
+  </script>
+</template>

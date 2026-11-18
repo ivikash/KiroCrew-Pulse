@@ -1,0 +1,149 @@
+{
+  "commandCenter": {
+    "approve": "Aprobar una vez",
+    "attention_filter": "Requiere tu atención",
+    "blocked": "Bloqueado",
+    "explicit_input": "Solo tu envío explícito transmite una respuesta o aprobación.",
+    "idle": "Inactivo",
+    "no_input": "No hay nada en esta categoría que requiera tu atención.",
+    "open_session": "Abrir sesión",
+    "options_question": "La sesión espera tu elección.",
+    "reject": "Rechazar una vez",
+    "reject_help": "Rechazar una vez deniega esta solicitud. El modo de permisos no cambia.",
+    "running": "En ejecución",
+    "send_answer": "Enviar respuesta",
+    "session_label": "Sesión {{number}}",
+    "stale": "Algunas fuentes no están disponibles. El último estado conocido puede estar desactualizado.",
+    "worker_label": "Tarea del agente {{number}}",
+    "workflow_label": "Flujo de trabajo {{number}}"
+  },
+  "components": {
+    "approvalCard": {
+      "approval_no_longer_pending": "Esta aprobación expiró, ya fue decidida o una solicitud más reciente la reemplazó — el agente ya no la está esperando.",
+      "decision_failed": "Es posible que esta decisión no se haya registrado — la solicitud falló.",
+      "decision_not_recorded_error": "Esta decisión no se registró: {{error}}",
+      "tool_approval_requested": "Aprobación de herramienta solicitada:"
+    },
+    "questionCard": {
+      "or_type_a_custom_answer": "O escribe una respuesta personalizada..."
+    }
+  },
+  "pulse": {
+    "answer_failed": "No se pudo enviar la respuesta.",
+    "answer_in_session": "Responder en la sesión",
+    "approval_pending": "Una herramienta espera aprobación",
+    "gateway_unreachable": "No se pudo contactar con el gateway.",
+    "sessions_unavailable": "No se pudieron cargar las sesiones.",
+    "title": "Pulse",
+    "wants_to_run": "{{tool}} quiere ejecutarse"
+  },
+  "nav": {
+    "crew_members": "Bots",
+    "schedule": "Programación"
+  },
+  "pages": {
+    "homePage": {
+      "active_now": "Activo ahora",
+      "approvals_count_many": "{{amount}} aprobaciones",
+      "approvals_count_one": "{{amount}} aprobación",
+      "approvals_count_other": "{{amount}} aprobaciones",
+      "bots_count": "{{running}} de {{total}} trabajando",
+      "bots_unavailable": "No se pudieron cargar los Bot.",
+      "due": "Programado {{when}}",
+      "failing_count_many": "{{amount}} con error",
+      "failing_count_one": "{{amount}} con error",
+      "failing_count_other": "{{amount}} con error",
+      "fleet_all_resting": "Todo está en reposo.",
+      "fleet_resting_many": "{{amount}} en reposo",
+      "fleet_resting_one": "{{amount}} en reposo",
+      "fleet_resting_other": "{{amount}} en reposo",
+      "fleet_title": "Qué está haciendo cada agente",
+      "kind_session": "Sesión",
+      "kind_subagent": "Subagente",
+      "kind_workflow": "Flujo de trabajo",
+      "last_active": "Última actividad {{when}}",
+      "next_run": "Siguiente: {{name}} {{when}}",
+      "no_next_run": "Ninguna tarea pendiente",
+      "now": "Ahora",
+      "open": "Abrir",
+      "open_overview": "Ajustes › Resumen",
+      "open_page": "Abrir página",
+      "paused_count_many": "{{amount}} pausados",
+      "paused_count_one": "{{amount}} pausado",
+      "paused_count_other": "{{amount}} pausados",
+      "questions_count_many": "{{amount}} preguntas",
+      "questions_count_one": "{{amount}} pregunta",
+      "questions_count_other": "{{amount}} preguntas",
+      "running_for": "en ejecución {{duration}}",
+      "schedule_unavailable": "No se pudo cargar la programación.",
+      "scheduled": "Programados",
+      "show_more_blockers_many": "Mostrar {{amount}} más",
+      "show_more_blockers_one": "Mostrar {{amount}} más",
+      "show_more_blockers_other": "Mostrar {{amount}} más",
+      "spend_bar_label": "Uso de hoy por modelo",
+      "spend_none": "Hoy no se ha registrado uso.",
+      "spend_other": "Otros modelos",
+      "spend_plan": "Plan {{plan}}: {{percent}} usado",
+      "spend_title": "Tokens consumidos",
+      "state_done": "Terminado",
+      "state_stopped": "Detenido",
+      "state_waiting": "En espera",
+      "subagents_many": "{{amount}} subagentes",
+      "subagents_one": "{{amount}} subagente",
+      "subagents_other": "{{amount}} subagentes",
+      "subtitle": "Qué hace tu equipo, qué espera tu respuesta y qué viene a continuación.",
+      "suggestion_choices_many": "Propuso {{amount}} pasos siguientes",
+      "suggestion_choices_one": "Propuso {{amount}} paso siguiente",
+      "suggestion_choices_other": "Propuso {{amount}} pasos siguientes",
+      "suggestions_count_many": "{{amount}} sugerencias",
+      "suggestions_count_one": "{{amount}} sugerencia",
+      "suggestions_count_other": "{{amount}} sugerencias",
+      "suggestions_fold_many": "{{amount}} sesiones propusieron pasos siguientes",
+      "suggestions_fold_one": "{{amount}} sesión propuso pasos siguientes",
+      "suggestions_fold_other": "{{amount}} sesiones propusieron pasos siguientes",
+      "today": "Hoy",
+      "track_label": "Actividad de {{name}} en este periodo",
+      "upcoming": "Próximos",
+      "window_hours_many": "{{amount}} h",
+      "window_hours_one": "{{amount}} h",
+      "window_hours_other": "{{amount}} h",
+      "window_label": "Periodo",
+      "with_subagents": "Subagentes en ejecución",
+      "workflows_many": "{{amount}} flujos de trabajo",
+      "workflows_one": "{{amount}} flujo de trabajo",
+      "workflows_other": "{{amount}} flujos de trabajo"
+    },
+    "membersPage": {
+      "empty_title": "Aún no hay Bots"
+    },
+    "overview": {
+      "usageTab": {
+        "usage_tracking_is_not_available_for": "El seguimiento de uso no está disponible para {{provider}}."
+      }
+    },
+    "overviewPage": {
+      "all_systems_running": "Todos los sistemas en ejecución",
+      "connecting": "Conectando…",
+      "reconnecting": "Reconectando…",
+      "today_line": "Hoy: {{summary}}",
+      "today_messages_many": "{{amount}} mensajes",
+      "today_messages_one": "{{amount}} mensaje",
+      "today_messages_other": "{{amount}} mensajes",
+      "today_sessions_many": "{{amount}} sesiones",
+      "today_sessions_one": "{{amount}} sesión",
+      "today_sessions_other": "{{amount}} sesiones",
+      "today_tokens_many": "{{amount}} tokens",
+      "today_tokens_one": "{{amount}} token",
+      "today_tokens_other": "{{amount}} tokens",
+      "uptime_line": "Activo desde hace {{uptime}}",
+      "uptime_line_version": "Activo desde hace {{uptime}} · v{{version}}"
+    },
+    "schedulePage": {
+      "error": "Error",
+      "running": "En ejecución"
+    },
+    "sessionsPage": {
+      "empty_title": "No hay sesiones"
+    }
+  }
+}

@@ -1,0 +1,157 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: var(--font-display, Inter), Inter, sans-serif;
+      overflow: hidden;
+    }
+    #s2-stage {
+      position: absolute;
+      inset: 0;
+      background: var(--color-ground, #ffffff);
+      opacity: 0;
+    }
+    #s2-head {
+      position: absolute;
+      left: 108px;
+      top: 262px;
+      width: 1704px;
+    }
+    #s2-title {
+      color: var(--color-ink, #000000);
+      font-size: 80px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    #s2-title .in,
+    #s2-subtitle .in {
+      display: inline-block;
+    }
+    #s2-subtitle {
+      margin-top: 16px;
+      color: var(--color-muted, #5e5966);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    #s2-tiles {
+      position: absolute;
+      left: 108px;
+      top: 506px;
+      width: 1704px;
+      display: grid;
+      grid-template-columns: repeat(4, 408px);
+      gap: 24px;
+    }
+    .s2-tile {
+      height: 300px;
+    }
+    .s2-tile .in {
+      height: 300px;
+      border: 1.5px solid var(--color-border, #e6e3ea);
+      border-radius: 18px;
+      background: var(--color-ground, #ffffff);
+      padding: 30px 32px 30px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(25, 22, 29, 0.05);
+    }
+    .s2-label {
+      color: var(--color-muted, #5e5966);
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 32px;
+    }
+    .s2-value {
+      margin-top: 10px;
+      font-size: 68px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .s2-detail {
+      margin-top: auto;
+      color: var(--color-muted, #5e5966);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    #s2-tile-active .s2-value { color: var(--color-accent, #8e48ff); }
+    #s2-tile-needs .s2-value { color: #6b5a00; }
+    #s2-tile-sched .s2-value { color: #8b1a1a; }
+    #s2-tile-today .s2-value { color: var(--color-ink, #000000); }
+  </style>
+  <div id="root" data-composition-id="s2-reveal" data-width="1920" data-height="1080">
+    <div id="s2-stage">
+      <div id="s2-head">
+        <!-- beat: 4.39s global -->
+        <h1 id="s2-title" class="clip" data-start="0.57" data-duration="4.9" data-track-index="1"><span class="in">Pulse</span></h1>
+        <p id="s2-subtitle" class="clip" data-start="0.8" data-duration="4.67" data-track-index="2"><span class="in" data-var-text="subtitle">What your crew is doing, what is waiting on you, and what is coming up.</span></p>
+      </div>
+      <div id="s2-tiles">
+        <!-- beat-grid: tiles at 4.91s, 5.34s, 6.00s, 6.56s global = 1.09, 1.52, 2.18, 2.74 local -->
+        <div id="s2-tile-active" class="s2-tile clip" data-start="1.09" data-duration="4.38" data-track-index="3">
+          <div class="in">
+            <div class="s2-label">Active now</div>
+            <div class="s2-value">4</div>
+            <div class="s2-detail">2 sessions, 1 subagent, and 1 workflow</div>
+          </div>
+        </div>
+        <div id="s2-tile-needs" class="s2-tile clip" data-start="1.52" data-duration="3.95" data-track-index="4">
+          <div class="in">
+            <div class="s2-label">Needs you</div>
+            <div class="s2-value">5</div>
+            <div class="s2-detail">3 questions and 2 approvals · 2 suggestions</div>
+          </div>
+        </div>
+        <div id="s2-tile-sched" class="s2-tile clip" data-start="2.18" data-duration="3.29" data-track-index="5">
+          <div class="in">
+            <div class="s2-label">Scheduled</div>
+            <div class="s2-value">5</div>
+            <div class="s2-detail">Next: Weekly sync doc rollover in 1h · 1 failing · 1 paused</div>
+          </div>
+        </div>
+        <div id="s2-tile-today" class="s2-tile clip" data-start="2.74" data-duration="2.73" data-track-index="6">
+          <div class="in">
+            <div class="s2-label">Today</div>
+            <div class="s2-value">$8.38</div>
+            <div class="s2-detail">Today: 9 sessions · 184 messages · 612K tokens · $8.38</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // Soft crossfade in over the hook (0 -> 0.6 s).
+      tl.fromTo("#s2-stage", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 0);
+
+      // Title: the whole line blurring in. Subtitle follows while the title is half landed.
+      tl.fromTo("#s2-title .in", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 0.57);
+      tl.fromTo("#s2-subtitle .in", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 0.8);
+
+      // Tiles arrive one by one on the beat grid: a short rise with a long tail, no bounce.
+      const tiles = [
+        ["#s2-tile-active .in", 1.09],
+        ["#s2-tile-needs .in", 1.52],
+        ["#s2-tile-sched .in", 2.18],
+        ["#s2-tile-today .in", 2.74],
+      ];
+      tiles.forEach(function (t) {
+        tl.fromTo(t[0], { opacity: 0, y: 26, filter: "blur(4px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, t[1]);
+      });
+
+      // Blur swap out at 5.27 -> 5.47 (9.09 -> 9.29 global); the white ground stays while the page dissolves in.
+      tl.to(["#s2-title .in", "#s2-subtitle .in", ".s2-tile .in"], { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power2.in" }, 5.27);
+
+      window.__timelines["s2-reveal"] = tl;
+      tl.seek(0);
+    })();
+  </script>
+</template>

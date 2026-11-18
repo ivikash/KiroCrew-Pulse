@@ -1,0 +1,134 @@
+{
+  "commandCenter": {
+    "approve": "Einmal genehmigen",
+    "attention_filter": "Du bist gefragt",
+    "blocked": "Blockiert",
+    "explicit_input": "Erst dein ausdrückliches Absenden übermittelt eine Antwort oder Genehmigung.",
+    "idle": "Inaktiv",
+    "no_input": "In dieser Kategorie wartet nichts auf dich.",
+    "open_session": "Sitzung öffnen",
+    "options_question": "Die Sitzung wartet auf deine Auswahl.",
+    "reject": "Einmal ablehnen",
+    "reject_help": "Einmal ablehnen verweigert diese Anfrage. Der Berechtigungsmodus bleibt gleich.",
+    "running": "Läuft",
+    "send_answer": "Antwort senden",
+    "session_label": "Sitzung {{number}}",
+    "stale": "Einige Quellen sind nicht verfügbar. Der letzte bekannte Stand kann veraltet sein.",
+    "worker_label": "Arbeitsauftrag {{number}}",
+    "workflow_label": "Workflow {{number}}"
+  },
+  "components": {
+    "approvalCard": {
+      "approval_no_longer_pending": "Diese Genehmigung ist abgelaufen, wurde bereits entschieden oder durch eine neuere Anfrage ersetzt — der Agent wartet nicht mehr darauf.",
+      "decision_failed": "Diese Entscheidung wurde möglicherweise nicht gespeichert — die Anfrage ist fehlgeschlagen.",
+      "decision_not_recorded_error": "Diese Entscheidung wurde nicht gespeichert: {{error}}",
+      "tool_approval_requested": "Werkzeuggenehmigung angefordert:"
+    },
+    "questionCard": {
+      "or_type_a_custom_answer": "Oder geben Sie eine eigene Antwort ein…"
+    }
+  },
+  "pulse": {
+    "answer_failed": "Die Antwort konnte nicht gesendet werden.",
+    "answer_in_session": "In der Sitzung antworten",
+    "approval_pending": "Ein Werkzeug wartet auf Freigabe",
+    "gateway_unreachable": "Das Gateway war nicht erreichbar.",
+    "sessions_unavailable": "Die Sitzungen konnten nicht geladen werden.",
+    "title": "Pulse",
+    "wants_to_run": "{{tool}} möchte ausgeführt werden"
+  },
+  "nav": {
+    "crew_members": "Bots",
+    "schedule": "Zeitplan"
+  },
+  "pages": {
+    "homePage": {
+      "active_now": "Gerade aktiv",
+      "approvals_count_one": "{{amount}} Freigabe",
+      "approvals_count_other": "{{amount}} Freigaben",
+      "bots_count": "{{running}} von {{total}} arbeiten",
+      "bots_unavailable": "Die Bot konnten nicht geladen werden.",
+      "due": "Fällig {{when}}",
+      "failing_count_one": "{{amount}} fehlgeschlagen",
+      "failing_count_other": "{{amount}} fehlgeschlagen",
+      "fleet_all_resting": "Alles ruht.",
+      "fleet_resting_one": "{{amount}} ruht",
+      "fleet_resting_other": "{{amount}} ruhen",
+      "fleet_title": "Was jeder Agent gerade tut",
+      "kind_session": "Sitzung",
+      "kind_subagent": "Subagent",
+      "kind_workflow": "Workflow",
+      "last_active": "Zuletzt aktiv {{when}}",
+      "next_run": "Nächster: {{name}} {{when}}",
+      "no_next_run": "Kein Job steht an",
+      "now": "Jetzt",
+      "open": "Öffnen",
+      "open_overview": "Einstellungen › Übersicht",
+      "open_page": "Seite öffnen",
+      "paused_count_one": "{{amount}} pausiert",
+      "paused_count_other": "{{amount}} pausiert",
+      "questions_count_one": "{{amount}} Frage",
+      "questions_count_other": "{{amount}} Fragen",
+      "running_for": "läuft seit {{duration}}",
+      "schedule_unavailable": "Der Zeitplan konnte nicht geladen werden.",
+      "scheduled": "Geplant",
+      "show_more_blockers_one": "{{amount}} weitere anzeigen",
+      "show_more_blockers_other": "{{amount}} weitere anzeigen",
+      "spend_bar_label": "Heutige Nutzung nach Modell",
+      "spend_none": "Heute wurde keine Nutzung erfasst.",
+      "spend_other": "Andere Modelle",
+      "spend_plan": "{{plan}}-Tarif: {{percent}} verbraucht",
+      "spend_title": "Verbrauchte Tokens",
+      "state_done": "Fertig",
+      "state_stopped": "Gestoppt",
+      "state_waiting": "Wartet",
+      "subagents_one": "{{amount}} Subagent",
+      "subagents_other": "{{amount}} Subagenten",
+      "subtitle": "Was deine Crew gerade tut, was auf dich wartet und was als Nächstes ansteht.",
+      "suggestion_choices_one": "{{amount}} nächsten Schritt vorgeschlagen",
+      "suggestion_choices_other": "{{amount}} nächste Schritte vorgeschlagen",
+      "suggestions_count_one": "{{amount}} Vorschlag",
+      "suggestions_count_other": "{{amount}} Vorschläge",
+      "suggestions_fold_one": "{{amount}} Sitzung hat nächste Schritte vorgeschlagen",
+      "suggestions_fold_other": "{{amount}} Sitzungen haben nächste Schritte vorgeschlagen",
+      "today": "Heute",
+      "track_label": "Aktivität von {{name}} in diesem Zeitraum",
+      "upcoming": "Demnächst",
+      "window_hours_one": "{{amount}} h",
+      "window_hours_other": "{{amount}} h",
+      "window_label": "Zeitraum",
+      "with_subagents": "Subagenten laufen",
+      "workflows_one": "{{amount}} Workflow",
+      "workflows_other": "{{amount}} Workflows"
+    },
+    "membersPage": {
+      "empty_title": "Noch keine Bots"
+    },
+    "overview": {
+      "usageTab": {
+        "usage_tracking_is_not_available_for": "Nutzungserfassung ist für {{provider}} nicht verfügbar."
+      }
+    },
+    "overviewPage": {
+      "all_systems_running": "Alle Systeme laufen",
+      "connecting": "Verbinden…",
+      "reconnecting": "Neu verbinden…",
+      "today_line": "Heute: {{summary}}",
+      "today_messages_one": "{{amount}} Nachricht",
+      "today_messages_other": "{{amount}} Nachrichten",
+      "today_sessions_one": "{{amount}} Sitzung",
+      "today_sessions_other": "{{amount}} Sitzungen",
+      "today_tokens_one": "{{amount}} Token",
+      "today_tokens_other": "{{amount}} Tokens",
+      "uptime_line": "Läuft seit {{uptime}}",
+      "uptime_line_version": "Läuft seit {{uptime}} · v{{version}}"
+    },
+    "schedulePage": {
+      "error": "Fehler",
+      "running": "Läuft"
+    },
+    "sessionsPage": {
+      "empty_title": "Keine Sitzungen"
+    }
+  }
+}

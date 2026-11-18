@@ -1,0 +1,54 @@
+name: CI
+
+# The page is a committed ESM bundle (ui/dist/index.mjs): a Kiro Crew install is
+# a plain clone with no build step. This job proves the committed bundle is
+# exactly what the committed source builds, and that the manifest, the code and
+# the catalogs agree. It runs offline: the only network use is `npm ci`.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ui:
+    name: UI (typecheck, test, reproducible bundle)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: ui
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: ui/package-lock.json
+
+      - name: Validate app.json is JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('../app.json','utf8'))"
+
+      - name: Install pinned dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: The committed bundle is the build output
+        run: git diff --exit-code -- dist
