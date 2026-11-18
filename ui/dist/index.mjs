@@ -2592,22 +2592,21 @@ function CardShell({ title, slot, status, children }) {
 		"data-testid": "home-attention-card",
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "flex items-start justify-between gap-3 min-w-0",
-				children: [/* @__PURE__ */ jsxs("div", {
-					className: "flex items-start gap-2 min-w-0",
-					children: [/* @__PURE__ */ jsx(Badge, {
-						variant: status.variant,
-						className: "shrink-0 mt-0.5",
-						"data-testid": "home-card-status",
-						children: t(status.key)
-					}), /* @__PURE__ */ jsx("div", {
-						className: "text-sm font-medium min-w-0 break-words",
-						children: title
-					})]
+				className: "flex items-center justify-between gap-3",
+				children: [/* @__PURE__ */ jsx(Badge, {
+					variant: status.variant,
+					className: "shrink-0",
+					"data-testid": "home-card-status",
+					children: t(status.key)
 				}), /* @__PURE__ */ jsx(RowLink, {
 					to: sessionRoute(slot),
 					children: t("commandCenter.open_session")
 				})]
+			}),
+			/* @__PURE__ */ jsx("div", {
+				className: "text-sm font-medium leading-snug",
+				"data-testid": "home-card-title",
+				children: title
 			}),
 			/* @__PURE__ */ jsx("p", {
 				className: "text-[12px] text-muted m-0",

@@ -45,13 +45,13 @@ function errorLine(err: unknown, fallbackKey: string): string {
 function CardShell({ title, slot, status, children }: { title: string; slot: string; status: StateBadge; children: React.ReactNode }) {
   return (
     <Card className="space-y-3" data-testid="home-attention-card">
-      <div className="flex items-start justify-between gap-3 min-w-0">
-        <div className="flex items-start gap-2 min-w-0">
-          <Badge variant={status.variant} className="shrink-0 mt-0.5" data-testid="home-card-status">{t(status.key)}</Badge>
-          <div className="text-sm font-medium min-w-0 break-words">{title}</div>
-        </div>
+      {/* Badge and link on one line, the title on its own under them: a title
+          squeezed beside both wraps one letter per line in a narrow card. */}
+      <div className="flex items-center justify-between gap-3">
+        <Badge variant={status.variant} className="shrink-0" data-testid="home-card-status">{t(status.key)}</Badge>
         <RowLink to={sessionRoute(slot)}>{t('commandCenter.open_session')}</RowLink>
       </div>
+      <div className="text-sm font-medium leading-snug" data-testid="home-card-title">{title}</div>
       <p className="text-[12px] text-muted m-0">{t('commandCenter.explicit_input')}</p>
       {children}
     </Card>
