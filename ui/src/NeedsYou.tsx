@@ -6,16 +6,24 @@
  * steps in an `[OPTIONS:]` line. Six cards show at first; "Show all" opens
  * the rest.
  *
- * Nothing here sends on a click alone: a pick stays a draft until "Send answer",
- * and an approval needs its own button. A label the dashboard would refuse to
- * send bare (one that reads as a command) is withheld with a link to answer in
- * the session.
+ * Nothing here sends on a click alone: a pick stays a draft until "Send answer"
+ * (or Enter in a text box), and an approval needs its own button. A label the
+ * dashboard would refuse to send bare (one that reads as a command) is withheld
+ * with a link to answer in the session.
+ *
+ * A card STAYS once answered. The inbox is a projection of gateway state, and
+ * the moment a session takes the message it stops waiting, so its item leaves
+ * the live list; the card would vanish under the cursor with no record of what
+ * went out. So the inbox remembers each send and keeps the card in its place as
+ * a "Sent" card, showing what was sent and the session's live state, until the
+ * session asks again (the new card replaces it) or the person dismisses it.
+ * Cards keep the order they first appeared in, so nothing shifts under a click.
  */
-import { useState } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { fmtNumber } from '@kirocrew/app-sdk'
 import { Badge, Btn, Card, EmptyState, ErrorNotice } from '@kirocrew/app-sdk/ui'
-import { Inbox, MessageSquare } from 'lucide-react'
+import { Inbox, MessageSquare, X } from 'lucide-react'
 import { approvalTarget, writes, type ApprovalAction } from './api'
 import { t } from './i18n'
 import { isCommandShaped, type AttentionItem, type AttentionSplit, type RunNode } from './model'
@@ -39,6 +47,22 @@ function errorLine(err: unknown, fallbackKey: string): string {
   return message ? t('components.approvalCard.decision_not_recorded_error', { error: message }) : t(fallbackKey)
 }
 
+/** Enter in a text box sends, when there is something to send. An Enter that
+ *  finishes an IME composition is the composition's, not a send. */
+function sendOnEnter(send: () => void, enabled: boolean) {
+  return (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== 'Enter' || e.nativeEvent.isComposing || !enabled) return
+    e.preventDefault()
+    send()
+  }
+}
+
+/** What went out from a card: the item it answered and the text, so the card
+ *  can stay in place once the gateway stops listing the session as waiting. */
+export interface SentRecord { itemId: string; slot: string; text: string }
+
+type OnSent = (record: SentRecord) => void
+
 /** The card's frame: its status badge (the same word and tint the board row
  *  wears, or "Sent" once the answer has gone out), the session's title and the
  *  link into it. */
@@ -59,7 +83,7 @@ function CardShell({ title, slot, status, children }: { title: string; slot: str
 }
 
 /** One prompt's choices and a free-text line; the draft is the caller's. */
-function Prompt({ prompt, value, onChange }: { prompt: QuestionPrompt; value: string; onChange: (next: string) => void }) {
+function Prompt({ prompt, value, onChange, onEnter }: { prompt: QuestionPrompt; value: string; onChange: (next: string) => void; onEnter: ReturnType<typeof sendOnEnter> }) {
   const picks = new Set(value.split('\n').filter(Boolean))
   const toggle = (label: string) => {
     if (prompt.multiSelect) {
@@ -82,22 +106,24 @@ function Prompt({ prompt, value, onChange }: { prompt: QuestionPrompt; value: st
             {o.description && <div className="text-[12px] text-muted">{o.description}</div>}
           </button>
         ))}
-        <input type="text" value={custom} onChange={e => onChange(e.target.value)} placeholder={t('components.questionCard.or_type_a_custom_answer')}
-          className="text-sm rounded-md border border-border bg-card px-3 py-2 min-w-0" aria-label={t('components.questionCard.or_type_a_custom_answer')} />
+        <input type="text" value={custom} onChange={e => onChange(e.target.value)} onKeyDown={onEnter} placeholder={t('components.questionCard.or_type_a_custom_answer')}
+          className="text-sm rounded-md border border-border bg-card px-3 py-2 min-w-0" aria-label={t('components.questionCard.or_type_a_custom_answer')} data-testid="home-question-text" />
       </div>
     </div>
   )
 }
 
-function QuestionCard({ item, title }: { item: Extract<AttentionItem, { kind: 'question' }>; title: string }) {
+function QuestionCard({ item, title, onSent }: { item: Extract<AttentionItem, { kind: 'question' }>; title: string; onSent: OnSent }) {
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const refresh = useLiveInvalidate()
   const question: PendingQuestion = item.question
   const mutation = useMutation({
     mutationFn: (payload: Record<string, string>) => writes.answer(question.ask_id!, payload),
-    onSuccess: refresh,
+    onSuccess: (_result, payload) => { refresh(); onSent({ itemId: item.id, slot: item.slot, text: Object.values(payload).join(' · ') }) },
   })
   const complete = question.questions.every(q => (answers[q.question] ?? '').trim())
+  const send = () => mutation.mutate(Object.fromEntries(Object.entries(answers).map(([q, a]) => [q, a.trim()])))
+  const onEnter = sendOnEnter(send, complete && !mutation.isPending)
   // A stateless card (no ask_id) blocks nothing the gateway can receive from
   // here: its answer is typed in the session.
   if (!question.ask_id) {
@@ -111,11 +137,11 @@ function QuestionCard({ item, title }: { item: Extract<AttentionItem, { kind: 'q
   return (
     <CardShell title={title} slot={item.slot} status={mutation.isSuccess ? SENT : STATE.needs_input}>
       {question.questions.map(q => (
-        <Prompt key={q.question} prompt={q} value={answers[q.question] ?? ''} onChange={next => setAnswers(a => ({ ...a, [q.question]: next }))} />
+        <Prompt key={q.question} prompt={q} value={answers[q.question] ?? ''} onChange={next => setAnswers(a => ({ ...a, [q.question]: next }))} onEnter={onEnter} />
       ))}
       <ErrorNotice message={mutation.isError ? errorLine(mutation.error, 'pulse.answer_failed') : undefined} />
       <div className="flex justify-end">
-        <Btn primary disabled={!complete || mutation.isPending} onClick={() => mutation.mutate(Object.fromEntries(Object.entries(answers).map(([q, a]) => [q, a.trim()])))} data-testid="home-send-answer">
+        <Btn primary disabled={!complete || mutation.isPending} onClick={send} data-testid="home-send-answer">
           <MessageSquare size={14} className="lucide-inline" /> {t('commandCenter.send_answer')}
         </Btn>
       </div>
@@ -123,7 +149,7 @@ function QuestionCard({ item, title }: { item: Extract<AttentionItem, { kind: 'q
   )
 }
 
-function ApprovalCard({ item, title, slot }: { item: Extract<AttentionItem, { kind: 'approval' }>; title: string; slot: ChatSlot | undefined }) {
+function ApprovalCard({ item, title, slot, onSent }: { item: Extract<AttentionItem, { kind: 'approval' }>; title: string; slot: ChatSlot | undefined; onSent: OnSent }) {
   const refresh = useLiveInvalidate()
   const target = approvalTarget(item.slot, item.approval, slot?.pending_approval_info)
   const tool = item.approval?.tool ?? slot?.pending_approval_info?.tool ?? ''
@@ -131,7 +157,10 @@ function ApprovalCard({ item, title, slot }: { item: Extract<AttentionItem, { ki
   const input = item.approval?.tool_input ?? slot?.pending_approval_info?.tool_input
   const mutation = useMutation({
     mutationFn: (action: ApprovalAction) => writes.decide(target!, action),
-    onSuccess: refresh,
+    onSuccess: (_result, action) => {
+      refresh()
+      onSent({ itemId: item.id, slot: item.slot, text: `${t(action === 'approve' ? 'commandCenter.approve' : 'commandCenter.reject')}: ${tool || t('pulse.approval_pending')}` })
+    },
   })
   return (
     <CardShell title={title} slot={item.slot} status={mutation.isSuccess ? SENT : STATE.needs_input}>
@@ -168,14 +197,19 @@ function OpenSessionCard({ item, title, detail }: { item: AttentionItem; title: 
  *  text are one answer, so choosing one clears the other. A command-shaped label
  *  is withheld: sent bare it would run rather than say, so it is answered in the
  *  session itself. */
-function FollowUpCard({ item, title }: { item: Extract<AttentionItem, { kind: 'follow_up' }>; title: string }) {
+function FollowUpCard({ item, title, onSent }: { item: Extract<AttentionItem, { kind: 'follow_up' }>; title: string; onSent: OnSent }) {
   const [pick, setPick] = useState('')
   const [typed, setTyped] = useState('')
   const refresh = useLiveInvalidate()
-  const mutation = useMutation({ mutationFn: (message: string) => writes.send(item.slot, message), onSuccess: refresh })
+  const mutation = useMutation({
+    mutationFn: (message: string) => writes.send(item.slot, message),
+    onSuccess: (_result, message) => { refresh(); onSent({ itemId: item.id, slot: item.slot, text: message }) },
+  })
   const sendable = item.followUp.labels.filter(l => !isCommandShaped(l))
   const withheld = item.followUp.labels.length - sendable.length
   const answer = pick || typed.trim()
+  const send = () => mutation.mutate(answer)
+  const canSend = !!answer && !mutation.isPending
   return (
     <CardShell title={title} slot={item.slot} status={mutation.isSuccess ? SENT : STATE.waiting}>
       <div className="rounded-lg bg-accent-subtle p-3 space-y-2" data-testid="home-follow-up">
@@ -185,20 +219,47 @@ function FollowUpCard({ item, title }: { item: Extract<AttentionItem, { kind: 'f
             <button key={label} type="button" aria-pressed={pick === label} onClick={() => { setPick(p => p === label ? '' : label); setTyped('') }}
               className={`text-left text-sm rounded-md border px-3 py-2 ${pick === label ? 'border-accent bg-accent/15' : 'border-border bg-card'}`}>{label}</button>
           ))}
-          <input type="text" value={typed} onChange={e => { setTyped(e.target.value); setPick('') }} placeholder={t('components.questionCard.or_type_a_custom_answer')}
+          <input type="text" value={typed} onChange={e => { setTyped(e.target.value); setPick('') }} onKeyDown={sendOnEnter(send, canSend)} placeholder={t('components.questionCard.or_type_a_custom_answer')}
             className="text-sm rounded-md border border-border bg-card px-3 py-2 min-w-0" aria-label={t('components.questionCard.or_type_a_custom_answer')} data-testid="home-follow-up-text" />
         </div>
         {withheld > 0 && <RowLink to={sessionRoute(item.slot)}>{t('pulse.answer_in_session')}</RowLink>}
       </div>
       <ErrorNotice message={mutation.isError ? errorLine(mutation.error, 'pulse.answer_failed') : undefined} />
       <div className="flex justify-end">
-        <Btn primary disabled={!answer || mutation.isPending} onClick={() => mutation.mutate(answer)} data-testid="home-follow-up-send">
+        <Btn primary disabled={!canSend} onClick={send} data-testid="home-follow-up-send">
           <MessageSquare size={14} className="lucide-inline" /> {t('commandCenter.send_answer')}
         </Btn>
       </div>
     </CardShell>
   )
 }
+
+/** A card that stays after its answer went out: what was sent, and the state
+ *  the session is in now (running on the answer, idle once it replied). */
+function SentCard({ record, title, state, onDismiss }: { record: SentRecord; title: string; state: StateBadge; onDismiss: () => void }) {
+  return (
+    <Card className="space-y-3" data-testid="home-attention-card" data-sent="true">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <Badge variant={SENT.variant} className="shrink-0" data-testid="home-card-status">{t(SENT.key)}</Badge>
+          <Badge variant={state.variant} className="shrink-0" data-testid="home-card-session-state">{t(state.key)}</Badge>
+        </div>
+        <div className="flex items-center gap-2">
+          <RowLink to={sessionRoute(record.slot)}>{t('commandCenter.open_session')}</RowLink>
+          <button type="button" onClick={onDismiss} aria-label={t('pulse.dismiss')} title={t('pulse.dismiss')} className="text-muted inline-flex h-8 w-8 items-center justify-center rounded-md" data-testid="home-card-dismiss">
+            <X size={14} />
+          </button>
+        </div>
+      </div>
+      <div className="text-sm font-medium leading-snug" data-testid="home-card-title">{title}</div>
+      <div className="rounded-lg bg-ok-subtle p-3 text-sm break-words" data-testid="home-card-sent-text">{record.text}</div>
+    </Card>
+  )
+}
+
+/** One slot's place in the inbox: the live item, or the record of what was sent
+ *  once the item has gone. */
+type Entry = { kind: 'live'; item: AttentionItem } | { kind: 'sent'; record: SentRecord }
 
 export default function NeedsYou({ attention, sessions, slots, ready }: {
   attention: AttentionSplit
@@ -207,24 +268,60 @@ export default function NeedsYou({ attention, sessions, slots, ready }: {
   ready: boolean
 }) {
   const [visible, setVisible] = useState(INITIAL_CARDS)
-  const title = (slot: string) => { const n = sessions.get(slot); return n ? (n.title || slot) : slot }
+  const [sent, setSent] = useState<ReadonlyMap<string, SentRecord>>(new Map())
+  // The order slots first appeared in, so a card keeps its place while the live
+  // list around it changes and a sent card stands where its live card stood.
+  const order = useRef(new Map<string, number>())
+  const seq = (slot: string) => {
+    const known = order.current.get(slot)
+    if (known !== undefined) return known
+    const next = order.current.size
+    order.current.set(slot, next)
+    return next
+  }
+
   const items: AttentionItem[] = [...attention.blockers, ...attention.followUps]
-  const shown = items.slice(0, visible)
-  const hidden = items.length - shown.length
+  const liveBySlot = new Map(items.map(i => [i.slot, i]))
+  // A session that asks again replaces its sent card: the new ask is what matters.
+  // The item answered may still be listed for a moment (the gateway has not
+  // re-read yet); that is the same ask, not a new one, so the record stays.
+  useEffect(() => {
+    const superseded = [...sent.values()].filter(r => { const live = liveBySlot.get(r.slot); return live && live.id !== r.itemId })
+    if (superseded.length) setSent(prev => { const next = new Map(prev); for (const r of superseded) next.delete(r.slot); return next })
+  }, [items.map(i => i.id).join('\0')]) // eslint-disable-line react-hooks/exhaustive-deps
+  const onSent: OnSent = record => setSent(prev => new Map(prev).set(record.slot, record))
+  const dismiss = (slot: string) => setSent(prev => { const next = new Map(prev); next.delete(slot); return next })
+
+  const entries: Entry[] = [
+    ...items.map((item): Entry => ({ kind: 'live', item })),
+    ...[...sent.values()].filter(r => !liveBySlot.has(r.slot)).map((record): Entry => ({ kind: 'sent', record })),
+  ]
+  const slotOf = (e: Entry) => e.kind === 'live' ? e.item.slot : e.record.slot
+  for (const e of entries) seq(slotOf(e))
+  entries.sort((a, b) => seq(slotOf(a)) - seq(slotOf(b)))
+
+  const title = (slot: string) => { const n = sessions.get(slot); return n ? (n.title || slot) : slot }
+  const shown = entries.slice(0, visible)
+  const hidden = entries.length - shown.length
   return (
     <Section label={t('commandCenter.attention_filter')} count={fmtNumber(items.length)} testId="home-needs-you">
       {shown.length > 0 && (
         <div className="grid ch-cards gap-3 items-start" data-testid="home-needs-you-grid">
-          {shown.map(item => {
-            if (item.kind === 'question') return <QuestionCard key={item.id} item={item} title={title(item.slot)} />
-            if (item.kind === 'approval') return <ApprovalCard key={item.id} item={item} title={title(item.slot)} slot={slots.get(item.slot)} />
-            if (item.kind === 'follow_up') return <FollowUpCard key={item.id} item={item} title={title(item.slot)} />
+          {shown.map(e => {
+            if (e.kind === 'sent') {
+              const node = sessions.get(e.record.slot)
+              return <SentCard key={`sent:${e.record.slot}`} record={e.record} title={title(e.record.slot)} state={STATE[node?.state ?? 'idle']} onDismiss={() => dismiss(e.record.slot)} />
+            }
+            const item = e.item
+            if (item.kind === 'question') return <QuestionCard key={item.id} item={item} title={title(item.slot)} onSent={onSent} />
+            if (item.kind === 'approval') return <ApprovalCard key={item.id} item={item} title={title(item.slot)} slot={slots.get(item.slot)} onSent={onSent} />
+            if (item.kind === 'follow_up') return <FollowUpCard key={item.id} item={item} title={title(item.slot)} onSent={onSent} />
             return <OpenSessionCard key={item.id} item={item} title={title(item.slot)} detail={sessions.get(item.slot)?.detail} />
           })}
         </div>
       )}
-      {hidden > 0 && <Btn onClick={() => setVisible(items.length)} data-testid="home-needs-you-more">{t('pages.homePage.show_all', { count: hidden, amount: fmtNumber(hidden) })}</Btn>}
-      {ready && !items.length && <Card><EmptyState icon={<Inbox size={24} />} title={t('commandCenter.no_input')} testId="home-needs-you-empty" /></Card>}
+      {hidden > 0 && <Btn onClick={() => setVisible(entries.length)} data-testid="home-needs-you-more">{t('pages.homePage.show_all', { count: hidden, amount: fmtNumber(hidden) })}</Btn>}
+      {ready && !entries.length && <Card><EmptyState icon={<Inbox size={24} />} title={t('commandCenter.no_input')} testId="home-needs-you-empty" /></Card>}
     </Section>
   )
 }

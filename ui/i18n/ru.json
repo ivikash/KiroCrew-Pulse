@@ -32,6 +32,7 @@
     "answer_failed": "Не удалось отправить ответ.",
     "answer_in_session": "Ответить в сессии",
     "approval_pending": "Инструмент ждёт одобрения",
+    "dismiss": "Скрыть",
     "gateway_unreachable": "Не удалось связаться со шлюзом.",
     "sent": "Отправлено",
     "sessions_unavailable": "Не удалось загрузить сессии.",

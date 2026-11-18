@@ -32,6 +32,7 @@
     "answer_failed": "Die Antwort konnte nicht gesendet werden.",
     "answer_in_session": "In der Sitzung antworten",
     "approval_pending": "Ein Werkzeug wartet auf Freigabe",
+    "dismiss": "Ausblenden",
     "gateway_unreachable": "Das Gateway war nicht erreichbar.",
     "sent": "Gesendet",
     "sessions_unavailable": "Die Sitzungen konnten nicht geladen werden.",

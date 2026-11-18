@@ -32,6 +32,7 @@
     "answer_failed": "The answer could not be sent.",
     "answer_in_session": "Answer in the session",
     "approval_pending": "A tool is waiting for approval",
+    "dismiss": "Dismiss",
     "gateway_unreachable": "The gateway could not be reached.",
     "sent": "Sent",
     "sessions_unavailable": "The sessions could not be loaded.",

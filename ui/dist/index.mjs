@@ -1,8 +1,8 @@
 import { activeLocale, fmtCurrency, fmtNumber, fmtRelative, fmtTime, useAppApi, useAppEvents, useLanguageGeneration, useNavigate } from "@kirocrew/app-sdk";
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { queryOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Badge, Btn, Card, EmptyState, ErrorNotice, PageHeader } from "@kirocrew/app-sdk/ui";
-import { ArrowUpRight, Bot, CalendarDays, Inbox, MessageSquare, Radar } from "lucide-react";
+import { ArrowUpRight, Bot, CalendarDays, Inbox, MessageSquare, Radar, X } from "lucide-react";
 import { Fragment as Fragment$1, jsx, jsxs } from "react/jsx-runtime";
 // src/api.ts
 var bound = null;
@@ -141,6 +141,7 @@ var CATALOGS = {
 			"answer_failed": "উত্তর পাঠানো যায়নি।",
 			"answer_in_session": "সেশনে উত্তর দিন",
 			"approval_pending": "একটি টুল অনুমোদনের অপেক্ষায় আছে",
+			"dismiss": "সরান",
 			"gateway_unreachable": "গেটওয়েতে পৌঁছানো যায়নি।",
 			"sent": "পাঠানো হয়েছে",
 			"sessions_unavailable": "সেশনগুলো লোড করা যায়নি।",
@@ -262,6 +263,7 @@ var CATALOGS = {
 			"answer_failed": "Die Antwort konnte nicht gesendet werden.",
 			"answer_in_session": "In der Sitzung antworten",
 			"approval_pending": "Ein Werkzeug wartet auf Freigabe",
+			"dismiss": "Ausblenden",
 			"gateway_unreachable": "Das Gateway war nicht erreichbar.",
 			"sent": "Gesendet",
 			"sessions_unavailable": "Die Sitzungen konnten nicht geladen werden.",
@@ -383,6 +385,7 @@ var CATALOGS = {
 			"answer_failed": "The answer could not be sent.",
 			"answer_in_session": "Answer in the session",
 			"approval_pending": "A tool is waiting for approval",
+			"dismiss": "Dismiss",
 			"gateway_unreachable": "The gateway could not be reached.",
 			"sent": "Sent",
 			"sessions_unavailable": "The sessions could not be loaded.",
@@ -504,6 +507,7 @@ var CATALOGS = {
 			"answer_failed": "No se pudo enviar la respuesta.",
 			"answer_in_session": "Responder en la sesión",
 			"approval_pending": "Una herramienta espera aprobación",
+			"dismiss": "Descartar",
 			"gateway_unreachable": "No se pudo contactar con el gateway.",
 			"sent": "Enviado",
 			"sessions_unavailable": "No se pudieron cargar las sesiones.",
@@ -638,6 +642,7 @@ var CATALOGS = {
 			"answer_failed": "La réponse n’a pas pu être envoyée.",
 			"answer_in_session": "Répondre dans la session",
 			"approval_pending": "Un outil attend une approbation",
+			"dismiss": "Masquer",
 			"gateway_unreachable": "Le gateway n’a pas pu être joint.",
 			"sent": "Envoyé",
 			"sessions_unavailable": "Les sessions n’ont pas pu être chargées.",
@@ -772,6 +777,7 @@ var CATALOGS = {
 			"answer_failed": "जवाब नहीं भेजा जा सका।",
 			"answer_in_session": "सत्र में जवाब दें",
 			"approval_pending": "एक टूल अनुमति की प्रतीक्षा में है",
+			"dismiss": "हटाएँ",
 			"gateway_unreachable": "गेटवे से संपर्क नहीं हो सका।",
 			"sent": "भेजा गया",
 			"sessions_unavailable": "सत्र लोड नहीं हो सके।",
@@ -893,6 +899,7 @@ var CATALOGS = {
 			"answer_failed": "La risposta non è stata inviata.",
 			"answer_in_session": "Rispondi nella sessione",
 			"approval_pending": "Uno strumento attende l’approvazione",
+			"dismiss": "Ignora",
 			"gateway_unreachable": "Il gateway non è raggiungibile.",
 			"sent": "Inviato",
 			"sessions_unavailable": "Le sessioni non sono state caricate.",
@@ -1027,6 +1034,7 @@ var CATALOGS = {
 			"answer_failed": "回答を送信できませんでした。",
 			"answer_in_session": "セッションで回答する",
 			"approval_pending": "ツールが承認を待っています",
+			"dismiss": "閉じる",
 			"gateway_unreachable": "ゲートウェイに接続できませんでした。",
 			"sent": "送信済み",
 			"sessions_unavailable": "セッションを読み込めませんでした。",
@@ -1135,6 +1143,7 @@ var CATALOGS = {
 			"answer_failed": "답변을 보낼 수 없습니다.",
 			"answer_in_session": "세션에서 답하기",
 			"approval_pending": "도구가 승인을 기다리고 있습니다",
+			"dismiss": "닫기",
 			"gateway_unreachable": "게이트웨이에 연결할 수 없습니다.",
 			"sent": "전송됨",
 			"sessions_unavailable": "세션을 불러올 수 없습니다.",
@@ -1243,6 +1252,7 @@ var CATALOGS = {
 			"answer_failed": "A resposta não pôde ser enviada.",
 			"answer_in_session": "Responder na sessão",
 			"approval_pending": "Uma ferramenta aguarda aprovação",
+			"dismiss": "Dispensar",
 			"gateway_unreachable": "O gateway não pôde ser alcançado.",
 			"sent": "Enviado",
 			"sessions_unavailable": "As sessões não puderam ser carregadas.",
@@ -1377,6 +1387,7 @@ var CATALOGS = {
 			"answer_failed": "Не удалось отправить ответ.",
 			"answer_in_session": "Ответить в сессии",
 			"approval_pending": "Инструмент ждёт одобрения",
+			"dismiss": "Скрыть",
 			"gateway_unreachable": "Не удалось связаться со шлюзом.",
 			"sent": "Отправлено",
 			"sessions_unavailable": "Не удалось загрузить сессии.",
@@ -1524,6 +1535,7 @@ var CATALOGS = {
 			"answer_failed": "无法发送回答。",
 			"answer_in_session": "在会话中回答",
 			"approval_pending": "有工具正在等待批准",
+			"dismiss": "关闭",
 			"gateway_unreachable": "无法连接网关。",
 			"sent": "已发送",
 			"sessions_unavailable": "无法加载会话。",
@@ -2564,10 +2576,18 @@ function FleetBoard({ nodes, attentionSlots, extras, subagents, ready, nowMs }) 
 * steps in an `[OPTIONS:]` line. Six cards show at first; "Show all" opens
 * the rest.
 *
-* Nothing here sends on a click alone: a pick stays a draft until "Send answer",
-* and an approval needs its own button. A label the dashboard would refuse to
-* send bare (one that reads as a command) is withheld with a link to answer in
-* the session.
+* Nothing here sends on a click alone: a pick stays a draft until "Send answer"
+* (or Enter in a text box), and an approval needs its own button. A label the
+* dashboard would refuse to send bare (one that reads as a command) is withheld
+* with a link to answer in the session.
+*
+* A card STAYS once answered. The inbox is a projection of gateway state, and
+* the moment a session takes the message it stops waiting, so its item leaves
+* the live list; the card would vanish under the cursor with no record of what
+* went out. So the inbox remembers each send and keeps the card in its place as
+* a "Sent" card, showing what was sent and the session's live state, until the
+* session asks again (the new card replaces it) or the person dismisses it.
+* Cards keep the order they first appeared in, so nothing shifts under a click.
 */
 /** Cards shown at first: two rows of the widest grid. "Show all" opens the rest. */
 var INITIAL_CARDS = 6;
@@ -2582,6 +2602,15 @@ function errorLine(err, fallbackKey) {
 	if (status === 404 || status === 409 || status === 410) return t("components.approvalCard.approval_no_longer_pending");
 	const message = err instanceof Error ? err.message : "";
 	return message ? t("components.approvalCard.decision_not_recorded_error", { error: message }) : t(fallbackKey);
+}
+/** Enter in a text box sends, when there is something to send. An Enter that
+*  finishes an IME composition is the composition's, not a send. */
+function sendOnEnter(send, enabled) {
+	return (e) => {
+		if (e.key !== "Enter" || e.nativeEvent.isComposing || !enabled) return;
+		e.preventDefault();
+		send();
+	};
 }
 /** The card's frame: its status badge (the same word and tint the board row
 *  wears, or "Sent" once the answer has gone out), the session's title and the
@@ -2617,7 +2646,7 @@ function CardShell({ title, slot, status, children }) {
 	});
 }
 /** One prompt's choices and a free-text line; the draft is the caller's. */
-function Prompt({ prompt, value, onChange }) {
+function Prompt({ prompt, value, onChange, onEnter }) {
 	const picks = new Set(value.split("\n").filter(Boolean));
 	const toggle = (label) => {
 		if (prompt.multiSelect) {
@@ -2649,22 +2678,33 @@ function Prompt({ prompt, value, onChange }) {
 				type: "text",
 				value: custom,
 				onChange: (e) => onChange(e.target.value),
+				onKeyDown: onEnter,
 				placeholder: t("components.questionCard.or_type_a_custom_answer"),
 				className: "text-sm rounded-md border border-border bg-card px-3 py-2 min-w-0",
-				"aria-label": t("components.questionCard.or_type_a_custom_answer")
+				"aria-label": t("components.questionCard.or_type_a_custom_answer"),
+				"data-testid": "home-question-text"
 			})]
 		})]
 	});
 }
-function QuestionCard({ item, title }) {
+function QuestionCard({ item, title, onSent }) {
 	const [answers, setAnswers] = useState({});
 	const refresh = useLiveInvalidate();
 	const question = item.question;
 	const mutation = useMutation({
 		mutationFn: (payload) => writes.answer(question.ask_id, payload),
-		onSuccess: refresh
+		onSuccess: (_result, payload) => {
+			refresh();
+			onSent({
+				itemId: item.id,
+				slot: item.slot,
+				text: Object.values(payload).join(" · ")
+			});
+		}
 	});
 	const complete = question.questions.every((q) => (answers[q.question] ?? "").trim());
+	const send = () => mutation.mutate(Object.fromEntries(Object.entries(answers).map(([q, a]) => [q, a.trim()])));
+	const onEnter = sendOnEnter(send, complete && !mutation.isPending);
 	if (!question.ask_id) return /* @__PURE__ */ jsxs(CardShell, {
 		title,
 		slot: item.slot,
@@ -2688,7 +2728,8 @@ function QuestionCard({ item, title }) {
 				onChange: (next) => setAnswers((a) => ({
 					...a,
 					[q.question]: next
-				}))
+				})),
+				onEnter
 			}, q.question)),
 			/* @__PURE__ */ jsx(ErrorNotice, { message: mutation.isError ? errorLine(mutation.error, "pulse.answer_failed") : void 0 }),
 			/* @__PURE__ */ jsx("div", {
@@ -2696,7 +2737,7 @@ function QuestionCard({ item, title }) {
 				children: /* @__PURE__ */ jsxs(Btn, {
 					primary: true,
 					disabled: !complete || mutation.isPending,
-					onClick: () => mutation.mutate(Object.fromEntries(Object.entries(answers).map(([q, a]) => [q, a.trim()]))),
+					onClick: send,
 					"data-testid": "home-send-answer",
 					children: [
 						/* @__PURE__ */ jsx(MessageSquare, {
@@ -2711,7 +2752,7 @@ function QuestionCard({ item, title }) {
 		]
 	});
 }
-function ApprovalCard({ item, title, slot }) {
+function ApprovalCard({ item, title, slot, onSent }) {
 	const refresh = useLiveInvalidate();
 	const target = approvalTarget(item.slot, item.approval, slot?.pending_approval_info);
 	const tool = item.approval?.tool ?? slot?.pending_approval_info?.tool ?? "";
@@ -2719,7 +2760,14 @@ function ApprovalCard({ item, title, slot }) {
 	const input = item.approval?.tool_input ?? slot?.pending_approval_info?.tool_input;
 	const mutation = useMutation({
 		mutationFn: (action) => writes.decide(target, action),
-		onSuccess: refresh
+		onSuccess: (_result, action) => {
+			refresh();
+			onSent({
+				itemId: item.id,
+				slot: item.slot,
+				text: `${t(action === "approve" ? "commandCenter.approve" : "commandCenter.reject")}: ${tool || t("pulse.approval_pending")}`
+			});
+		}
 	});
 	return /* @__PURE__ */ jsxs(CardShell, {
 		title,
@@ -2788,17 +2836,26 @@ function OpenSessionCard({ item, title, detail }) {
 *  text are one answer, so choosing one clears the other. A command-shaped label
 *  is withheld: sent bare it would run rather than say, so it is answered in the
 *  session itself. */
-function FollowUpCard({ item, title }) {
+function FollowUpCard({ item, title, onSent }) {
 	const [pick, setPick] = useState("");
 	const [typed, setTyped] = useState("");
 	const refresh = useLiveInvalidate();
 	const mutation = useMutation({
 		mutationFn: (message) => writes.send(item.slot, message),
-		onSuccess: refresh
+		onSuccess: (_result, message) => {
+			refresh();
+			onSent({
+				itemId: item.id,
+				slot: item.slot,
+				text: message
+			});
+		}
 	});
 	const sendable = item.followUp.labels.filter((l) => !isCommandShaped(l));
 	const withheld = item.followUp.labels.length - sendable.length;
 	const answer = pick || typed.trim();
+	const send = () => mutation.mutate(answer);
+	const canSend = !!answer && !mutation.isPending;
 	return /* @__PURE__ */ jsxs(CardShell, {
 		title,
 		slot: item.slot,
@@ -2830,6 +2887,7 @@ function FollowUpCard({ item, title }) {
 								setTyped(e.target.value);
 								setPick("");
 							},
+							onKeyDown: sendOnEnter(send, canSend),
 							placeholder: t("components.questionCard.or_type_a_custom_answer"),
 							className: "text-sm rounded-md border border-border bg-card px-3 py-2 min-w-0",
 							"aria-label": t("components.questionCard.or_type_a_custom_answer"),
@@ -2847,8 +2905,8 @@ function FollowUpCard({ item, title }) {
 				className: "flex justify-end",
 				children: /* @__PURE__ */ jsxs(Btn, {
 					primary: true,
-					disabled: !answer || mutation.isPending,
-					onClick: () => mutation.mutate(answer),
+					disabled: !canSend,
+					onClick: send,
 					"data-testid": "home-follow-up-send",
 					children: [
 						/* @__PURE__ */ jsx(MessageSquare, {
@@ -2863,15 +2921,104 @@ function FollowUpCard({ item, title }) {
 		]
 	});
 }
+/** A card that stays after its answer went out: what was sent, and the state
+*  the session is in now (running on the answer, idle once it replied). */
+function SentCard({ record, title, state, onDismiss }) {
+	return /* @__PURE__ */ jsxs(Card, {
+		className: "space-y-3",
+		"data-testid": "home-attention-card",
+		"data-sent": "true",
+		children: [
+			/* @__PURE__ */ jsxs("div", {
+				className: "flex items-center justify-between gap-3",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "flex items-center gap-2",
+					children: [/* @__PURE__ */ jsx(Badge, {
+						variant: SENT.variant,
+						className: "shrink-0",
+						"data-testid": "home-card-status",
+						children: t(SENT.key)
+					}), /* @__PURE__ */ jsx(Badge, {
+						variant: state.variant,
+						className: "shrink-0",
+						"data-testid": "home-card-session-state",
+						children: t(state.key)
+					})]
+				}), /* @__PURE__ */ jsxs("div", {
+					className: "flex items-center gap-2",
+					children: [/* @__PURE__ */ jsx(RowLink, {
+						to: sessionRoute(record.slot),
+						children: t("commandCenter.open_session")
+					}), /* @__PURE__ */ jsx("button", {
+						type: "button",
+						onClick: onDismiss,
+						"aria-label": t("pulse.dismiss"),
+						title: t("pulse.dismiss"),
+						className: "text-muted inline-flex h-8 w-8 items-center justify-center rounded-md",
+						"data-testid": "home-card-dismiss",
+						children: /* @__PURE__ */ jsx(X, { size: 14 })
+					})]
+				})]
+			}),
+			/* @__PURE__ */ jsx("div", {
+				className: "text-sm font-medium leading-snug",
+				"data-testid": "home-card-title",
+				children: title
+			}),
+			/* @__PURE__ */ jsx("div", {
+				className: "rounded-lg bg-ok-subtle p-3 text-sm break-words",
+				"data-testid": "home-card-sent-text",
+				children: record.text
+			})
+		]
+	});
+}
 function NeedsYou({ attention, sessions, slots, ready }) {
 	const [visible, setVisible] = useState(INITIAL_CARDS);
+	const [sent, setSent] = useState(/* @__PURE__ */ new Map());
+	const order = useRef(/* @__PURE__ */ new Map());
+	const seq = (slot) => {
+		const known = order.current.get(slot);
+		if (known !== void 0) return known;
+		const next = order.current.size;
+		order.current.set(slot, next);
+		return next;
+	};
+	const items = [...attention.blockers, ...attention.followUps];
+	const liveBySlot = new Map(items.map((i) => [i.slot, i]));
+	useEffect(() => {
+		const superseded = [...sent.values()].filter((r) => {
+			const live = liveBySlot.get(r.slot);
+			return live && live.id !== r.itemId;
+		});
+		if (superseded.length) setSent((prev) => {
+			const next = new Map(prev);
+			for (const r of superseded) next.delete(r.slot);
+			return next;
+		});
+	}, [items.map((i) => i.id).join("\0")]);
+	const onSent = (record) => setSent((prev) => new Map(prev).set(record.slot, record));
+	const dismiss = (slot) => setSent((prev) => {
+		const next = new Map(prev);
+		next.delete(slot);
+		return next;
+	});
+	const entries = [...items.map((item) => ({
+		kind: "live",
+		item
+	})), ...[...sent.values()].filter((r) => !liveBySlot.has(r.slot)).map((record) => ({
+		kind: "sent",
+		record
+	}))];
+	const slotOf = (e) => e.kind === "live" ? e.item.slot : e.record.slot;
+	for (const e of entries) seq(slotOf(e));
+	entries.sort((a, b) => seq(slotOf(a)) - seq(slotOf(b)));
 	const title = (slot) => {
 		const n = sessions.get(slot);
 		return n ? n.title || slot : slot;
 	};
-	const items = [...attention.blockers, ...attention.followUps];
-	const shown = items.slice(0, visible);
-	const hidden = items.length - shown.length;
+	const shown = entries.slice(0, visible);
+	const hidden = entries.length - shown.length;
 	return /* @__PURE__ */ jsxs(Section, {
 		label: t("commandCenter.attention_filter"),
 		count: fmtNumber(items.length),
@@ -2880,19 +3027,32 @@ function NeedsYou({ attention, sessions, slots, ready }) {
 			shown.length > 0 && /* @__PURE__ */ jsx("div", {
 				className: "grid ch-cards gap-3 items-start",
 				"data-testid": "home-needs-you-grid",
-				children: shown.map((item) => {
+				children: shown.map((e) => {
+					if (e.kind === "sent") {
+						const node = sessions.get(e.record.slot);
+						return /* @__PURE__ */ jsx(SentCard, {
+							record: e.record,
+							title: title(e.record.slot),
+							state: STATE[node?.state ?? "idle"],
+							onDismiss: () => dismiss(e.record.slot)
+						}, `sent:${e.record.slot}`);
+					}
+					const item = e.item;
 					if (item.kind === "question") return /* @__PURE__ */ jsx(QuestionCard, {
 						item,
-						title: title(item.slot)
+						title: title(item.slot),
+						onSent
 					}, item.id);
 					if (item.kind === "approval") return /* @__PURE__ */ jsx(ApprovalCard, {
 						item,
 						title: title(item.slot),
-						slot: slots.get(item.slot)
+						slot: slots.get(item.slot),
+						onSent
 					}, item.id);
 					if (item.kind === "follow_up") return /* @__PURE__ */ jsx(FollowUpCard, {
 						item,
-						title: title(item.slot)
+						title: title(item.slot),
+						onSent
 					}, item.id);
 					return /* @__PURE__ */ jsx(OpenSessionCard, {
 						item,
@@ -2902,14 +3062,14 @@ function NeedsYou({ attention, sessions, slots, ready }) {
 				})
 			}),
 			hidden > 0 && /* @__PURE__ */ jsx(Btn, {
-				onClick: () => setVisible(items.length),
+				onClick: () => setVisible(entries.length),
 				"data-testid": "home-needs-you-more",
 				children: t("pages.homePage.show_all", {
 					count: hidden,
 					amount: fmtNumber(hidden)
 				})
 			}),
-			ready && !items.length && /* @__PURE__ */ jsx(Card, { children: /* @__PURE__ */ jsx(EmptyState, {
+			ready && !entries.length && /* @__PURE__ */ jsx(Card, { children: /* @__PURE__ */ jsx(EmptyState, {
 				icon: /* @__PURE__ */ jsx(Inbox, { size: 24 }),
 				title: t("commandCenter.no_input"),
 				testId: "home-needs-you-empty"

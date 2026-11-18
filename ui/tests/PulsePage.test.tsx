@@ -175,6 +175,67 @@ describe('PulsePage', () => {
     await waitFor(() => expect(stubPosts).toEqual([{ path: '/api/chat', body: { message: 'Hold it until Friday', slot: 's-docs' } }]))
   })
 
+  it('keeps an answered card in place as Sent once the session stops waiting, until dismissed', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    const grid = await screen.findByTestId('home-needs-you-grid')
+    const before = within(grid).getAllByTestId('home-card-title').map(e => e.textContent)
+    const index = before.indexOf('Weekly report')
+    const card = within(grid).getAllByTestId('home-attention-card')[index]
+    await user.click(within(card).getByRole('button', { name: 'Publish' }))
+    await user.click(within(card).getByTestId('home-follow-up-send'))
+    await waitFor(() => expect(stubPosts).toHaveLength(1))
+    // The session took the message: it is running and its offer is gone.
+    const slotsNow = (stubRoutes.get('/api/chat/slots') as { key: string }[]).map(s => s.key === 's-docs' ? { key: 's-docs', title: 'Weekly report', running: true } : s)
+    stubRoutes.set('/api/chat/slots', slotsNow)
+    fireStubEvent('slots')
+    await waitFor(() => expect(within(grid).getAllByTestId('home-attention-card')[index]).toHaveAttribute('data-sent', 'true'))
+    const sentCard = within(grid).getAllByTestId('home-attention-card')[index]
+    expect(within(sentCard).getByTestId('home-card-title')).toHaveTextContent('Weekly report')
+    expect(within(sentCard).getByTestId('home-card-status')).toHaveTextContent('Sent')
+    expect(within(sentCard).getByTestId('home-card-session-state')).toHaveTextContent('Running')
+    expect(within(sentCard).getByTestId('home-card-sent-text')).toHaveTextContent('Publish')
+    // The other cards did not move.
+    expect(within(grid).getAllByTestId('home-card-title').map(e => e.textContent)).toEqual(before)
+    // The tile counts only what still waits.
+    expect(tileValue('home-stat-attention')).toBe('3')
+    await user.click(within(sentCard).getByTestId('home-card-dismiss'))
+    expect(within(grid).getAllByTestId('home-card-title').map(e => e.textContent)).toEqual(before.filter(t => t !== 'Weekly report'))
+  })
+
+  it('replaces a Sent card when the same session asks again', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    const grid = await screen.findByTestId('home-needs-you-grid')
+    const card = within(grid).getAllByTestId('home-attention-card').find(c => c.textContent?.includes('Weekly report'))!
+    await user.click(within(card).getByRole('button', { name: 'Publish' }))
+    await user.click(within(card).getByTestId('home-follow-up-send'))
+    await waitFor(() => expect(stubPosts).toHaveLength(1))
+    const slotsNow = (stubRoutes.get('/api/chat/slots') as { key: string }[]).map(s => s.key === 's-docs' ? { key: 's-docs', title: 'Weekly report', has_options: true, options: ['Wiki', 'Slack'], options_ts: 't2' } : s)
+    stubRoutes.set('/api/chat/slots', slotsNow)
+    fireStubEvent('slots')
+    await waitFor(() => expect(within(grid).getByRole('button', { name: 'Wiki' })).toBeInTheDocument())
+    const again = within(grid).getAllByTestId('home-attention-card').find(c => c.textContent?.includes('Weekly report'))!
+    expect(again).not.toHaveAttribute('data-sent')
+    expect(within(again).getByTestId('home-card-status')).toHaveTextContent('Waiting')
+    expect(within(grid).queryByTestId('home-card-sent-text')).toBeNull()
+  })
+
+  it('sends on Enter in a text box, on an offer card and on a question card', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    const grid = await screen.findByTestId('home-needs-you-grid')
+    const offer = within(grid).getAllByTestId('home-attention-card').find(c => c.textContent?.includes('Weekly report'))!
+    await user.type(within(offer).getByTestId('home-follow-up-text'), 'Ship it{Enter}')
+    await waitFor(() => expect(stubPosts).toEqual([{ path: '/api/chat', body: { message: 'Ship it', slot: 's-docs' } }]))
+    const question = within(grid).getAllByTestId('home-attention-card').find(c => c.textContent?.includes('Q3 roadmap status'))!
+    // Enter on an empty box sends nothing.
+    await user.type(within(question).getByTestId('home-question-text'), '{Enter}')
+    expect(stubPosts).toHaveLength(1)
+    await user.type(within(question).getByTestId('home-question-text'), 'Both, Slack first{Enter}')
+    await waitFor(() => expect(stubPosts[1]).toEqual({ path: '/api/ask-question/ask1/answer', body: { answers: { 'Where should the status update go?': 'Both, Slack first' } } }))
+  })
+
   it('shows six cards at first and Show all opens the rest, blockers before offers', async () => {
     const user = userEvent.setup()
     stubRoutes.set('/api/chat/slots', [

@@ -32,6 +32,7 @@
     "answer_failed": "回答を送信できませんでした。",
     "answer_in_session": "セッションで回答する",
     "approval_pending": "ツールが承認を待っています",
+    "dismiss": "閉じる",
     "gateway_unreachable": "ゲートウェイに接続できませんでした。",
     "sent": "送信済み",
     "sessions_unavailable": "セッションを読み込めませんでした。",

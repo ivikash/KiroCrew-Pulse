@@ -32,6 +32,7 @@
     "answer_failed": "답변을 보낼 수 없습니다.",
     "answer_in_session": "세션에서 답하기",
     "approval_pending": "도구가 승인을 기다리고 있습니다",
+    "dismiss": "닫기",
     "gateway_unreachable": "게이트웨이에 연결할 수 없습니다.",
     "sent": "전송됨",
     "sessions_unavailable": "세션을 불러올 수 없습니다.",

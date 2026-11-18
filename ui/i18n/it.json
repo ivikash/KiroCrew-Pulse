@@ -32,6 +32,7 @@
     "answer_failed": "La risposta non è stata inviata.",
     "answer_in_session": "Rispondi nella sessione",
     "approval_pending": "Uno strumento attende l’approvazione",
+    "dismiss": "Ignora",
     "gateway_unreachable": "Il gateway non è raggiungibile.",
     "sent": "Inviato",
     "sessions_unavailable": "Le sessioni non sono state caricate.",

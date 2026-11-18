@@ -32,6 +32,7 @@
     "answer_failed": "A resposta não pôde ser enviada.",
     "answer_in_session": "Responder na sessão",
     "approval_pending": "Uma ferramenta aguarda aprovação",
+    "dismiss": "Dispensar",
     "gateway_unreachable": "O gateway não pôde ser alcançado.",
     "sent": "Enviado",
     "sessions_unavailable": "As sessões não puderam ser carregadas.",
