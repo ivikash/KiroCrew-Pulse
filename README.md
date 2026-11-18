@@ -48,7 +48,7 @@ in the sidebar, or search for it with the command palette.
 
 | Declared | Used for |
 |---|---|
-| `=/api/chat` | sending a follow-up pick as the session's next message |
+| `/api/chat` | sending a follow-up pick or typed reply as the session's next message |
 | `/api/chat/slots` | the session list, and a session's own approve route |
 | `/api/ask-question` | pending question cards and their answers |
 | `/api/approvals` | pending background approvals and their decisions |

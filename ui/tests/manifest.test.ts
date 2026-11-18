@@ -49,6 +49,13 @@ describe('app.json', () => {
       expect(called.some(path => admits(pattern, path)), `${pattern} is declared but never called`).toBe(true)
     }
   })
+  it('declares every path in the plain prefix form an older gateway understands', () => {
+    // `=path` (exact match) is App Kit seam level 7; a host before it matches the
+    // entry to nothing and refuses the call. `path/*` and `path*` are older but
+    // nothing here needs them.
+    for (const pattern of manifest.permissions.api) expect(pattern, pattern).toMatch(/^\/[a-z0-9/-]+$/)
+  })
+
   it('subscribes only to the slots event, which needs no scope', () => {
     const events = [...queriesSource.matchAll(/useAppEvents\('([^']+)'/g)].map(m => m[1])
     expect(events).toEqual(['slots'])

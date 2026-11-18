@@ -5,7 +5,9 @@
  *
  * Each path here is declared in `app.json`'s `permissions.api`; the SDK refuses
  * one that is not, so the manifest and this file are the two halves of one list
- * (`tests/manifest.test.ts` holds them together).
+ * (`tests/manifest.test.ts` holds them together). Entries use the plain prefix
+ * form only: the `=path` exact form is App Kit seam level 7, and a gateway older
+ * than that matches it to nothing, which refuses the call on every such host.
  */
 import type { AppApi } from '@kirocrew/app-sdk'
 import type {

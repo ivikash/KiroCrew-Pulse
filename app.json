@@ -47,7 +47,7 @@
   },
   "permissions": {
     "api": [
-      "=/api/chat",
+      "/api/chat",
       "/api/chat/slots",
       "/api/ask-question",
       "/api/approvals",
