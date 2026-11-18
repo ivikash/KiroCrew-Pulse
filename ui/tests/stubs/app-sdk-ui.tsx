@@ -14,8 +14,8 @@ export function Card({ children, className, ...rest }: HTMLAttributes<HTMLDivEle
   return <div className={className} {...rest}>{children}</div>
 }
 
-export function Badge({ children, variant, className }: { children?: ReactNode; variant?: string; className?: string }) {
-  return <span data-testid="badge" data-variant={variant} className={className}>{children}</span>
+export function Badge({ children, variant, className, ...rest }: { children?: ReactNode; variant?: string; className?: string } & HTMLAttributes<HTMLSpanElement>) {
+  return <span data-testid="badge" {...rest} data-variant={variant} className={className}>{children}</span>
 }
 
 export function EmptyState({ title, testId = 'empty-state' }: { icon: ReactNode; title: string; testId?: string }) {

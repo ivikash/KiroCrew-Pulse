@@ -33,6 +33,7 @@
     "answer_in_session": "In der Sitzung antworten",
     "approval_pending": "Ein Werkzeug wartet auf Freigabe",
     "gateway_unreachable": "Das Gateway war nicht erreichbar.",
+    "sent": "Gesendet",
     "sessions_unavailable": "Die Sitzungen konnten nicht geladen werden.",
     "title": "Pulse",
     "wants_to_run": "{{tool}} möchte ausgeführt werden"

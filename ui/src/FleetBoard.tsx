@@ -12,25 +12,13 @@ import { Radar } from 'lucide-react'
 import ActivityTrack, { type TrackMarker } from './ActivityTrack'
 import { fmtElapsedMinutes } from './format'
 import { t } from './i18n'
-import { orderFleet, type RowExtras, type RunKind, type RunNode, type RunState } from './model'
+import { orderFleet, type RowExtras, type RunKind, type RunNode } from './model'
+import { STATE } from './states'
 import { useTurnHistory } from './queries'
 import { RowLink, Section, sessionRoute } from './rows'
 import { TIMELINE_HOURS, pointOn, spanOn, tickTimes, timelineWindow, turnSpans, type TimelineHours, type TimelineWindow, type TrackSpan } from './timeline'
 import type { SubagentInfo } from './types'
 
-type BadgeVariant = 'ok' | 'err' | 'warn' | 'aim' | 'muted'
-
-/** The state's badge tint and wording. `needs_input` reuses the inbox's label,
- *  so the row and the section it points at say the same thing. */
-const STATE: Record<RunState, { variant: BadgeVariant; key: string }> = {
-  needs_input: { variant: 'warn', key: 'commandCenter.attention_filter' },
-  blocked: { variant: 'err', key: 'commandCenter.blocked' },
-  running: { variant: 'aim', key: 'commandCenter.running' },
-  waiting: { variant: 'muted', key: 'pages.homePage.state_waiting' },
-  idle: { variant: 'muted', key: 'commandCenter.idle' },
-  done: { variant: 'ok', key: 'pages.homePage.state_done' },
-  stopped: { variant: 'muted', key: 'pages.homePage.state_stopped' },
-}
 const KIND_KEY: Record<RunKind, string> = { session: 'pages.homePage.kind_session', subagent: 'pages.homePage.kind_subagent', workflow: 'pages.homePage.kind_workflow' }
 const LABEL_KEY: Record<RunKind, string> = { session: 'commandCenter.session_label', subagent: 'commandCenter.worker_label', workflow: 'commandCenter.workflow_label' }
 const AXIS_TICKS = 6

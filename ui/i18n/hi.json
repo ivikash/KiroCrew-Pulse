@@ -33,6 +33,7 @@
     "answer_in_session": "सत्र में जवाब दें",
     "approval_pending": "एक टूल अनुमति की प्रतीक्षा में है",
     "gateway_unreachable": "गेटवे से संपर्क नहीं हो सका।",
+    "sent": "भेजा गया",
     "sessions_unavailable": "सत्र लोड नहीं हो सके।",
     "title": "Pulse",
     "wants_to_run": "{{tool}} चलाने की अनुमति चाहता है"

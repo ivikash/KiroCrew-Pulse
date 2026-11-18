@@ -33,6 +33,7 @@
     "answer_in_session": "在会话中回答",
     "approval_pending": "有工具正在等待批准",
     "gateway_unreachable": "无法连接网关。",
+    "sent": "已发送",
     "sessions_unavailable": "无法加载会话。",
     "title": "Pulse",
     "wants_to_run": "{{tool}} 请求运行"

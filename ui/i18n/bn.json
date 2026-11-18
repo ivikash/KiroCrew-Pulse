@@ -33,6 +33,7 @@
     "answer_in_session": "সেশনে উত্তর দিন",
     "approval_pending": "একটি টুল অনুমোদনের অপেক্ষায় আছে",
     "gateway_unreachable": "গেটওয়েতে পৌঁছানো যায়নি।",
+    "sent": "পাঠানো হয়েছে",
     "sessions_unavailable": "সেশনগুলো লোড করা যায়নি।",
     "title": "Pulse",
     "wants_to_run": "{{tool}} চালাতে চায়"

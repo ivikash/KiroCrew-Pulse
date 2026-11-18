@@ -142,6 +142,7 @@ var CATALOGS = {
 			"answer_in_session": "সেশনে উত্তর দিন",
 			"approval_pending": "একটি টুল অনুমোদনের অপেক্ষায় আছে",
 			"gateway_unreachable": "গেটওয়েতে পৌঁছানো যায়নি।",
+			"sent": "পাঠানো হয়েছে",
 			"sessions_unavailable": "সেশনগুলো লোড করা যায়নি।",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} চালাতে চায়"
@@ -262,6 +263,7 @@ var CATALOGS = {
 			"answer_in_session": "In der Sitzung antworten",
 			"approval_pending": "Ein Werkzeug wartet auf Freigabe",
 			"gateway_unreachable": "Das Gateway war nicht erreichbar.",
+			"sent": "Gesendet",
 			"sessions_unavailable": "Die Sitzungen konnten nicht geladen werden.",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} möchte ausgeführt werden"
@@ -382,6 +384,7 @@ var CATALOGS = {
 			"answer_in_session": "Answer in the session",
 			"approval_pending": "A tool is waiting for approval",
 			"gateway_unreachable": "The gateway could not be reached.",
+			"sent": "Sent",
 			"sessions_unavailable": "The sessions could not be loaded.",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} wants to run"
@@ -502,6 +505,7 @@ var CATALOGS = {
 			"answer_in_session": "Responder en la sesión",
 			"approval_pending": "Una herramienta espera aprobación",
 			"gateway_unreachable": "No se pudo contactar con el gateway.",
+			"sent": "Enviado",
 			"sessions_unavailable": "No se pudieron cargar las sesiones.",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} quiere ejecutarse"
@@ -635,6 +639,7 @@ var CATALOGS = {
 			"answer_in_session": "Répondre dans la session",
 			"approval_pending": "Un outil attend une approbation",
 			"gateway_unreachable": "Le gateway n’a pas pu être joint.",
+			"sent": "Envoyé",
 			"sessions_unavailable": "Les sessions n’ont pas pu être chargées.",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} veut s’exécuter"
@@ -768,6 +773,7 @@ var CATALOGS = {
 			"answer_in_session": "सत्र में जवाब दें",
 			"approval_pending": "एक टूल अनुमति की प्रतीक्षा में है",
 			"gateway_unreachable": "गेटवे से संपर्क नहीं हो सका।",
+			"sent": "भेजा गया",
 			"sessions_unavailable": "सत्र लोड नहीं हो सके।",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} चलाने की अनुमति चाहता है"
@@ -888,6 +894,7 @@ var CATALOGS = {
 			"answer_in_session": "Rispondi nella sessione",
 			"approval_pending": "Uno strumento attende l’approvazione",
 			"gateway_unreachable": "Il gateway non è raggiungibile.",
+			"sent": "Inviato",
 			"sessions_unavailable": "Le sessioni non sono state caricate.",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} vuole essere eseguito"
@@ -1021,6 +1028,7 @@ var CATALOGS = {
 			"answer_in_session": "セッションで回答する",
 			"approval_pending": "ツールが承認を待っています",
 			"gateway_unreachable": "ゲートウェイに接続できませんでした。",
+			"sent": "送信済み",
 			"sessions_unavailable": "セッションを読み込めませんでした。",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} の実行が求められています"
@@ -1128,6 +1136,7 @@ var CATALOGS = {
 			"answer_in_session": "세션에서 답하기",
 			"approval_pending": "도구가 승인을 기다리고 있습니다",
 			"gateway_unreachable": "게이트웨이에 연결할 수 없습니다.",
+			"sent": "전송됨",
 			"sessions_unavailable": "세션을 불러올 수 없습니다.",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} 실행을 요청합니다"
@@ -1235,6 +1244,7 @@ var CATALOGS = {
 			"answer_in_session": "Responder na sessão",
 			"approval_pending": "Uma ferramenta aguarda aprovação",
 			"gateway_unreachable": "O gateway não pôde ser alcançado.",
+			"sent": "Enviado",
 			"sessions_unavailable": "As sessões não puderam ser carregadas.",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} quer ser executado"
@@ -1368,6 +1378,7 @@ var CATALOGS = {
 			"answer_in_session": "Ответить в сессии",
 			"approval_pending": "Инструмент ждёт одобрения",
 			"gateway_unreachable": "Не удалось связаться со шлюзом.",
+			"sent": "Отправлено",
 			"sessions_unavailable": "Не удалось загрузить сессии.",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} хочет выполниться"
@@ -1514,6 +1525,7 @@ var CATALOGS = {
 			"answer_in_session": "在会话中回答",
 			"approval_pending": "有工具正在等待批准",
 			"gateway_unreachable": "无法连接网关。",
+			"sent": "已发送",
 			"sessions_unavailable": "无法加载会话。",
 			"title": "Pulse",
 			"wants_to_run": "{{tool}} 请求运行"
@@ -2031,6 +2043,42 @@ var DOLLAR_HARNESSES = ["claude"];
 function reportsDollars(backend) {
 	return backend !== void 0 && DOLLAR_HARNESSES.includes(backend);
 }
+// src/states.ts
+var STATE = {
+	needs_input: {
+		variant: "warn",
+		key: "commandCenter.attention_filter"
+	},
+	blocked: {
+		variant: "err",
+		key: "commandCenter.blocked"
+	},
+	running: {
+		variant: "aim",
+		key: "commandCenter.running"
+	},
+	waiting: {
+		variant: "muted",
+		key: "pages.homePage.state_waiting"
+	},
+	idle: {
+		variant: "muted",
+		key: "commandCenter.idle"
+	},
+	done: {
+		variant: "ok",
+		key: "pages.homePage.state_done"
+	},
+	stopped: {
+		variant: "muted",
+		key: "pages.homePage.state_stopped"
+	}
+};
+/** The badge a card wears once its answer or decision has gone out. */
+var SENT = {
+	variant: "ok",
+	key: "pulse.sent"
+};
 // src/timeline.ts
 /** The windows the board offers, in hours. */
 var TIMELINE_HOURS = [
@@ -2263,38 +2311,6 @@ var sessionRoute = (slot) => `/chat?sid=${encodeURIComponent(slot)}`;
 * working, waiting); sessions wholly at rest fold behind a count so the board
 * stays as long as the work, not as long as the history.
 */
-/** The state's badge tint and wording. `needs_input` reuses the inbox's label,
-*  so the row and the section it points at say the same thing. */
-var STATE = {
-	needs_input: {
-		variant: "warn",
-		key: "commandCenter.attention_filter"
-	},
-	blocked: {
-		variant: "err",
-		key: "commandCenter.blocked"
-	},
-	running: {
-		variant: "aim",
-		key: "commandCenter.running"
-	},
-	waiting: {
-		variant: "muted",
-		key: "pages.homePage.state_waiting"
-	},
-	idle: {
-		variant: "muted",
-		key: "commandCenter.idle"
-	},
-	done: {
-		variant: "ok",
-		key: "pages.homePage.state_done"
-	},
-	stopped: {
-		variant: "muted",
-		key: "pages.homePage.state_stopped"
-	}
-};
 var KIND_KEY = {
 	session: "pages.homePage.kind_session",
 	subagent: "pages.homePage.kind_subagent",
@@ -2567,16 +2583,27 @@ function errorLine(err, fallbackKey) {
 	const message = err instanceof Error ? err.message : "";
 	return message ? t("components.approvalCard.decision_not_recorded_error", { error: message }) : t(fallbackKey);
 }
-function CardShell({ title, slot, children }) {
+/** The card's frame: its status badge (the same word and tint the board row
+*  wears, or "Sent" once the answer has gone out), the session's title and the
+*  link into it. */
+function CardShell({ title, slot, status, children }) {
 	return /* @__PURE__ */ jsxs(Card, {
 		className: "space-y-3",
 		"data-testid": "home-attention-card",
 		children: [
 			/* @__PURE__ */ jsxs("div", {
 				className: "flex items-start justify-between gap-3 min-w-0",
-				children: [/* @__PURE__ */ jsx("div", {
-					className: "text-sm font-medium min-w-0 break-words",
-					children: title
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "flex items-start gap-2 min-w-0",
+					children: [/* @__PURE__ */ jsx(Badge, {
+						variant: status.variant,
+						className: "shrink-0 mt-0.5",
+						"data-testid": "home-card-status",
+						children: t(status.key)
+					}), /* @__PURE__ */ jsx("div", {
+						className: "text-sm font-medium min-w-0 break-words",
+						children: title
+					})]
 				}), /* @__PURE__ */ jsx(RowLink, {
 					to: sessionRoute(slot),
 					children: t("commandCenter.open_session")
@@ -2642,6 +2669,7 @@ function QuestionCard({ item, title }) {
 	if (!question.ask_id) return /* @__PURE__ */ jsxs(CardShell, {
 		title,
 		slot: item.slot,
+		status: STATE.needs_input,
 		children: [/* @__PURE__ */ jsx("div", {
 			className: "text-sm",
 			children: question.questions[0]?.question
@@ -2653,6 +2681,7 @@ function QuestionCard({ item, title }) {
 	return /* @__PURE__ */ jsxs(CardShell, {
 		title,
 		slot: item.slot,
+		status: mutation.isSuccess ? SENT : STATE.needs_input,
 		children: [
 			question.questions.map((q) => /* @__PURE__ */ jsx(Prompt, {
 				prompt: q,
@@ -2696,6 +2725,7 @@ function ApprovalCard({ item, title, slot }) {
 	return /* @__PURE__ */ jsxs(CardShell, {
 		title,
 		slot: item.slot,
+		status: mutation.isSuccess ? SENT : STATE.needs_input,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
 				className: "rounded-lg bg-warn-subtle p-3 space-y-1",
@@ -2744,6 +2774,7 @@ function OpenSessionCard({ item, title, detail }) {
 	return /* @__PURE__ */ jsxs(CardShell, {
 		title,
 		slot: item.slot,
+		status: STATE.needs_input,
 		children: [detail && /* @__PURE__ */ jsx("div", {
 			className: "text-sm text-muted",
 			children: detail
@@ -2772,6 +2803,7 @@ function FollowUpCard({ item, title }) {
 	return /* @__PURE__ */ jsxs(CardShell, {
 		title,
 		slot: item.slot,
+		status: mutation.isSuccess ? SENT : STATE.waiting,
 		children: [
 			/* @__PURE__ */ jsxs("div", {
 				className: "rounded-lg bg-accent-subtle p-3 space-y-2",

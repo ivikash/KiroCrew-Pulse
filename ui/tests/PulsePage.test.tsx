@@ -132,6 +132,7 @@ describe('PulsePage', () => {
     const cards = within(grid).getAllByTestId('home-attention-card')
     const infra = cards.find(c => c.textContent?.includes('Payments canary fix'))!
     expect(infra).toHaveTextContent('shell wants to run')
+    expect(within(infra).getByTestId('home-card-status')).toHaveTextContent('Needs you')
     await user.click(within(infra).getByTestId('home-approve'))
     await waitFor(() => expect(stubPosts).toHaveLength(1))
     expect(stubPosts[0].path).toMatch(/^\/api\/approvals\/r1\/approve\?origin=coordinator&slot=s-infra&instance=i1$/)
@@ -151,12 +152,15 @@ describe('PulsePage', () => {
     expect(within(offer).getByRole('button', { name: 'Publish' })).toBeInTheDocument()
     expect(within(offer).queryByRole('button', { name: '/deploy' })).toBeNull()
     expect(within(offer).getByRole('link', { name: /Answer in the session/ })).toBeInTheDocument()
+    // The card wears the state the board would show: waiting on a choice, then Sent.
+    expect(within(card).getByTestId('home-card-status')).toHaveTextContent('Waiting')
     const send = within(card).getByTestId('home-follow-up-send')
     expect(send).toBeDisabled()
     await user.click(within(offer).getByRole('button', { name: 'Publish' }))
     expect(stubPosts).toHaveLength(0)
     await user.click(send)
     await waitFor(() => expect(stubPosts).toEqual([{ path: '/api/chat', body: { message: 'Publish', slot: 's-docs' } }]))
+    await waitFor(() => expect(within(card).getByTestId('home-card-status')).toHaveTextContent('Sent'))
   })
 
   it('sends a typed reply to an offer, and typing clears a pick', async () => {

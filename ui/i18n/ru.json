@@ -33,6 +33,7 @@
     "answer_in_session": "Ответить в сессии",
     "approval_pending": "Инструмент ждёт одобрения",
     "gateway_unreachable": "Не удалось связаться со шлюзом.",
+    "sent": "Отправлено",
     "sessions_unavailable": "Не удалось загрузить сессии.",
     "title": "Pulse",
     "wants_to_run": "{{tool}} хочет выполниться"

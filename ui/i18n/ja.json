@@ -33,6 +33,7 @@
     "answer_in_session": "セッションで回答する",
     "approval_pending": "ツールが承認を待っています",
     "gateway_unreachable": "ゲートウェイに接続できませんでした。",
+    "sent": "送信済み",
     "sessions_unavailable": "セッションを読み込めませんでした。",
     "title": "Pulse",
     "wants_to_run": "{{tool}} の実行が求められています"

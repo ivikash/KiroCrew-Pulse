@@ -33,6 +33,7 @@
     "answer_in_session": "Rispondi nella sessione",
     "approval_pending": "Uno strumento attende l’approvazione",
     "gateway_unreachable": "Il gateway non è raggiungibile.",
+    "sent": "Inviato",
     "sessions_unavailable": "Le sessioni non sono state caricate.",
     "title": "Pulse",
     "wants_to_run": "{{tool}} vuole essere eseguito"

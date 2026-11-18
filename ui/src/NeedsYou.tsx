@@ -14,13 +14,14 @@
 import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { fmtNumber } from '@kirocrew/app-sdk'
-import { Btn, Card, EmptyState, ErrorNotice } from '@kirocrew/app-sdk/ui'
+import { Badge, Btn, Card, EmptyState, ErrorNotice } from '@kirocrew/app-sdk/ui'
 import { Inbox, MessageSquare } from 'lucide-react'
 import { approvalTarget, writes, type ApprovalAction } from './api'
 import { t } from './i18n'
 import { isCommandShaped, type AttentionItem, type AttentionSplit, type RunNode } from './model'
 import { LIVE_KEYS } from './queries'
 import { RowLink, Section, sessionRoute } from './rows'
+import { SENT, STATE, type StateBadge } from './states'
 import type { ChatSlot, PendingQuestion, QuestionPrompt } from './types'
 
 /** Cards shown at first: two rows of the widest grid. "Show all" opens the rest. */
@@ -38,11 +39,17 @@ function errorLine(err: unknown, fallbackKey: string): string {
   return message ? t('components.approvalCard.decision_not_recorded_error', { error: message }) : t(fallbackKey)
 }
 
-function CardShell({ title, slot, children }: { title: string; slot: string; children: React.ReactNode }) {
+/** The card's frame: its status badge (the same word and tint the board row
+ *  wears, or "Sent" once the answer has gone out), the session's title and the
+ *  link into it. */
+function CardShell({ title, slot, status, children }: { title: string; slot: string; status: StateBadge; children: React.ReactNode }) {
   return (
     <Card className="space-y-3" data-testid="home-attention-card">
       <div className="flex items-start justify-between gap-3 min-w-0">
-        <div className="text-sm font-medium min-w-0 break-words">{title}</div>
+        <div className="flex items-start gap-2 min-w-0">
+          <Badge variant={status.variant} className="shrink-0 mt-0.5" data-testid="home-card-status">{t(status.key)}</Badge>
+          <div className="text-sm font-medium min-w-0 break-words">{title}</div>
+        </div>
         <RowLink to={sessionRoute(slot)}>{t('commandCenter.open_session')}</RowLink>
       </div>
       <p className="text-[12px] text-muted m-0">{t('commandCenter.explicit_input')}</p>
@@ -95,14 +102,14 @@ function QuestionCard({ item, title }: { item: Extract<AttentionItem, { kind: 'q
   // here: its answer is typed in the session.
   if (!question.ask_id) {
     return (
-      <CardShell title={title} slot={item.slot}>
+      <CardShell title={title} slot={item.slot} status={STATE.needs_input}>
         <div className="text-sm">{question.questions[0]?.question}</div>
         <RowLink to={sessionRoute(item.slot)}>{t('pulse.answer_in_session')}</RowLink>
       </CardShell>
     )
   }
   return (
-    <CardShell title={title} slot={item.slot}>
+    <CardShell title={title} slot={item.slot} status={mutation.isSuccess ? SENT : STATE.needs_input}>
       {question.questions.map(q => (
         <Prompt key={q.question} prompt={q} value={answers[q.question] ?? ''} onChange={next => setAnswers(a => ({ ...a, [q.question]: next }))} />
       ))}
@@ -127,7 +134,7 @@ function ApprovalCard({ item, title, slot }: { item: Extract<AttentionItem, { ki
     onSuccess: refresh,
   })
   return (
-    <CardShell title={title} slot={item.slot}>
+    <CardShell title={title} slot={item.slot} status={mutation.isSuccess ? SENT : STATE.needs_input}>
       <div className="rounded-lg bg-warn-subtle p-3 space-y-1" data-testid="home-approval">
         <div className="text-sm font-medium">{tool ? t('pulse.wants_to_run', { tool }) : t('pulse.approval_pending')}</div>
         {purpose && <div className="text-[12px] text-muted">{purpose}</div>}
@@ -149,7 +156,7 @@ function ApprovalCard({ item, title, slot }: { item: Extract<AttentionItem, { ki
 
 function OpenSessionCard({ item, title, detail }: { item: AttentionItem; title: string; detail?: string }) {
   return (
-    <CardShell title={title} slot={item.slot}>
+    <CardShell title={title} slot={item.slot} status={STATE.needs_input}>
       {detail && <div className="text-sm text-muted">{detail}</div>}
       <RowLink to={sessionRoute(item.slot)}>{t('pulse.answer_in_session')}</RowLink>
     </CardShell>
@@ -170,7 +177,7 @@ function FollowUpCard({ item, title }: { item: Extract<AttentionItem, { kind: 'f
   const withheld = item.followUp.labels.length - sendable.length
   const answer = pick || typed.trim()
   return (
-    <CardShell title={title} slot={item.slot}>
+    <CardShell title={title} slot={item.slot} status={mutation.isSuccess ? SENT : STATE.waiting}>
       <div className="rounded-lg bg-accent-subtle p-3 space-y-2" data-testid="home-follow-up">
         <div className="text-sm font-medium">{t('commandCenter.options_question')}</div>
         <div className="grid gap-2">
