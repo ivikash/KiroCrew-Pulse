@@ -82,10 +82,6 @@
       "running_for": "в работе {{duration}}",
       "schedule_unavailable": "Не удалось загрузить расписание.",
       "scheduled": "Запланировано",
-      "show_more_blockers_few": "Показать ещё {{amount}}",
-      "show_more_blockers_many": "Показать ещё {{amount}}",
-      "show_more_blockers_one": "Показать ещё {{amount}}",
-      "show_more_blockers_other": "Показать ещё {{amount}}",
       "spend_bar_label": "Использование за сегодня по моделям",
       "spend_none": "Сегодня использование не зафиксировано.",
       "spend_other": "Другие модели",
@@ -115,7 +111,11 @@
       "workflows_few": "{{amount}} рабочих процесса",
       "workflows_many": "{{amount}} рабочих процессов",
       "workflows_one": "{{amount}} рабочий процесс",
-      "workflows_other": "{{amount}} рабочего процесса"
+      "workflows_other": "{{amount}} рабочего процесса",
+      "show_all_few": "Показать все (ещё {{amount}})",
+      "show_all_many": "Показать все (ещё {{amount}})",
+      "show_all_one": "Показать все (ещё {{amount}})",
+      "show_all_other": "Показать все (ещё {{amount}})"
     },
     "membersPage": {
       "empty_title": "Bot пока нет"

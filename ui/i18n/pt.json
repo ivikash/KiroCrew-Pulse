@@ -77,9 +77,6 @@
       "running_for": "em execução há {{duration}}",
       "schedule_unavailable": "Não foi possível carregar os agendamentos.",
       "scheduled": "Agendados",
-      "show_more_blockers_many": "Mostrar mais {{amount}}",
-      "show_more_blockers_one": "Mostrar mais {{amount}}",
-      "show_more_blockers_other": "Mostrar mais {{amount}}",
       "spend_bar_label": "Utilização de hoje por modelo",
       "spend_none": "Nenhuma utilização registada hoje.",
       "spend_other": "Outros modelos",
@@ -105,7 +102,10 @@
       "with_subagents": "Subagentes em execução",
       "workflows_many": "{{amount}} fluxos de trabalho",
       "workflows_one": "{{amount}} fluxo de trabalho",
-      "workflows_other": "{{amount}} fluxos de trabalho"
+      "workflows_other": "{{amount}} fluxos de trabalho",
+      "show_all_many": "Mostrar tudo ({{amount}} a mais)",
+      "show_all_one": "Mostrar tudo ({{amount}} a mais)",
+      "show_all_other": "Mostrar tudo ({{amount}} a mais)"
     },
     "membersPage": {
       "empty_title": "Ainda não há Bots"

@@ -67,7 +67,6 @@
       "running_for": "実行中 {{duration}}",
       "schedule_unavailable": "スケジュールを読み込めませんでした。",
       "scheduled": "スケジュール済み",
-      "show_more_blockers_other": "さらに {{amount}} 件を表示",
       "spend_bar_label": "今日のモデル別使用量",
       "spend_none": "今日の使用量は記録されていません。",
       "spend_other": "その他のモデル",
@@ -85,7 +84,8 @@
       "window_hours_other": "{{amount}} 時間",
       "window_label": "期間",
       "with_subagents": "サブエージェント実行中",
-      "workflows_other": "{{amount}} ワークフロー"
+      "workflows_other": "{{amount}} ワークフロー",
+      "show_all_other": "すべて表示（他 {{amount}} 件）"
     },
     "membersPage": {
       "empty_title": "Bot はまだありません"

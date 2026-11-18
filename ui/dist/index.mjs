@@ -181,8 +181,6 @@ var CATALOGS = {
 				"running_for": "{{duration}} ধরে চলছে",
 				"schedule_unavailable": "সময়সূচি লোড করা যায়নি।",
 				"scheduled": "সময়সূচিতে",
-				"show_more_blockers_one": "আরও {{amount}}টি দেখাও",
-				"show_more_blockers_other": "আরও {{amount}}টি দেখাও",
 				"spend_bar_label": "আজকের মডেল অনুযায়ী ব্যবহার",
 				"spend_none": "আজ কোনো ব্যবহার রেকর্ড হয়নি।",
 				"spend_other": "অন্য মডেল",
@@ -204,7 +202,9 @@ var CATALOGS = {
 				"window_label": "সময়সীমা",
 				"with_subagents": "সাব-এজেন্ট চলছে",
 				"workflows_one": "{{amount}}টি ওয়ার্কফ্লো",
-				"workflows_other": "{{amount}}টি ওয়ার্কফ্লো"
+				"workflows_other": "{{amount}}টি ওয়ার্কফ্লো",
+				"show_all_one": "সব দেখান (আরও {{amount}})",
+				"show_all_other": "সব দেখান (আরও {{amount}})"
 			},
 			"membersPage": { "empty_title": "এখনও কোনো Bot নেই" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "{{provider}}-এর জন্য ব্যবহার ট্র্যাকিং উপলব্ধ নয়।" } },
@@ -301,8 +301,6 @@ var CATALOGS = {
 				"running_for": "läuft seit {{duration}}",
 				"schedule_unavailable": "Der Zeitplan konnte nicht geladen werden.",
 				"scheduled": "Geplant",
-				"show_more_blockers_one": "{{amount}} weitere anzeigen",
-				"show_more_blockers_other": "{{amount}} weitere anzeigen",
 				"spend_bar_label": "Heutige Nutzung nach Modell",
 				"spend_none": "Heute wurde keine Nutzung erfasst.",
 				"spend_other": "Andere Modelle",
@@ -324,7 +322,9 @@ var CATALOGS = {
 				"window_label": "Zeitraum",
 				"with_subagents": "Subagenten laufen",
 				"workflows_one": "{{amount}} Workflow",
-				"workflows_other": "{{amount}} Workflows"
+				"workflows_other": "{{amount}} Workflows",
+				"show_all_one": "Alle anzeigen ({{amount}} weitere)",
+				"show_all_other": "Alle anzeigen ({{amount}} weitere)"
 			},
 			"membersPage": { "empty_title": "Noch keine Bots" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "Nutzungserfassung ist für {{provider}} nicht verfügbar." } },
@@ -421,8 +421,6 @@ var CATALOGS = {
 				"running_for": "running {{duration}}",
 				"schedule_unavailable": "The schedule could not be loaded.",
 				"scheduled": "Scheduled",
-				"show_more_blockers_one": "Show {{amount}} more",
-				"show_more_blockers_other": "Show {{amount}} more",
 				"spend_bar_label": "Today's usage by model",
 				"spend_none": "No usage recorded today.",
 				"spend_other": "Other models",
@@ -444,7 +442,9 @@ var CATALOGS = {
 				"window_label": "Time window",
 				"with_subagents": "Subagents running",
 				"workflows_one": "{{amount}} workflow",
-				"workflows_other": "{{amount}} workflows"
+				"workflows_other": "{{amount}} workflows",
+				"show_all_one": "Show all ({{amount}} more)",
+				"show_all_other": "Show all ({{amount}} more)"
 			},
 			"membersPage": { "empty_title": "No bots yet" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "Usage tracking is not available for {{provider}}." } },
@@ -546,9 +546,6 @@ var CATALOGS = {
 				"running_for": "en ejecución {{duration}}",
 				"schedule_unavailable": "No se pudo cargar la programación.",
 				"scheduled": "Programados",
-				"show_more_blockers_many": "Mostrar {{amount}} más",
-				"show_more_blockers_one": "Mostrar {{amount}} más",
-				"show_more_blockers_other": "Mostrar {{amount}} más",
 				"spend_bar_label": "Uso de hoy por modelo",
 				"spend_none": "Hoy no se ha registrado uso.",
 				"spend_other": "Otros modelos",
@@ -574,7 +571,10 @@ var CATALOGS = {
 				"with_subagents": "Subagentes en ejecución",
 				"workflows_many": "{{amount}} flujos de trabajo",
 				"workflows_one": "{{amount}} flujo de trabajo",
-				"workflows_other": "{{amount}} flujos de trabajo"
+				"workflows_other": "{{amount}} flujos de trabajo",
+				"show_all_many": "Mostrar todo ({{amount}} más)",
+				"show_all_one": "Mostrar todo ({{amount}} más)",
+				"show_all_other": "Mostrar todo ({{amount}} más)"
 			},
 			"membersPage": { "empty_title": "Aún no hay Bots" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "El seguimiento de uso no está disponible para {{provider}}." } },
@@ -679,9 +679,6 @@ var CATALOGS = {
 				"running_for": "en cours depuis {{duration}}",
 				"schedule_unavailable": "La planification n’a pas pu être chargée.",
 				"scheduled": "Planifiés",
-				"show_more_blockers_many": "Afficher {{amount}} de plus",
-				"show_more_blockers_one": "Afficher {{amount}} de plus",
-				"show_more_blockers_other": "Afficher {{amount}} de plus",
 				"spend_bar_label": "Utilisation du jour par modèle",
 				"spend_none": "Aucune utilisation enregistrée aujourd’hui.",
 				"spend_other": "Autres modèles",
@@ -707,7 +704,10 @@ var CATALOGS = {
 				"with_subagents": "Sous-agents en cours",
 				"workflows_many": "{{amount}} workflows",
 				"workflows_one": "{{amount}} workflow",
-				"workflows_other": "{{amount}} workflows"
+				"workflows_other": "{{amount}} workflows",
+				"show_all_many": "Tout afficher ({{amount}} de plus)",
+				"show_all_one": "Tout afficher ({{amount}} de plus)",
+				"show_all_other": "Tout afficher ({{amount}} de plus)"
 			},
 			"membersPage": { "empty_title": "Aucun Bot pour l'instant" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "Le suivi de l’utilisation n’est pas disponible pour {{provider}}." } },
@@ -807,8 +807,6 @@ var CATALOGS = {
 				"running_for": "{{duration}} से चल रहा",
 				"schedule_unavailable": "शेड्यूल लोड नहीं हो सका।",
 				"scheduled": "शेड्यूल किए गए",
-				"show_more_blockers_one": "{{amount}} और दिखाएँ",
-				"show_more_blockers_other": "{{amount}} और दिखाएँ",
 				"spend_bar_label": "आज मॉडल के अनुसार उपयोग",
 				"spend_none": "आज कोई उपयोग दर्ज नहीं हुआ।",
 				"spend_other": "अन्य मॉडल",
@@ -830,7 +828,9 @@ var CATALOGS = {
 				"window_label": "समय अवधि",
 				"with_subagents": "सब-एजेंट चल रहे हैं",
 				"workflows_one": "{{amount}} वर्कफ़्लो",
-				"workflows_other": "{{amount}} वर्कफ़्लो"
+				"workflows_other": "{{amount}} वर्कफ़्लो",
+				"show_all_one": "सभी दिखाएँ ({{amount}} और)",
+				"show_all_other": "सभी दिखाएँ ({{amount}} और)"
 			},
 			"membersPage": { "empty_title": "अभी कोई Bot नहीं" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "{{provider}} के लिए उपयोग ट्रैकिंग उपलब्ध नहीं है।" } },
@@ -932,9 +932,6 @@ var CATALOGS = {
 				"running_for": "in esecuzione da {{duration}}",
 				"schedule_unavailable": "Impossibile caricare la pianificazione.",
 				"scheduled": "Pianificati",
-				"show_more_blockers_many": "Mostra {{amount}} in più",
-				"show_more_blockers_one": "Mostra {{amount}} in più",
-				"show_more_blockers_other": "Mostra {{amount}} in più",
 				"spend_bar_label": "Utilizzo di oggi per modello",
 				"spend_none": "Nessun utilizzo registrato oggi.",
 				"spend_other": "Altri modelli",
@@ -960,7 +957,10 @@ var CATALOGS = {
 				"with_subagents": "Sottoagenti in esecuzione",
 				"workflows_many": "{{amount}} workflow",
 				"workflows_one": "{{amount}} workflow",
-				"workflows_other": "{{amount}} workflow"
+				"workflows_other": "{{amount}} workflow",
+				"show_all_many": "Mostra tutto ({{amount}} in più)",
+				"show_all_one": "Mostra tutto ({{amount}} in più)",
+				"show_all_other": "Mostra tutto ({{amount}} in più)"
 			},
 			"membersPage": { "empty_title": "Ancora nessun Bot" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "Il monitoraggio dell’utilizzo non è disponibile per {{provider}}." } },
@@ -1055,7 +1055,6 @@ var CATALOGS = {
 				"running_for": "実行中 {{duration}}",
 				"schedule_unavailable": "スケジュールを読み込めませんでした。",
 				"scheduled": "スケジュール済み",
-				"show_more_blockers_other": "さらに {{amount}} 件を表示",
 				"spend_bar_label": "今日のモデル別使用量",
 				"spend_none": "今日の使用量は記録されていません。",
 				"spend_other": "その他のモデル",
@@ -1073,7 +1072,8 @@ var CATALOGS = {
 				"window_hours_other": "{{amount}} 時間",
 				"window_label": "期間",
 				"with_subagents": "サブエージェント実行中",
-				"workflows_other": "{{amount}} ワークフロー"
+				"workflows_other": "{{amount}} ワークフロー",
+				"show_all_other": "すべて表示（他 {{amount}} 件）"
 			},
 			"membersPage": { "empty_title": "Bot はまだありません" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "{{provider}} では使用量のトラッキングを利用できません。" } },
@@ -1162,7 +1162,6 @@ var CATALOGS = {
 				"running_for": "{{duration}} 실행 중",
 				"schedule_unavailable": "스케줄을 불러올 수 없습니다.",
 				"scheduled": "예정됨",
-				"show_more_blockers_other": "{{amount}}개 더 보기",
 				"spend_bar_label": "오늘 모델별 사용량",
 				"spend_none": "오늘 기록된 사용량이 없습니다.",
 				"spend_other": "기타 모델",
@@ -1180,7 +1179,8 @@ var CATALOGS = {
 				"window_hours_other": "{{amount}}시간",
 				"window_label": "기간",
 				"with_subagents": "하위 에이전트 실행 중",
-				"workflows_other": "워크플로 {{amount}}개"
+				"workflows_other": "워크플로 {{amount}}개",
+				"show_all_other": "모두 보기 ({{amount}}개 더)"
 			},
 			"membersPage": { "empty_title": "아직 Bot이 없음" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "{{provider}}에서는 사용량 추적을 사용할 수 없습니다." } },
@@ -1279,9 +1279,6 @@ var CATALOGS = {
 				"running_for": "em execução há {{duration}}",
 				"schedule_unavailable": "Não foi possível carregar os agendamentos.",
 				"scheduled": "Agendados",
-				"show_more_blockers_many": "Mostrar mais {{amount}}",
-				"show_more_blockers_one": "Mostrar mais {{amount}}",
-				"show_more_blockers_other": "Mostrar mais {{amount}}",
 				"spend_bar_label": "Utilização de hoje por modelo",
 				"spend_none": "Nenhuma utilização registada hoje.",
 				"spend_other": "Outros modelos",
@@ -1307,7 +1304,10 @@ var CATALOGS = {
 				"with_subagents": "Subagentes em execução",
 				"workflows_many": "{{amount}} fluxos de trabalho",
 				"workflows_one": "{{amount}} fluxo de trabalho",
-				"workflows_other": "{{amount}} fluxos de trabalho"
+				"workflows_other": "{{amount}} fluxos de trabalho",
+				"show_all_many": "Mostrar tudo ({{amount}} a mais)",
+				"show_all_one": "Mostrar tudo ({{amount}} a mais)",
+				"show_all_other": "Mostrar tudo ({{amount}} a mais)"
 			},
 			"membersPage": { "empty_title": "Ainda não há Bots" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "O acompanhamento de uso não está disponível para {{provider}}." } },
@@ -1417,10 +1417,6 @@ var CATALOGS = {
 				"running_for": "в работе {{duration}}",
 				"schedule_unavailable": "Не удалось загрузить расписание.",
 				"scheduled": "Запланировано",
-				"show_more_blockers_few": "Показать ещё {{amount}}",
-				"show_more_blockers_many": "Показать ещё {{amount}}",
-				"show_more_blockers_one": "Показать ещё {{amount}}",
-				"show_more_blockers_other": "Показать ещё {{amount}}",
 				"spend_bar_label": "Использование за сегодня по моделям",
 				"spend_none": "Сегодня использование не зафиксировано.",
 				"spend_other": "Другие модели",
@@ -1450,7 +1446,11 @@ var CATALOGS = {
 				"workflows_few": "{{amount}} рабочих процесса",
 				"workflows_many": "{{amount}} рабочих процессов",
 				"workflows_one": "{{amount}} рабочий процесс",
-				"workflows_other": "{{amount}} рабочего процесса"
+				"workflows_other": "{{amount}} рабочего процесса",
+				"show_all_few": "Показать все (ещё {{amount}})",
+				"show_all_many": "Показать все (ещё {{amount}})",
+				"show_all_one": "Показать все (ещё {{amount}})",
+				"show_all_other": "Показать все (ещё {{amount}})"
 			},
 			"membersPage": { "empty_title": "Bot пока нет" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "Отслеживание использования недоступно для {{provider}}." } },
@@ -1548,7 +1548,6 @@ var CATALOGS = {
 				"running_for": "已运行 {{duration}}",
 				"schedule_unavailable": "无法加载日程。",
 				"scheduled": "已排期",
-				"show_more_blockers_other": "再显示 {{amount}} 个",
 				"spend_bar_label": "今天各模型的用量",
 				"spend_none": "今天没有记录到用量。",
 				"spend_other": "其他模型",
@@ -1566,7 +1565,8 @@ var CATALOGS = {
 				"window_hours_other": "{{amount}} 小时",
 				"window_label": "时间范围",
 				"with_subagents": "子代理运行中",
-				"workflows_other": "{{amount}} 个工作流"
+				"workflows_other": "{{amount}} 个工作流",
+				"show_all_other": "显示全部（还有 {{amount}} 个）"
 			},
 			"membersPage": { "empty_title": "还没有 Bot" },
 			"overview": { "usageTab": { "usage_tracking_is_not_available_for": "{{provider}} 不支持用量跟踪。" } },
@@ -2545,18 +2545,16 @@ function FleetBoard({ nodes, attentionSlots, extras, subagents, ready, nowMs }) 
 * answerable from here and routed to the same gateway endpoints the dashboard's
 * own cards use. Blockers come first (a question card, a tool approval, a
 * session marked needs-input), then sessions whose newest reply offered next
-* steps in an `[OPTIONS:]` line. Six cards show at first, and each "Show more"
-* adds a row.
+* steps in an `[OPTIONS:]` line. Six cards show at first; "Show all" opens
+* the rest.
 *
 * Nothing here sends on a click alone: a pick stays a draft until "Send answer",
 * and an approval needs its own button. A label the dashboard would refuse to
 * send bare (one that reads as a command) is withheld with a link to answer in
 * the session.
 */
-/** Cards shown at first, and how many each "Show more" adds: one row of the
-*  widest grid. */
+/** Cards shown at first: two rows of the widest grid. "Show all" opens the rest. */
 var INITIAL_CARDS = 6;
-var CARDS_PER_ROW = 3;
 function useLiveInvalidate() {
 	const client = useQueryClient();
 	return () => {
@@ -2755,18 +2753,22 @@ function OpenSessionCard({ item, title, detail }) {
 		})]
 	});
 }
-/** A session whose newest reply offered next steps: pick one and send it as
-*  the session's next message. A command-shaped label is withheld: sent bare it
-*  would run rather than say, so it is answered in the session itself. */
+/** A session whose newest reply offered next steps: pick one, or type a reply
+*  of your own, and send it as the session's next message. A pick and typed
+*  text are one answer, so choosing one clears the other. A command-shaped label
+*  is withheld: sent bare it would run rather than say, so it is answered in the
+*  session itself. */
 function FollowUpCard({ item, title }) {
 	const [pick, setPick] = useState("");
+	const [typed, setTyped] = useState("");
 	const refresh = useLiveInvalidate();
 	const mutation = useMutation({
-		mutationFn: (label) => writes.send(item.slot, label),
+		mutationFn: (message) => writes.send(item.slot, message),
 		onSuccess: refresh
 	});
 	const sendable = item.followUp.labels.filter((l) => !isCommandShaped(l));
 	const withheld = item.followUp.labels.length - sendable.length;
+	const answer = pick || typed.trim();
 	return /* @__PURE__ */ jsxs(CardShell, {
 		title,
 		slot: item.slot,
@@ -2779,15 +2781,29 @@ function FollowUpCard({ item, title }) {
 						className: "text-sm font-medium",
 						children: t("commandCenter.options_question")
 					}),
-					/* @__PURE__ */ jsx("div", {
+					/* @__PURE__ */ jsxs("div", {
 						className: "grid gap-2",
-						children: sendable.map((label) => /* @__PURE__ */ jsx("button", {
+						children: [sendable.map((label) => /* @__PURE__ */ jsx("button", {
 							type: "button",
 							"aria-pressed": pick === label,
-							onClick: () => setPick((p) => p === label ? "" : label),
+							onClick: () => {
+								setPick((p) => p === label ? "" : label);
+								setTyped("");
+							},
 							className: `text-left text-sm rounded-md border px-3 py-2 ${pick === label ? "border-accent bg-accent/15" : "border-border bg-card"}`,
 							children: label
-						}, label))
+						}, label)), /* @__PURE__ */ jsx("input", {
+							type: "text",
+							value: typed,
+							onChange: (e) => {
+								setTyped(e.target.value);
+								setPick("");
+							},
+							placeholder: t("components.questionCard.or_type_a_custom_answer"),
+							className: "text-sm rounded-md border border-border bg-card px-3 py-2 min-w-0",
+							"aria-label": t("components.questionCard.or_type_a_custom_answer"),
+							"data-testid": "home-follow-up-text"
+						})]
 					}),
 					withheld > 0 && /* @__PURE__ */ jsx(RowLink, {
 						to: sessionRoute(item.slot),
@@ -2800,8 +2816,8 @@ function FollowUpCard({ item, title }) {
 				className: "flex justify-end",
 				children: /* @__PURE__ */ jsxs(Btn, {
 					primary: true,
-					disabled: !pick || mutation.isPending,
-					onClick: () => mutation.mutate(pick),
+					disabled: !answer || mutation.isPending,
+					onClick: () => mutation.mutate(answer),
 					"data-testid": "home-follow-up-send",
 					children: [
 						/* @__PURE__ */ jsx(MessageSquare, {
@@ -2825,7 +2841,6 @@ function NeedsYou({ attention, sessions, slots, ready }) {
 	const items = [...attention.blockers, ...attention.followUps];
 	const shown = items.slice(0, visible);
 	const hidden = items.length - shown.length;
-	const nextStep = Math.min(hidden, CARDS_PER_ROW);
 	return /* @__PURE__ */ jsxs(Section, {
 		label: t("commandCenter.attention_filter"),
 		count: fmtNumber(items.length),
@@ -2856,11 +2871,11 @@ function NeedsYou({ attention, sessions, slots, ready }) {
 				})
 			}),
 			hidden > 0 && /* @__PURE__ */ jsx(Btn, {
-				onClick: () => setVisible((v) => v + CARDS_PER_ROW),
+				onClick: () => setVisible(items.length),
 				"data-testid": "home-needs-you-more",
-				children: t("pages.homePage.show_more_blockers", {
-					count: nextStep,
-					amount: fmtNumber(nextStep)
+				children: t("pages.homePage.show_all", {
+					count: hidden,
+					amount: fmtNumber(hidden)
 				})
 			}),
 			ready && !items.length && /* @__PURE__ */ jsx(Card, { children: /* @__PURE__ */ jsx(EmptyState, {

@@ -72,8 +72,6 @@
       "running_for": "{{duration}} से चल रहा",
       "schedule_unavailable": "शेड्यूल लोड नहीं हो सका।",
       "scheduled": "शेड्यूल किए गए",
-      "show_more_blockers_one": "{{amount}} और दिखाएँ",
-      "show_more_blockers_other": "{{amount}} और दिखाएँ",
       "spend_bar_label": "आज मॉडल के अनुसार उपयोग",
       "spend_none": "आज कोई उपयोग दर्ज नहीं हुआ।",
       "spend_other": "अन्य मॉडल",
@@ -95,7 +93,9 @@
       "window_label": "समय अवधि",
       "with_subagents": "सब-एजेंट चल रहे हैं",
       "workflows_one": "{{amount}} वर्कफ़्लो",
-      "workflows_other": "{{amount}} वर्कफ़्लो"
+      "workflows_other": "{{amount}} वर्कफ़्लो",
+      "show_all_one": "सभी दिखाएँ ({{amount}} और)",
+      "show_all_other": "सभी दिखाएँ ({{amount}} और)"
     },
     "membersPage": {
       "empty_title": "अभी कोई Bot नहीं"

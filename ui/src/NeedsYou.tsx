@@ -3,8 +3,8 @@
  * answerable from here and routed to the same gateway endpoints the dashboard's
  * own cards use. Blockers come first (a question card, a tool approval, a
  * session marked needs-input), then sessions whose newest reply offered next
- * steps in an `[OPTIONS:]` line. Six cards show at first, and each "Show more"
- * adds a row.
+ * steps in an `[OPTIONS:]` line. Six cards show at first; "Show all" opens
+ * the rest.
  *
  * Nothing here sends on a click alone: a pick stays a draft until "Send answer",
  * and an approval needs its own button. A label the dashboard would refuse to
@@ -23,10 +23,8 @@ import { LIVE_KEYS } from './queries'
 import { RowLink, Section, sessionRoute } from './rows'
 import type { ChatSlot, PendingQuestion, QuestionPrompt } from './types'
 
-/** Cards shown at first, and how many each "Show more" adds: one row of the
- *  widest grid. */
+/** Cards shown at first: two rows of the widest grid. "Show all" opens the rest. */
 const INITIAL_CARDS = 6
-const CARDS_PER_ROW = 3
 
 function useLiveInvalidate() {
   const client = useQueryClient()
@@ -158,30 +156,36 @@ function OpenSessionCard({ item, title, detail }: { item: AttentionItem; title: 
   )
 }
 
-/** A session whose newest reply offered next steps: pick one and send it as
- *  the session's next message. A command-shaped label is withheld: sent bare it
- *  would run rather than say, so it is answered in the session itself. */
+/** A session whose newest reply offered next steps: pick one, or type a reply
+ *  of your own, and send it as the session's next message. A pick and typed
+ *  text are one answer, so choosing one clears the other. A command-shaped label
+ *  is withheld: sent bare it would run rather than say, so it is answered in the
+ *  session itself. */
 function FollowUpCard({ item, title }: { item: Extract<AttentionItem, { kind: 'follow_up' }>; title: string }) {
   const [pick, setPick] = useState('')
+  const [typed, setTyped] = useState('')
   const refresh = useLiveInvalidate()
-  const mutation = useMutation({ mutationFn: (label: string) => writes.send(item.slot, label), onSuccess: refresh })
+  const mutation = useMutation({ mutationFn: (message: string) => writes.send(item.slot, message), onSuccess: refresh })
   const sendable = item.followUp.labels.filter(l => !isCommandShaped(l))
   const withheld = item.followUp.labels.length - sendable.length
+  const answer = pick || typed.trim()
   return (
     <CardShell title={title} slot={item.slot}>
       <div className="rounded-lg bg-accent-subtle p-3 space-y-2" data-testid="home-follow-up">
         <div className="text-sm font-medium">{t('commandCenter.options_question')}</div>
         <div className="grid gap-2">
           {sendable.map(label => (
-            <button key={label} type="button" aria-pressed={pick === label} onClick={() => setPick(p => p === label ? '' : label)}
+            <button key={label} type="button" aria-pressed={pick === label} onClick={() => { setPick(p => p === label ? '' : label); setTyped('') }}
               className={`text-left text-sm rounded-md border px-3 py-2 ${pick === label ? 'border-accent bg-accent/15' : 'border-border bg-card'}`}>{label}</button>
           ))}
+          <input type="text" value={typed} onChange={e => { setTyped(e.target.value); setPick('') }} placeholder={t('components.questionCard.or_type_a_custom_answer')}
+            className="text-sm rounded-md border border-border bg-card px-3 py-2 min-w-0" aria-label={t('components.questionCard.or_type_a_custom_answer')} data-testid="home-follow-up-text" />
         </div>
         {withheld > 0 && <RowLink to={sessionRoute(item.slot)}>{t('pulse.answer_in_session')}</RowLink>}
       </div>
       <ErrorNotice message={mutation.isError ? errorLine(mutation.error, 'pulse.answer_failed') : undefined} />
       <div className="flex justify-end">
-        <Btn primary disabled={!pick || mutation.isPending} onClick={() => mutation.mutate(pick)} data-testid="home-follow-up-send">
+        <Btn primary disabled={!answer || mutation.isPending} onClick={() => mutation.mutate(answer)} data-testid="home-follow-up-send">
           <MessageSquare size={14} className="lucide-inline" /> {t('commandCenter.send_answer')}
         </Btn>
       </div>
@@ -200,7 +204,6 @@ export default function NeedsYou({ attention, sessions, slots, ready }: {
   const items: AttentionItem[] = [...attention.blockers, ...attention.followUps]
   const shown = items.slice(0, visible)
   const hidden = items.length - shown.length
-  const nextStep = Math.min(hidden, CARDS_PER_ROW)
   return (
     <Section label={t('commandCenter.attention_filter')} count={fmtNumber(items.length)} testId="home-needs-you">
       {shown.length > 0 && (
@@ -213,7 +216,7 @@ export default function NeedsYou({ attention, sessions, slots, ready }: {
           })}
         </div>
       )}
-      {hidden > 0 && <Btn onClick={() => setVisible(v => v + CARDS_PER_ROW)} data-testid="home-needs-you-more">{t('pages.homePage.show_more_blockers', { count: nextStep, amount: fmtNumber(nextStep) })}</Btn>}
+      {hidden > 0 && <Btn onClick={() => setVisible(items.length)} data-testid="home-needs-you-more">{t('pages.homePage.show_all', { count: hidden, amount: fmtNumber(hidden) })}</Btn>}
       {ready && !items.length && <Card><EmptyState icon={<Inbox size={24} />} title={t('commandCenter.no_input')} testId="home-needs-you-empty" /></Card>}
     </Section>
   )

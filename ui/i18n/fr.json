@@ -77,9 +77,6 @@
       "running_for": "en cours depuis {{duration}}",
       "schedule_unavailable": "La planification n’a pas pu être chargée.",
       "scheduled": "Planifiés",
-      "show_more_blockers_many": "Afficher {{amount}} de plus",
-      "show_more_blockers_one": "Afficher {{amount}} de plus",
-      "show_more_blockers_other": "Afficher {{amount}} de plus",
       "spend_bar_label": "Utilisation du jour par modèle",
       "spend_none": "Aucune utilisation enregistrée aujourd’hui.",
       "spend_other": "Autres modèles",
@@ -105,7 +102,10 @@
       "with_subagents": "Sous-agents en cours",
       "workflows_many": "{{amount}} workflows",
       "workflows_one": "{{amount}} workflow",
-      "workflows_other": "{{amount}} workflows"
+      "workflows_other": "{{amount}} workflows",
+      "show_all_many": "Tout afficher ({{amount}} de plus)",
+      "show_all_one": "Tout afficher ({{amount}} de plus)",
+      "show_all_other": "Tout afficher ({{amount}} de plus)"
     },
     "membersPage": {
       "empty_title": "Aucun Bot pour l'instant"

@@ -72,8 +72,6 @@
       "running_for": "running {{duration}}",
       "schedule_unavailable": "The schedule could not be loaded.",
       "scheduled": "Scheduled",
-      "show_more_blockers_one": "Show {{amount}} more",
-      "show_more_blockers_other": "Show {{amount}} more",
       "spend_bar_label": "Today's usage by model",
       "spend_none": "No usage recorded today.",
       "spend_other": "Other models",
@@ -95,7 +93,9 @@
       "window_label": "Time window",
       "with_subagents": "Subagents running",
       "workflows_one": "{{amount}} workflow",
-      "workflows_other": "{{amount}} workflows"
+      "workflows_other": "{{amount}} workflows",
+      "show_all_one": "Show all ({{amount}} more)",
+      "show_all_other": "Show all ({{amount}} more)"
     },
     "membersPage": {
       "empty_title": "No bots yet"

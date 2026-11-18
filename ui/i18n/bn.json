@@ -72,8 +72,6 @@
       "running_for": "{{duration}} ধরে চলছে",
       "schedule_unavailable": "সময়সূচি লোড করা যায়নি।",
       "scheduled": "সময়সূচিতে",
-      "show_more_blockers_one": "আরও {{amount}}টি দেখাও",
-      "show_more_blockers_other": "আরও {{amount}}টি দেখাও",
       "spend_bar_label": "আজকের মডেল অনুযায়ী ব্যবহার",
       "spend_none": "আজ কোনো ব্যবহার রেকর্ড হয়নি।",
       "spend_other": "অন্য মডেল",
@@ -95,7 +93,9 @@
       "window_label": "সময়সীমা",
       "with_subagents": "সাব-এজেন্ট চলছে",
       "workflows_one": "{{amount}}টি ওয়ার্কফ্লো",
-      "workflows_other": "{{amount}}টি ওয়ার্কফ্লো"
+      "workflows_other": "{{amount}}টি ওয়ার্কফ্লো",
+      "show_all_one": "সব দেখান (আরও {{amount}})",
+      "show_all_other": "সব দেখান (আরও {{amount}})"
     },
     "membersPage": {
       "empty_title": "এখনও কোনো Bot নেই"

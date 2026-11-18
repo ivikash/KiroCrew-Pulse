@@ -72,8 +72,6 @@
       "running_for": "läuft seit {{duration}}",
       "schedule_unavailable": "Der Zeitplan konnte nicht geladen werden.",
       "scheduled": "Geplant",
-      "show_more_blockers_one": "{{amount}} weitere anzeigen",
-      "show_more_blockers_other": "{{amount}} weitere anzeigen",
       "spend_bar_label": "Heutige Nutzung nach Modell",
       "spend_none": "Heute wurde keine Nutzung erfasst.",
       "spend_other": "Andere Modelle",
@@ -95,7 +93,9 @@
       "window_label": "Zeitraum",
       "with_subagents": "Subagenten laufen",
       "workflows_one": "{{amount}} Workflow",
-      "workflows_other": "{{amount}} Workflows"
+      "workflows_other": "{{amount}} Workflows",
+      "show_all_one": "Alle anzeigen ({{amount}} weitere)",
+      "show_all_other": "Alle anzeigen ({{amount}} weitere)"
     },
     "membersPage": {
       "empty_title": "Noch keine Bots"

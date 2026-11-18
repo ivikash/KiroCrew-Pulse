@@ -77,9 +77,6 @@
       "running_for": "en ejecución {{duration}}",
       "schedule_unavailable": "No se pudo cargar la programación.",
       "scheduled": "Programados",
-      "show_more_blockers_many": "Mostrar {{amount}} más",
-      "show_more_blockers_one": "Mostrar {{amount}} más",
-      "show_more_blockers_other": "Mostrar {{amount}} más",
       "spend_bar_label": "Uso de hoy por modelo",
       "spend_none": "Hoy no se ha registrado uso.",
       "spend_other": "Otros modelos",
@@ -105,7 +102,10 @@
       "with_subagents": "Subagentes en ejecución",
       "workflows_many": "{{amount}} flujos de trabajo",
       "workflows_one": "{{amount}} flujo de trabajo",
-      "workflows_other": "{{amount}} flujos de trabajo"
+      "workflows_other": "{{amount}} flujos de trabajo",
+      "show_all_many": "Mostrar todo ({{amount}} más)",
+      "show_all_one": "Mostrar todo ({{amount}} más)",
+      "show_all_other": "Mostrar todo ({{amount}} más)"
     },
     "membersPage": {
       "empty_title": "Aún no hay Bots"

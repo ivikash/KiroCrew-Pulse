@@ -67,7 +67,6 @@
       "running_for": "已运行 {{duration}}",
       "schedule_unavailable": "无法加载日程。",
       "scheduled": "已排期",
-      "show_more_blockers_other": "再显示 {{amount}} 个",
       "spend_bar_label": "今天各模型的用量",
       "spend_none": "今天没有记录到用量。",
       "spend_other": "其他模型",
@@ -85,7 +84,8 @@
       "window_hours_other": "{{amount}} 小时",
       "window_label": "时间范围",
       "with_subagents": "子代理运行中",
-      "workflows_other": "{{amount}} 个工作流"
+      "workflows_other": "{{amount}} 个工作流",
+      "show_all_other": "显示全部（还有 {{amount}} 个）"
     },
     "membersPage": {
       "empty_title": "还没有 Bot"

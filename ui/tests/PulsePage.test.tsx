@@ -159,7 +159,19 @@ describe('PulsePage', () => {
     await waitFor(() => expect(stubPosts).toEqual([{ path: '/api/chat', body: { message: 'Publish', slot: 's-docs' } }]))
   })
 
-  it('shows six cards at first and three more per click, blockers before offers', async () => {
+  it('sends a typed reply to an offer, and typing clears a pick', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    const grid = await screen.findByTestId('home-needs-you-grid')
+    const card = within(grid).getAllByTestId('home-attention-card').find(c => c.textContent?.includes('Weekly report'))!
+    await user.click(within(card).getByRole('button', { name: 'Publish' }))
+    await user.type(within(card).getByTestId('home-follow-up-text'), '  Hold it until Friday ')
+    expect(within(card).getByRole('button', { name: 'Publish' })).toHaveAttribute('aria-pressed', 'false')
+    await user.click(within(card).getByTestId('home-follow-up-send'))
+    await waitFor(() => expect(stubPosts).toEqual([{ path: '/api/chat', body: { message: 'Hold it until Friday', slot: 's-docs' } }]))
+  })
+
+  it('shows six cards at first and Show all opens the rest, blockers before offers', async () => {
     const user = userEvent.setup()
     stubRoutes.set('/api/chat/slots', [
       { key: 'q1', title: 'Ask one', needs_input: true },
@@ -173,7 +185,7 @@ describe('PulsePage', () => {
     expect(within(grid).getAllByTestId('home-attention-card')[0]).toHaveTextContent('Ask one')
     await waitFor(() => expect(tileValue('home-stat-attention')).toBe('9'))
     const more = screen.getByTestId('home-needs-you-more')
-    expect(more).toHaveTextContent('Show 3 more')
+    expect(more).toHaveTextContent('Show all (3 more)')
     await user.click(more)
     expect(within(grid).getAllByTestId('home-attention-card')).toHaveLength(9)
     expect(screen.queryByTestId('home-needs-you-more')).toBeNull()
