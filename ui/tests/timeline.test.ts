@@ -42,17 +42,21 @@ describe('pointOn and tickTimes', () => {
 })
 
 describe('turnSpans', () => {
-  it('maps rows to spans oldest first and drops an undatable row', () => {
+  it('maps rows to spans ending at ts, oldest first, and drops an undatable row', () => {
     const rows = [
-      { ts: new Date(NOW - 6 * H).toISOString(), duration_ms: 3 * H },
+      { ts: new Date(NOW - 3 * H).toISOString(), duration_ms: 3 * H },
       { ts: 'not a date', duration_ms: 1 },
       { ts: new Date(NOW - 1 * H).toISOString() },
       { ts: new Date(NOW - 2 * H).toISOString(), duration_ms: -5 },
     ]
     const spans = turnSpans(rows, win)
     expect(spans).toHaveLength(3)
+    // Ended 3h ago after running 3h: the bar covers 6h ago to 3h ago.
     expect(spans[0]).toEqual({ leftPct: 50, widthPct: 25 })
     expect(spans[1].widthPct).toBe(0.4)
     expect(spans[2].widthPct).toBe(0.4)
+    // A turn that ended just now never projects past the window's end.
+    const live = turnSpans([{ ts: new Date(NOW).toISOString(), duration_ms: 2 * H }], win)
+    expect(live[0].leftPct + live[0].widthPct).toBeCloseTo(100)
   })
 })

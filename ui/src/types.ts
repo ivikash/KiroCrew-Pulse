@@ -155,7 +155,8 @@ export interface KiroCrewConfig {
   agent?: { acp_backend?: string }
 }
 
-/** One per-turn usage row from `GET /api/usage/turns`. */
+/** One per-turn usage row from `GET /api/usage/turns`. `ts` is when the turn
+ *  ended: the gateway writes the row once the usage is known. */
 export interface TurnRow {
   ts: string
   duration_ms?: number

@@ -2122,13 +2122,15 @@ function tickTimes(window, count) {
 	const step = (window.endMs - window.startMs) / count;
 	return Array.from({ length: count }, (_, i) => window.startMs + i * step);
 }
-/** Turn rows as spans, oldest first, each at least a sliver long. A row whose
-*  timestamp does not parse is dropped: an undatable turn cannot be placed. */
+/** Turn rows as spans, oldest first, each at least a sliver long. The gateway
+*  stamps a row when the turn ENDS, so a span runs from `ts - duration_ms` to
+*  `ts`. A row whose timestamp does not parse is dropped: an undatable turn
+*  cannot be placed. */
 function turnSpans(rows, window) {
 	return rows.map((row) => {
 		const at = Date.parse(row.ts);
 		if (Number.isNaN(at)) return null;
-		return spanOn(window, at, at + Math.max(0, row.duration_ms ?? 0));
+		return spanOn(window, at - Math.max(0, row.duration_ms ?? 0), at);
 	}).filter((s) => s !== null);
 }
 /** The query string `GET /api/usage/turns` takes for this window. */
